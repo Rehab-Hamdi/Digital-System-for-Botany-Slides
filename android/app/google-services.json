@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "504430302156",
+    "project_id": "test-botany-project",
+    "storage_bucket": "test-botany-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504430302156:android:20bce53cc05966a1de0369",
+        "android_client_info": {
+          "package_name": "com.example.our_test_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504430302156-k7lj5a3j51aa8o23d7t07kohae64r5oh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcFHkmRuzw_G8aS1PmYDDeqOFB8_JDKh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504430302156-k7lj5a3j51aa8o23d7t07kohae64r5oh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
