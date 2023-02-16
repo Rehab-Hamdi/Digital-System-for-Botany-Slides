@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/colors.dart';
+import 'package:our_test_project/core/styles/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   FocusNode focusNode;

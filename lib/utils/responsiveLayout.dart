@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ResposiveLayout extends StatelessWidget {
+class ResponsiveLayout extends StatelessWidget {
   final Widget mobileWidget;
   Widget? desktopWidget;
 
-  ResposiveLayout({super.key, required this.mobileWidget, this.desktopWidget});
+  ResponsiveLayout({super.key, required this.mobileWidget, this.desktopWidget});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(

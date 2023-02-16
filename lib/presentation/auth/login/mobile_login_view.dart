@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:our_test_project/core/base.dart';
-import 'package:our_test_project/core/colors.dart';
 import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
-import 'package:our_test_project/presentation/auth/home/home_view.dart';
+import 'package:our_test_project/core/styles/colors.dart';
+import 'package:our_test_project/presentation/home/home_view.dart';
 import 'login_navigator.dart';
 import 'login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -106,7 +106,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                               controller: emailController,
                               validatorFunction: (text) =>
                                   viewModel.emailValidation(text),
-                              preIcon: Icon(Icons.email),
+                              preIcon: const Icon(Icons.email),
                             ),
                           ],
                         ),
@@ -142,7 +142,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                           height: MediaQuery.of(context).size.height / 17,
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 50),
+                          margin: const EdgeInsets.only(right: 50),
                           width: 180,
                           height: 50,
                           child: OutlinedButton(
@@ -153,7 +153,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                                   backgroundColor: Colors.green,
                                   shape: RoundedRectangleBorder(borderRadius:
                                   BorderRadius.circular(25)),
-                                  side:const BorderSide(color: MyColors.lightBlack)
+                                  side: const BorderSide(color: MyColors.lightBlack)
                               ),
                               child: const Text(
                                 "Login",

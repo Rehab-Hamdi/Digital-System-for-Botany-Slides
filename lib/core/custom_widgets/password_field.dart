@@ -1,7 +1,5 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/colors.dart';
+import 'package:our_test_project/core/styles/colors.dart';
 
 class PasswordField extends StatefulWidget
 {
@@ -53,7 +51,7 @@ class _PasswordField extends State<PasswordField>
             ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25.0),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color:MyColors.lightBlack,
                     width: 1.5))),
       ),
