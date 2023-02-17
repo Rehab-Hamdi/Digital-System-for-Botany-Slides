@@ -26,7 +26,7 @@ class _PasswordField extends State<PasswordField>
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:  const EdgeInsets.fromLTRB(20.0,0, 60.0, 0),
+      margin:  const EdgeInsets.fromLTRB(20.0,0, 25.0, 0),
       // width: MediaQuery.of(context).size.width*0.20,
       height: MediaQuery.of(context).size.height*0.06,
       child: TextFormField(
@@ -37,14 +37,14 @@ class _PasswordField extends State<PasswordField>
         decoration: InputDecoration(
             prefixIcon: const Icon(
               Icons.lock,
-              color:Colors.green,
+              color:MyColors.lightGreen,
             ),
             suffixIcon:GestureDetector(onTap: (){
               setState(() {
                 pass=!pass;
               });
             },
-                child: Icon(pass? Icons.visibility_off : Icons.visibility, color: Colors.green,)
+                child: Icon(pass? Icons.visibility_off : Icons.visibility, color: MyColors.lightGreen,)
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25.0),

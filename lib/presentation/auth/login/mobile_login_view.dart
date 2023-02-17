@@ -42,136 +42,142 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (c) => viewModel,
-        child: Scaffold(
-          body: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Center(
-                child: Container(
-                  width: 564,
+    return SafeArea(
+      child: ChangeNotifierProvider(
+          create: (c) => viewModel,
+          child: Scaffold(
+            body: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
                   decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/background.jpg'),
-                          fit: BoxFit.fill)),
+                  ),
+                  child: Image.asset(
+                    'assets/images/mobileLoginWall.jpg',
+                    fit: BoxFit.fill,
+                  ),
                 ),
-              ),
-              Form(
-                key: keyForm,
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.67,
-                  /// main Container
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40.0),
-                          topRight: Radius.circular(40.0)),
-                      color: Colors.white),
-                  child: Container(
-                    margin: const EdgeInsets.fromLTRB(37.0, 30.0, 0, 0),
-                    child: Column(
-                      children: [
-                        /// Login
-                        Row(
-                          children:const [
-                            Text(
-                              "Login ",
-                              style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 35,
-                        ),
-                        /// Email
-                        Column(
-                          children: [
-                            Row(
-                              children: const [
-                                Padding(
-                                  padding:
-                                  EdgeInsets.fromLTRB(30.0, 0, 0, 12.0),
-                                  child: Text(
-                                    "Email",
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.grey),
-                                  ),
+                Center(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      child: Form(
+                        key: keyForm,
+                        child:  Container(
+                          margin: const EdgeInsets.only( left: 20.0, bottom: 100.0),
+                          color: Colors.transparent,
+                          /// main Container
+                          child: Container(
+                            margin: const EdgeInsets.only( left: 5.0),
+                            child: Column(
+                              children: [
+                                /// Login
+                                Row(
+                                  children:const [
+                                    Text(
+                                      "Login ",
+                                      style: TextStyle(
+                                          fontSize: 35,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            CustomTextField(
-                              focusNode: emailFocusNode,
-                              controller: emailController,
-                              validatorFunction: (text) =>
-                                  viewModel.emailValidation(text),
-                              preIcon: const Icon(Icons.email),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
+                                const SizedBox(
+                                  height: 35,
+                                ),
+                                /// Email
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: const [
+                                        Padding(
+                                          padding:
+                                          EdgeInsets.fromLTRB(20.0, 0, 0, 12.0),
+                                          child: Text(
+                                            "Email",
+                                            style: TextStyle(
+                                                fontSize: 20, color: MyColors.darkGray),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    CustomTextField(
+                                      focusNode: emailFocusNode,
+                                      controller: emailController,
+                                      validatorFunction: (text) =>
+                                          viewModel.emailValidation(text),
+                                      preIcon: const Icon(Icons.email),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 25,
+                                ),
 
-                        /// password
-                        Column(
-                          children: [
-                            Row(
-                              children: const [
-                                Padding(
-                                  padding:
-                                  EdgeInsets.fromLTRB(30.0, 0, 0, 15.0),
-                                  child: Text(
-                                    "Password",
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.grey),
-                                  ),
+                                /// password
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: const [
+                                        Padding(
+                                          padding:
+                                          EdgeInsets.fromLTRB(20.0, 0, 0, 15.0),
+                                          child: Text(
+                                            "Password",
+                                            style: TextStyle(
+                                                fontSize: 20, color: MyColors.darkGray),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    PasswordField(
+                                      focusNode: passwordFocusNode,
+                                      controller: passwordController,
+                                      validatorFunction: (text) =>
+                                          viewModel.passwordValidation(text),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height / 12,
+                                ),
+
+                                Container(
+                                  margin: EdgeInsets.only(right: 25),
+                                  width: 230,
+                                  height: 50,
+                                  child: OutlinedButton(
+                                      onPressed: () {
+                                        LoginButtonFunction();
+                                      },
+                                      style: OutlinedButton.styleFrom(
+                                          backgroundColor: MyColors.lightGreen,
+                                          shape: RoundedRectangleBorder(borderRadius:
+                                          BorderRadius.circular(25)),
+                                          side: const BorderSide(color: MyColors.lightBlack)
+                                      ),
+                                      child: const Text(
+                                        "Login",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22,
+                                            color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      )),
                                 ),
                               ],
                             ),
-                            PasswordField(
-                              focusNode: passwordFocusNode,
-                              controller: passwordController,
-                              validatorFunction: (text) =>
-                                  viewModel.passwordValidation(text),
-                            ),
-                          ],
+                          ),
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height / 17,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(right: 50),
-                          width: 180,
-                          height: 50,
-                          child: OutlinedButton(
-                              onPressed: () {
-                                LoginButtonFunction();
-                              },
-                              style: OutlinedButton.styleFrom(
-                                  backgroundColor: Colors.green,
-                                  shape: RoundedRectangleBorder(borderRadius:
-                                  BorderRadius.circular(25)),
-                                  side: const BorderSide(color: MyColors.lightBlack)
-                              ),
-                              child: const Text(
-                                "Login",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                    color: Colors.white),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ));
+              ],
+            ),
+          )),
+    );
   }
 
   // ignore: non_constant_identifier_names

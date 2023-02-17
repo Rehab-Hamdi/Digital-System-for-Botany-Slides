@@ -44,7 +44,7 @@ class MobileHomeView extends StatelessWidget {
               ),
               SizedBox(height: MediaQuery.of(context).size.height/8,),
               ///Get Started Button
-              CustomButton(width: 295, height: 56, color: MyColors.green),
+              CustomButton(width: 295, height: 56, color: MyColors.green, title: 'Get Started',),
             ],
           ),
         ),

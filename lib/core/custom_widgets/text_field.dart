@@ -18,14 +18,14 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:  const EdgeInsets.fromLTRB(20.0,0, 60.0, 0),
+      margin:  const EdgeInsets.fromLTRB(15.0,0,25,0),
       height: MediaQuery.of(context).size.height*0.06,
       child: TextFormField(
         focusNode: focusNode,
         controller: controller,
         validator: validatorFunction,
         decoration: InputDecoration(
-            prefixIcon: Icon(preIcon.icon, color: Colors.green ),
+            prefixIcon: Icon(preIcon.icon, color: MyColors.lightGreen ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(40.0),
             ),

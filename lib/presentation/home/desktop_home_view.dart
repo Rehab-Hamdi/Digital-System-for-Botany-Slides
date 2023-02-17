@@ -56,7 +56,7 @@ class DesktopHomeView extends StatelessWidget {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height/15,),
                     ///Get Started Button
-                    CustomButton(width: 250, height: 50, color: MyColors.green),
+                    CustomButton(width: 250, height: 50, color: MyColors.green, title: 'Get Started',),
                   ],
                 ),
               ),

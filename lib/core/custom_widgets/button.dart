@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
+import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart';
+import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
 
 class CustomButton extends StatelessWidget {
   double width;
   double height;
   Color color;
-
-  CustomButton({super.key, required this.width, required this.height, required this.color});
+  String title;
+  CustomButton({super.key, required this.width, required this.height, required this.color, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +30,16 @@ class CustomButton extends StatelessWidget {
           ],
         ),
         child: OutlinedButton(
-            onPressed: () {},
+            onPressed: () {
+            },
             style: OutlinedButton.styleFrom(
               backgroundColor: color,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25),
               ),
             ),
-            child: const Text(
-              "Get Started",
+            child: Text(
+              title,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
