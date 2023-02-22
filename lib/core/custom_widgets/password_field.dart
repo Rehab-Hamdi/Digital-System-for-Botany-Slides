@@ -28,7 +28,7 @@ class _PasswordField extends State<PasswordField>
     return Container(
       margin:  const EdgeInsets.fromLTRB(20.0,0, 25.0, 0),
       // width: MediaQuery.of(context).size.width*0.20,
-      height: MediaQuery.of(context).size.height*0.06,
+      //height: MediaQuery.of(context).size.height*0.06,
       child: TextFormField(
         focusNode: widget.focusNode,
         obscureText:pass ,
@@ -47,10 +47,10 @@ class _PasswordField extends State<PasswordField>
                 child: Icon(pass? Icons.visibility_off : Icons.visibility, color: MyColors.lightGreen,)
             ),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(40.0),
             ),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25.0),
+                borderRadius: BorderRadius.circular(40.0),
                 borderSide: const BorderSide(
                     color:MyColors.lightBlack,
                     width: 1.5))),

@@ -46,139 +46,130 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
       child: ChangeNotifierProvider(
           create: (c) => viewModel,
           child: Scaffold(
-            body: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Container(
+            body: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  decoration: const BoxDecoration(
-                  ),
-                  child: Image.asset(
-                    'assets/images/mobileLoginWall.jpg',
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Center(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      child: Form(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/mobileLoginWall.jpg'),
+                      fit: BoxFit.cover)),
+                  child: ListView(
+                    children: [
+                      Form(
                         key: keyForm,
-                        child:  Container(
-                          margin: const EdgeInsets.only( left: 20.0, bottom: 100.0),
-                          color: Colors.transparent,
-                          /// main Container
-                          child: Container(
-                            margin: const EdgeInsets.only( left: 5.0),
-                            child: Column(
-                              children: [
-                                /// Login
-                                Row(
-                                  children:const [
-                                    Text(
-                                      "Login ",
-                                      style: TextStyle(
-                                          fontSize: 35,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 35,
-                                ),
-                                /// Email
-                                Column(
-                                  children: [
-                                    Row(
-                                      children: const [
-                                        Padding(
-                                          padding:
-                                          EdgeInsets.fromLTRB(20.0, 0, 0, 12.0),
-                                          child: Text(
-                                            "Email",
-                                            style: TextStyle(
-                                                fontSize: 20, color: MyColors.darkGray),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    CustomTextField(
-                                      focusNode: emailFocusNode,
-                                      controller: emailController,
-                                      validatorFunction: (text) =>
-                                          viewModel.emailValidation(text),
-                                      preIcon: const Icon(Icons.email),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 25,
-                                ),
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 35.0),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.15,
+                              ),
 
-                                /// password
-                                Column(
-                                  children: [
-                                    Row(
-                                      children: const [
-                                        Padding(
-                                          padding:
-                                          EdgeInsets.fromLTRB(20.0, 0, 0, 15.0),
-                                          child: Text(
-                                            "Password",
-                                            style: TextStyle(
-                                                fontSize: 20, color: MyColors.darkGray),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    PasswordField(
-                                      focusNode: passwordFocusNode,
-                                      controller: passwordController,
-                                      validatorFunction: (text) =>
-                                          viewModel.passwordValidation(text),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height / 12,
-                                ),
+                              /// Login
+                              Row(
+                                children: const [
+                                  Text(
+                                    "Login ",
+                                    style: TextStyle(
+                                        fontSize: 30, fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height*0.04,
+                              ),
 
-                                Container(
-                                  margin: EdgeInsets.only(right: 25),
-                                  width: 230,
-                                  height: 50,
-                                  child: OutlinedButton(
-                                      onPressed: () {
-                                        LoginButtonFunction();
-                                      },
-                                      style: OutlinedButton.styleFrom(
-                                          backgroundColor: MyColors.lightGreen,
-                                          shape: RoundedRectangleBorder(borderRadius:
-                                          BorderRadius.circular(25)),
-                                          side: const BorderSide(color: MyColors.lightBlack)
+                              /// Email
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.fromLTRB(
+                                            25.0, 0, 0, 8.0),
+                                        child: const Text(
+                                          "Email",
+                                          style: TextStyle(
+                                              fontSize: 20, color: Colors.grey),
+                                        ),
                                       ),
-                                      child: const Text(
-                                        "Login",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 22,
-                                            color: Colors.white),
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                              ],
-                            ),
+                                    ],
+                                  ),
+                                  CustomTextField(
+                                    focusNode: emailFocusNode,
+                                    controller: emailController,
+                                    validatorFunction: (text) =>
+                                        viewModel.emailValidation(text),
+                                    preIcon: Icon(Icons.email),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height*0.03,
+                              ),
+
+                              /// password
+                              Column(
+                                children: [
+                                  Row(
+                                    children: const [
+                                      Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(25.0, 0, 0, 8.0),
+                                        child: Text(
+                                          "Password",
+                                          style: TextStyle(
+                                              fontSize: 20, color: Colors.grey),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  PasswordField(
+                                    focusNode: passwordFocusNode,
+                                    controller: passwordController,
+                                    validatorFunction: (text) =>
+                                        viewModel.passwordValidation(text),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height*0.05,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 25),
+                                width: 230,
+                                height: 50,
+                                child: OutlinedButton(
+                                    onPressed: () {
+                                      LoginButtonFunction();
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                        backgroundColor: MyColors.lightGreen,
+                                        shape: RoundedRectangleBorder(borderRadius:
+                                        BorderRadius.circular(25)),
+                                        side: const BorderSide(color: MyColors.lightBlack)
+                                    ),
+                                    child: const Text(
+                                      "Login",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22,
+                                          color: Colors.white),
+                                      textAlign: TextAlign.center,
+                                    )),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+
           )),
     );
   }
+
 
   // ignore: non_constant_identifier_names
   LoginButtonFunction() async {

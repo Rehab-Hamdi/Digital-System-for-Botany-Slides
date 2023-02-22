@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin:  const EdgeInsets.fromLTRB(15.0,0,25,0),
-      height: MediaQuery.of(context).size.height*0.06,
+      //height: MediaQuery.of(context).size.height*0.06,
       child: TextFormField(
         focusNode: focusNode,
         controller: controller,
