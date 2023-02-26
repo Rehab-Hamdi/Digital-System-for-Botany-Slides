@@ -31,6 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  table_calendar: ^3.0.7
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,6 +40,7 @@ dependencies:
   firebase_core: ^2.3.0
   firebase_auth: ^4.2.1
   provider: ^6.0.5
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/mobileLoginWall.jpg
+    - assets/images/myPlant.png
+    - assets/images/noResult.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

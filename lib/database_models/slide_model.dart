@@ -1,5 +1,5 @@
 
-import 'package:our_test_project/models/slide_celis_model.dart';
+import 'package:our_test_project/database_models/slide_celis_model.dart';
 
 import 'borrow_model.dart';
 

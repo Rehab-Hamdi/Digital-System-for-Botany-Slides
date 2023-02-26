@@ -10,4 +10,6 @@ class MyColors {
   static const Color lightGray = Color(0xf3f3f3f3);
   static const Color darkGray = Color(0xff40555E);
   static const Color lightGreen = Color(0xff4d6461);
+  static const Color designGreen = Color(0xff294b53);
+  static const Color plantBackground = Color(0xfff6f6f6);
 }

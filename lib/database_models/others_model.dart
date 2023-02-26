@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:our_test_project/models/slide_model.dart';
+import 'package:our_test_project/database_models/slide_model.dart';
 
 class Others extends Slide {
   int? othersId;
