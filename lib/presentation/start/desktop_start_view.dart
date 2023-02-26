@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 
-class DesktopHomeView extends StatelessWidget {
-  const DesktopHomeView({Key? key}) : super(key: key);
+class DesktopStartView extends StatelessWidget {
+  const DesktopStartView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

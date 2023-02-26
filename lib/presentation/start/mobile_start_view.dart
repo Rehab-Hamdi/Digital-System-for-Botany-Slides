@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 
-class MobileHomeView extends StatelessWidget {
-  const MobileHomeView({Key? key}) : super(key: key);
+class MobileStartView extends StatelessWidget {
+  const MobileStartView({Key? key}) : super(key: key);
 
-  static const String routeName = "mobileHome";
+  static const String routeName = "mobileStart";
 
   @override
   Widget build(BuildContext context) {

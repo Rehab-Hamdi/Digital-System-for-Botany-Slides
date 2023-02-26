@@ -5,8 +5,9 @@ import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
-import 'package:our_test_project/presentation/home/home_view.dart';
-import 'package:our_test_project/presentation/home/mobile_home_view.dart';
+import 'package:our_test_project/presentation/start/start_view.dart';
+import 'package:our_test_project/presentation/start/mobile_start_view.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,10 +30,10 @@ class MyApp extends StatelessWidget {
         LoginView.routeName:(c)=> LoginView(),
         MobileLoginView.routeName:(c)=>MobileLoginView(),
         DesktopLoginView.routeName: (c) => DesktopLoginView(),
-        MobileHomeView.routeName: (c)=>MobileHomeView(),
-        HomeView.routeName: (c)=> HomeView(),
+        MobileStartView.routeName: (c)=>MobileStartView(),
+        StartView.routeName: (c)=> StartView(),
       },
-      initialRoute: HomeView.routeName
+      initialRoute: StartView.routeName
     );
   }
 }

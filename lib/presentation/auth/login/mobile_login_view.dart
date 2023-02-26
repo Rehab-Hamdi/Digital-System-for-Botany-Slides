@@ -4,7 +4,6 @@ import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/home/home_view.dart';
 import 'login_navigator.dart';
 import 'login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -181,7 +180,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
 
   @override
   void goToHome() {
-    Navigator.pushReplacementNamed(context, HomeView.routeName);
+    //Navigator.pushReplacementNamed(context, HomeView.routeName);
   }
 
   @override
