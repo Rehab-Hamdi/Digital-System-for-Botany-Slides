@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_test_project/core/styles/colors.dart';
 
 abstract class BaseNavigator {
   void showLoading();
@@ -47,7 +48,12 @@ abstract class BaseState<T extends StatefulWidget, VM extends BaseViewModel>
     showDialog(
         context: context,
         builder: (c) {
-          return AlertDialog(title: Text(message));
+          return AlertDialog(
+              content: Text(message, style: TextStyle(color: Colors.red.shade400, fontSize: 17),),
+            actions: [
+              Center(child: IconButton( onPressed: (){Navigator.of(context).pop(); }, icon: const Icon(Icons.cancel, color:MyColors.designGreen,),))
+            ],
+          );
         });
   }
 }
