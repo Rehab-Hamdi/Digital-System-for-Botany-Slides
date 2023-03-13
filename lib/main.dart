@@ -5,6 +5,7 @@ import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
+import 'package:our_test_project/presentation/dashboard_application/calendar/calendar_view.dart';
 import 'package:our_test_project/presentation/start/start_view.dart';
 import 'package:our_test_project/presentation/start/mobile_start_view.dart';
 import 'package:our_test_project/presentation/user_application/calendar/calendar_view.dart';
@@ -20,7 +21,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -33,16 +34,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MyThemeData.themeData,
       routes: {
-        LoginView.routeName:(c)=> LoginView(),
-        MobileLoginView.routeName:(c)=>MobileLoginView(),
-        DesktopLoginView.routeName: (c) => DesktopLoginView(),
-        MobileStartView.routeName: (c)=>MobileStartView(),
-        StartView.routeName: (c)=> StartView(),
-        HomeScreen.routeName:(c)=> HomeScreen(),
+        LoginView.routeName:(c)=> const LoginView(),
+        MobileLoginView.routeName:(c)=>const MobileLoginView(),
+        DesktopLoginView.routeName: (c) => const DesktopLoginView(),
+        MobileStartView.routeName: (c)=>const MobileStartView(),
+        StartView.routeName: (c)=> const StartView(),
+        HomeScreen.routeName:(c)=> const HomeScreen(),
         MobileHomeView.routeName:(c)=> MobileHomeView(),
-        FavoriteView.routeName:(c)=> FavoriteView(),
-        SettingsView.routeName:(c)=> SettingsView(),
-        CalendarView.routeName:(c)=> CalendarView(),
+        FavoriteView.routeName:(c)=> const FavoriteView(),
+        SettingsView.routeName:(c)=> const SettingsView(),
+        CalendarView.routeName:(c)=> const CalendarView(),
+        CalendarDashboardView.routeName:(c)=> const CalendarDashboardView(),
+
       },
       initialRoute: StartView.routeName
     );

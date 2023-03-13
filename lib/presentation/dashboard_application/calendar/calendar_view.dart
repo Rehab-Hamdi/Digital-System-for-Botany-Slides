@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class CalendarView extends StatelessWidget {
+class CalendarDashboardView extends StatelessWidget {
 
-  static const String routeName = 'calendar';
+  static const String routeName = 'calendar dashboard';
 
-  const CalendarView({Key? key}) : super(key: key);
+  const CalendarDashboardView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
