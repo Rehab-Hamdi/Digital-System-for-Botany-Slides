@@ -5,15 +5,17 @@ import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
-import 'package:our_test_project/presentation/dashboard_application/calendar/calendar_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/add_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/calendar/calendar_view.dart';
 import 'package:our_test_project/presentation/start/start_view.dart';
 import 'package:our_test_project/presentation/start/mobile_start_view.dart';
-import 'package:our_test_project/presentation/user_application/calendar/calendar_view.dart';
-import 'package:our_test_project/presentation/user_application/home/mobile_home_view.dart';
-import 'package:our_test_project/presentation/user_application/settings/seetings_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
+import 'package:our_test_project/presentation/user_application_screens/settings/seetings_view.dart';
 
-import 'presentation/user_application/favorites/favorites_veiw.dart';
-import 'presentation/user_application/home/home_view.dart';
+import 'presentation/user_application_screens/home/home_view.dart';
+import 'presentation/user_application_screens/home/mobile_home_view.dart';
+
 
 
 void main() async {
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
         SettingsView.routeName:(c)=> const SettingsView(),
         CalendarView.routeName:(c)=> const CalendarView(),
         CalendarDashboardView.routeName:(c)=> const CalendarDashboardView(),
+        AddUserView.routeName:(c)=> const AddUserView(),
 
       },
       initialRoute: StartView.routeName
