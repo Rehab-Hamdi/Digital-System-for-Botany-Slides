@@ -4,7 +4,7 @@ import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/home/home_view.dart';
+import 'package:our_test_project/presentation/user_application/home/home_view.dart';
 import 'login_navigator.dart';
 import 'login_view_model.dart';
 import 'package:provider/provider.dart';

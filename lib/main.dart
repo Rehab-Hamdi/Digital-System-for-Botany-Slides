@@ -5,13 +5,14 @@ import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
-import 'package:our_test_project/presentation/calendar/calendar_view.dart';
-import 'package:our_test_project/presentation/favorites/favorites_veiw.dart';
-import 'package:our_test_project/presentation/home/home_view.dart';
-import 'package:our_test_project/presentation/home/mobile_home_view.dart';
-import 'package:our_test_project/presentation/settings/seetings_view.dart';
 import 'package:our_test_project/presentation/start/start_view.dart';
 import 'package:our_test_project/presentation/start/mobile_start_view.dart';
+import 'package:our_test_project/presentation/user_application/calendar/calendar_view.dart';
+import 'package:our_test_project/presentation/user_application/home/mobile_home_view.dart';
+import 'package:our_test_project/presentation/user_application/settings/seetings_view.dart';
+
+import 'presentation/user_application/favorites/favorites_veiw.dart';
+import 'presentation/user_application/home/home_view.dart';
 
 
 void main() async {

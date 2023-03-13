@@ -1,10 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/calendar/calendar_view.dart';
-import 'package:our_test_project/presentation/favorites/favorites_veiw.dart';
-import 'package:our_test_project/presentation/home/mobile_home_view.dart';
-import 'package:our_test_project/presentation/settings/seetings_view.dart';
+import 'package:our_test_project/presentation/user_application/calendar/calendar_view.dart';
+import 'package:our_test_project/presentation/user_application/favorites/favorites_veiw.dart';
+import 'package:our_test_project/presentation/user_application/home/mobile_home_view.dart';
+import 'package:our_test_project/presentation/user_application/settings/seetings_view.dart';
+
 import 'package:our_test_project/utils/responsiveLayout.dart';
 
 class HomeScreen extends StatefulWidget
