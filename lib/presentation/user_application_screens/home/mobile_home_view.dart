@@ -98,7 +98,10 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(40.0),
-                              color: MyColors.lightGray),
+                              border: Border.all(
+                                color: MyColors.lightgreen,
+
+                              )),
                           child: Padding(
                             padding: const EdgeInsets.only(right: 5, left: 5),
                             child: TextField(
