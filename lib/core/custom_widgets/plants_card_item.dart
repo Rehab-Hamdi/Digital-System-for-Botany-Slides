@@ -37,13 +37,13 @@ class PlantsCardItem extends StatelessWidget
               children: [
                 Container(
                   padding: EdgeInsets.only(top: 3.0),
-                  width: 500,
-                  height: 128,
+                  width:  MediaQuery.of(context).size.width*0.60,
+                  height: MediaQuery.of(context).size.height*0.14,
                   child: Image.asset('assets/images/myPlant.png',
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 25.0, bottom: 5.0),
+                    padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
                   alignment: Alignment.centerLeft,
                     child: Text( plantsModel.plant_name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
               ],

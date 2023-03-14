@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/add_user/add_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/calendar/calendar_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_view.dart';
 import 'package:our_test_project/presentation/start/start_view.dart';
 import 'package:our_test_project/presentation/start/mobile_start_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         CalendarView.routeName:(c)=> const CalendarView(),
         CalendarDashboardView.routeName:(c)=> const CalendarDashboardView(),
         AddUserView.routeName:(c)=> const AddUserView(),
+        DeleteUserView.routeName:(c)=> const DeleteUserView(),
 
       },
       initialRoute: StartView.routeName
