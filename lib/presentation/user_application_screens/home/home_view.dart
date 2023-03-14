@@ -38,14 +38,14 @@ class _HomeView extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
-        height: 55,
+        height: MediaQuery.of(context).size.height*0.07,
         backgroundColor: MyColors.designGreen,
         buttonBackgroundColor: Colors.white,
         items:const  [
-          Icon(Icons.home, size: 30, color: MyColors.designGreen,),
-          Icon(Icons.favorite, size: 30, color: Colors.red,),
-          Icon(Icons.calendar_month_outlined, size: 30, color: MyColors.designGreen),
-          Icon(Icons.person, size: 30, color:MyColors.designGreen,),
+          Icon(Icons.home, size: 28, color: MyColors.designGreen,),
+          Icon(Icons.favorite, size: 28, color: Colors.red,),
+          Icon(Icons.calendar_month_outlined, size: 28, color: MyColors.designGreen),
+          Icon(Icons.person, size: 28, color:MyColors.designGreen,),
         ],
       ),
     );
