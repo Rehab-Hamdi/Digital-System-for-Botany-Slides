@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
 import 'package:our_test_project/core/styles/colors.dart';
+import 'package:our_test_project/presentation/auth/login/login_view.dart';
+import 'package:our_test_project/presentation/start/start_navigator.dart';
 
 class DesktopStartView extends StatelessWidget {
-  const DesktopStartView({Key? key}) : super(key: key);
+  const DesktopStartView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +48,33 @@ class DesktopStartView extends StatelessWidget {
                     ),
                     Center(
                       child: Text("with our step-by-step guides and ",
-                        style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 17),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1
+                            ?.copyWith(fontSize: 17),
                       ),
                     ),
                     Center(
-                      child: Text("helpful tips.",
-                        style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 17),
+                      child: Text(
+                        "helpful tips.",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1
+                            ?.copyWith(fontSize: 17),
                       ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height/15,),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 15,
+                    ),
+
                     ///Get Started Button
-                    CustomButton(width: 250, height: 50, color: MyColors.green, title: 'Get Started',),
+                    CustomButton(
+                        width: 250,
+                        height: 50,
+                        color: MyColors.green,
+                        title: 'Get Started',
+                        radius: 25.0,
+                        function: () => StartNavigator.goToLogin(context)),
                   ],
                 ),
               ),

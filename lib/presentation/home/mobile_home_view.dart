@@ -18,28 +18,6 @@ class _MobileHomeViewState extends State<MobileHomeView> {
   var _searchTextController = TextEditingController();
   List<String>? itemsListSearch;
 
-  List<String> PlantsImage=[
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-    'assets/images/myPlant.png',
-
-  ];
-
   List<String> PlantsName=[
     'Diatoms',
     'Fucus',
@@ -58,7 +36,31 @@ class _MobileHomeViewState extends State<MobileHomeView> {
     'Aloe',
     'Cyperus',
     'Iris',
-    'Musa',];
+    'Musa',
+  ];
+
+  List<PlantsModel> plantsList = [
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Diatoms'),
+    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Fucus'),
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Nitella'),
+    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Notoc'),
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Adiantum'),
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Dryopteris'),
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Marsilea'),
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Sphangnum'),
+    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Pteris'),
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Sphangnum'),
+    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Cycas'),
+    PlantsModel(
+        plant_image: 'assets/images/myPlant.png', plant_name: 'Sphangnum'),
+  ];
 
   void dispose() {
     super.dispose();
@@ -90,8 +92,11 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                       children: [
                         Container(
                           padding: const EdgeInsets.all(7.0),
-                          child: const Text( "Let's Find \nYour Slide",
-                            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),) ,
+                          child: const Text(
+                            "Let's Find \nYour Slide!",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
+                          ),
                         ),
 
                         ///New Code for Search
@@ -167,22 +172,24 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                                 height:
                                     MediaQuery.of(context).size.height * 0.73,
                                 child: GridView.builder(
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 1,
-                                    mainAxisSpacing: 5,
-                                    childAspectRatio: 1,
-                                  ),
-                                  itemCount:_searchTextController.text.isEmpty? PlantsName.length: itemsListSearch!.length,
-                                  itemBuilder: (context, index) =>
-                                  _searchTextController.text.isEmpty?
-                                      PlantsCardItem(
-                                    plantsModel:PlantsModel(plant_image: PlantsImage[index], plant_name: PlantsName[index]) ,
-                                  ):  PlantsCardItem(
-                                    plantsModel:PlantsModel(plant_image: PlantsImage[index], plant_name: itemsListSearch![index]) ,
-                                  )
-                                ),
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 1,
+                                      mainAxisSpacing: 5,
+                                      childAspectRatio: 1,
+                                    ),
+                                    itemCount:
+                                        _searchTextController.text.isEmpty
+                                            ? plantsList.length
+                                            : itemsListSearch!.length,
+                                    itemBuilder: (context, index) =>
+                                        _searchTextController.text.isEmpty
+                                            ? PlantsCardItem(
+                                                plantsModel: plantsList[index])
+                                            : PlantsCardItem(
+                                                plantsModel:
+                                                    plantsList[index])),
                               ),
                       ],
                     ),

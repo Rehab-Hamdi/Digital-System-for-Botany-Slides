@@ -5,9 +5,13 @@ class MyThemeData{
   static final ThemeData themeData = ThemeData(
     textTheme: const TextTheme(
       headline1: TextStyle(
-        color: MyColors.darkGray,
-        fontSize: 35,
-        fontWeight: FontWeight.normal
+          color: MyColors.darkGray,
+          fontSize: 35,
+          fontWeight: FontWeight.normal),
+      headline2: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
       ),
     ),
   );

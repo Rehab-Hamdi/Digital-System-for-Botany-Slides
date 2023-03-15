@@ -147,18 +147,25 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
                                   ),
                                   PasswordField(
                                     focusNode: passwordFocusNode,
-                                    controller: passwordController,
-                                    validatorFunction: (text) =>
-                                        viewModel.passwordValidation(text),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 12,
-                              ),
+                                  controller: passwordController,
+                                  validatorFunction: (text) =>
+                                      viewModel.passwordValidation(text),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height / 12,
+                            ),
 
-                              CustomButton(width: 230, height: 45, color: MyColors.green, title: 'Login',),
-                            ],
+                            CustomButton(
+                              width: 230,
+                              height: 45,
+                              color: MyColors.green,
+                              title: 'Login',
+                              radius: 25.0,
+                              function: LoginButtonFunction,
+                            ),
+                          ],
                           ),
                         ),
                       ),

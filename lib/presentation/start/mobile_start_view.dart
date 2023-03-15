@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
 import 'package:our_test_project/core/styles/colors.dart';
+import 'package:our_test_project/presentation/auth/login/login_view.dart';
+import 'package:our_test_project/presentation/start/start_navigator.dart';
 
 class MobileStartView extends StatelessWidget {
   const MobileStartView({Key? key}) : super(key: key);
@@ -36,15 +38,31 @@ class MobileStartView extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 17),
                 ),
               ),
-              const SizedBox(height: 6,),
+              const SizedBox(
+                height: 6,
+              ),
               Center(
-                child: Text("helpful tips.",
-                  style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 17),
+                child: Text(
+                  "helpful tips.",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      ?.copyWith(fontSize: 17),
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height/8,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 8,
+              ),
+
               ///Get Started Button
-              CustomButton(width: 295, height: 56, color: MyColors.green, title: 'Get Started',),
+              CustomButton(
+                width: 295,
+                height: 56,
+                color: MyColors.green,
+                title: 'Get Started',
+                radius: 25.0,
+                function: () => StartNavigator.goToLogin(context),
+              ),
             ],
           ),
         ),
