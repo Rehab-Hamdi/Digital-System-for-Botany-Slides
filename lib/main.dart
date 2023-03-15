@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             CalendarView.routeName: (c) => CalendarView(),
             PlanetInfoView.routeName: (c) => PlanetInfoView(),
           },
-          initialRoute: HomeScreen.routeName),
+          initialRoute: LoginView.routeName),
     );
   }
 }

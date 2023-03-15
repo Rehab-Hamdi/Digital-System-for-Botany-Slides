@@ -18,6 +18,28 @@ class _MobileHomeViewState extends State<MobileHomeView> {
   var _searchTextController = TextEditingController();
   List<String>? itemsListSearch;
 
+  List<String> PlantsImage=[
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+    'assets/images/myPlant.png',
+
+  ];
+
   List<String> PlantsName=[
     'Diatoms',
     'Fucus',
@@ -36,31 +58,7 @@ class _MobileHomeViewState extends State<MobileHomeView> {
     'Aloe',
     'Cyperus',
     'Iris',
-    'Musa',
-  ];
-
-  List<PlantsModel> plantsList = [
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Diatoms'),
-    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Fucus'),
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Nitella'),
-    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Notoc'),
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Adiantum'),
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Dryopteris'),
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Marsilea'),
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Sphangnum'),
-    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Pteris'),
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Sphangnum'),
-    PlantsModel(plant_image: 'assets/images/myPlant.png', plant_name: 'Cycas'),
-    PlantsModel(
-        plant_image: 'assets/images/myPlant.png', plant_name: 'Sphangnum'),
-  ];
+    'Musa',];
 
   void dispose() {
     super.dispose();
@@ -92,11 +90,8 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                       children: [
                         Container(
                           padding: const EdgeInsets.all(7.0),
-                          child: const Text(
-                            "Let's Find \nYour Slide!",
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
-                          ),
+                          child: const Text( "Let's Find \nYour Slide",
+                            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),) ,
                         ),
 
                         ///New Code for Search
@@ -105,7 +100,10 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                               borderRadius: BorderRadius.circular(40.0),
                               border: Border.all(
                                 color: MyColors.lightGreen,
-                              )),
+
+                              )
+
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.only(right: 5, left: 5),
                             child: TextField(
@@ -113,8 +111,8 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                                 setState(() {
                                   itemsListSearch = PlantsName
                                       .where((element) => element
-                                          .toLowerCase()
-                                          .contains(value.toLowerCase()))
+                                      .toLowerCase()
+                                      .contains(value.toLowerCase()))
                                       .toList();
                                   if (_searchTextController!.text.isNotEmpty &&
                                       itemsListSearch!.isEmpty) {
@@ -128,7 +126,7 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                               decoration: InputDecoration(
                                   hintText: 'Find_Your_Slide ',
                                   hintStyle:
-                                      Theme.of(context).textTheme.bodySmall,
+                                  Theme.of(context).textTheme.bodySmall,
                                   border: InputBorder.none,
                                   prefixIcon: const Icon(
                                     Icons.search,
@@ -136,18 +134,18 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                                   ),
                                   suffixIcon: IconButton(
                                     onPressed:
-                                        _searchTextController!.text.isEmpty
-                                            ? null
-                                            : () {
-                                                _searchTextController?.clear();
-                                                _node.unfocus();
-                                              },
+                                    _searchTextController!.text.isEmpty
+                                        ? null
+                                        : () {
+                                      _searchTextController?.clear();
+                                      _node.unfocus();
+                                    },
                                     icon: Icon(
                                       Icons.cancel,
                                       color:
-                                          _searchTextController!.text.isNotEmpty
-                                              ? Colors.red
-                                              : Colors.grey,
+                                      _searchTextController!.text.isNotEmpty
+                                          ? Colors.red
+                                          : Colors.grey,
                                     ),
                                   )),
                             ),
@@ -155,44 +153,43 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                         ),
                         _searchTextController!.text.isNotEmpty && itemsListSearch!.isEmpty
                             ? Column(
-                              children: [
-                                            Container(
-                                              height: MediaQuery.of(context).size.height*0.65,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image:AssetImage('assets/images/noResult.jpg',),
-                                                  fit: BoxFit.cover,
-                                                )
-                                              ),
-                                            )
-                              ],
+                          children: [
+                            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+                            Container(
+                              height: MediaQuery.of(context).size.height*0.65,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image:AssetImage('assets/images/noResult.jpg',),
+                                    fit: BoxFit.cover,
+                                  )
+                              ),
                             )
+                          ],
+                        )
 
                             :
-                             /// plants Show
-                            SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.70,
-                                child: GridView.builder(
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 1,
-                                      mainAxisSpacing: 5,
-                                      childAspectRatio: 1,
-                                    ),
-                                    itemCount:
-                                        _searchTextController.text.isEmpty
-                                            ? plantsList.length
-                                            : itemsListSearch!.length,
-                                    itemBuilder: (context, index) =>
-                                        _searchTextController.text.isEmpty
-                                            ? PlantsCardItem(
-                                                plantsModel: plantsList[index])
-                                            : PlantsCardItem(
-                                                plantsModel:
-                                                    plantsList[index])),
+                        /// plants Show
+                        SizedBox(
+                          height:
+                          MediaQuery.of(context).size.height * 0.70,
+                          child: GridView.builder(
+                              gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 1,
+                                mainAxisSpacing: 4,
+                                childAspectRatio: 1,
                               ),
+                              itemCount:_searchTextController.text.isEmpty? PlantsName.length: itemsListSearch!.length,
+                              itemBuilder: (context, index) =>
+                              _searchTextController.text.isEmpty?
+                              PlantsCardItem(
+                                plantsModel:PlantsModel(plant_image: PlantsImage[index], plant_name: PlantsName[index]) ,
+                              ):  PlantsCardItem(
+                                plantsModel:PlantsModel(plant_image: PlantsImage[index], plant_name: itemsListSearch![index]) ,
+                              )
+                          ),
+                        ),
                       ],
                     ),
                   ),
