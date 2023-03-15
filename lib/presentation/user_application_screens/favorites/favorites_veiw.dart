@@ -16,7 +16,7 @@ class FavoriteView extends StatelessWidget {
       body: SafeArea(
         child: planets.isEmpty
             ? Center(
-                child: Text("No Favorites Yet..!",
+                child: Text("No Favorites yet..!",
                     style: Theme.of(context).textTheme.headline1))
             : GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
