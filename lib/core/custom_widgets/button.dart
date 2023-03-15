@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart';
-import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
 
 class CustomButton extends StatelessWidget {
   double width;
   double height;
   Color color;
   String title;
-  CustomButton({super.key, required this.width, required this.height, required this.color, required this.title});
+  double radius;
+  VoidCallback function;
+
+  CustomButton(
+      {super.key,
+      required this.width,
+      required this.height,
+      required this.color,
+      required this.title,
+      required this.radius,
+      required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +37,16 @@ class CustomButton extends StatelessWidget {
           ],
         ),
         child: OutlinedButton(
-            onPressed: () {
-            },
+            onPressed: function,
             style: OutlinedButton.styleFrom(
               backgroundColor: color,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(radius),
               ),
             ),
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
                   color: Colors.white),

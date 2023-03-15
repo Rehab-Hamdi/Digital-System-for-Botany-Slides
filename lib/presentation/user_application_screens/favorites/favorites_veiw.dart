@@ -14,17 +14,21 @@ class FavoriteView extends StatelessWidget {
     final planets = provider.planets;
     return Scaffold(
       body: SafeArea(
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 1,
-            mainAxisSpacing: 5,
-            childAspectRatio: 1,
-          ),
-          itemCount: planets.length,
-          itemBuilder: (context, index) =>
-              PlantsCardItem(plantsModel: planets[index]),
-        ),
+        child: planets.isEmpty
+            ? Center(
+                child: Text("No Favorites Yet..!",
+                    style: Theme.of(context).textTheme.headline1))
+            : GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 1,
+                  mainAxisSpacing: 5,
+                  childAspectRatio: 1,
+                ),
+                itemCount: planets.length,
+                itemBuilder: (context, index) =>
+                    PlantsCardItem(plantsModel: planets[index]),
+              ),
       ),
     );
   }

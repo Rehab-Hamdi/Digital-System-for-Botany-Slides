@@ -47,7 +47,8 @@ class DesktopStartView extends StatelessWidget {
                       ),
                     ),
                     Center(
-                      child: Text("with our step-by-step guides and ",
+                      child: Text(
+                        "with our step-by-step guides and ",
                         style: Theme.of(context)
                             .textTheme
                             .headline1

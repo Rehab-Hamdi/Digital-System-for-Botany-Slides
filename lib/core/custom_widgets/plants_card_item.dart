@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/plants_models.dart';
+import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
 
 class PlantsCardItem extends StatelessWidget
 {
@@ -13,6 +14,8 @@ class PlantsCardItem extends StatelessWidget
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Navigator.pushReplacementNamed(context, PlanetInfoView.routeName,
+            arguments: plantsModel);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

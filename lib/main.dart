@@ -5,14 +5,16 @@ import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
-import 'package:our_test_project/presentation/calendar/calendar_view.dart';
-import 'package:our_test_project/presentation/favorites/favorites_veiw.dart';
-import 'package:our_test_project/presentation/home/home_view.dart';
-import 'package:our_test_project/presentation/home/mobile_home_view.dart';
-import 'package:our_test_project/presentation/settings/seetings_view.dart';
+import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
+import 'package:our_test_project/presentation/planet_info/provider/favorite_provider.dart';
 import 'package:our_test_project/presentation/start/start_view.dart';
 import 'package:our_test_project/presentation/start/mobile_start_view.dart';
-
+import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
+import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/settings/seetings_view.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,22 +30,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: MyThemeData.themeData,
-      routes: {
-        LoginView.routeName:(c)=> LoginView(),
-        MobileLoginView.routeName:(c)=>MobileLoginView(),
-        DesktopLoginView.routeName: (c) => DesktopLoginView(),
-        MobileStartView.routeName: (c)=>MobileStartView(),
-        StartView.routeName: (c)=> StartView(),
-        HomeScreen.routeName:(c)=> HomeScreen(),
-        MobileHomeView.routeName:(c)=> MobileHomeView(),
-        FavoriteView.routeName:(c)=> FavoriteView(),
-        SettingsView.routeName:(c)=> SettingsView(),
-        CalendarView.routeName:(c)=> CalendarView(),
-      },
-      initialRoute: StartView.routeName
+    return ChangeNotifierProvider(
+      create: (context) => FavoriteProvider(),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: MyThemeData.themeData,
+          routes: {
+            LoginView.routeName: (c) => LoginView(),
+            MobileLoginView.routeName: (c) => MobileLoginView(),
+            DesktopLoginView.routeName: (c) => DesktopLoginView(),
+            MobileStartView.routeName: (c) => MobileStartView(),
+            StartView.routeName: (c) => StartView(),
+            HomeScreen.routeName: (c) => HomeScreen(),
+            MobileHomeView.routeName: (c) => MobileHomeView(),
+            FavoriteView.routeName: (c) => FavoriteView(),
+            SettingsView.routeName: (c) => SettingsView(),
+            CalendarView.routeName: (c) => CalendarView(),
+            PlanetInfoView.routeName: (c) => PlanetInfoView(),
+          },
+          initialRoute: HomeScreen.routeName),
     );
   }
 }

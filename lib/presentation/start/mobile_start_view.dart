@@ -28,14 +28,24 @@ class MobileStartView extends StatelessWidget {
               const SizedBox(height: 20,),
               Image.asset("assets/images/planet_icon.png"),
               Center(
-                child: Text("start discovering botany department",
-                  style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 17),
+                child: Text(
+                  "start discovering botany department",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      ?.copyWith(fontSize: 17),
                 ),
               ),
-              const SizedBox(height: 6,),
+              const SizedBox(
+                height: 6,
+              ),
               Center(
-                child: Text("with our step-by-step guides and ",
-                  style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 17),
+                child: Text(
+                  "with our step-by-step guides and ",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      ?.copyWith(fontSize: 17),
                 ),
               ),
               const SizedBox(
