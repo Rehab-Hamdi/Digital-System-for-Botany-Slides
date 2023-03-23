@@ -16,7 +16,7 @@ class CalendarDashboardView extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 15,),
-            const PageTitle(title: 'Calender'),
+            const PageTitle(title: 'Calender', wdth: 0.20,),
             const SizedBox(height: 15,),
             Container(
               decoration:  const BoxDecoration(
