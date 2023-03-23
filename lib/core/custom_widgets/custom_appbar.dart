@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/controllers/controller.dart';
 import 'package:our_test_project/utils/responsive.dart';
-import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -15,7 +13,7 @@ class CustomAppBar extends StatelessWidget {
                 Icons.menu,
                 color: Colors.black,
               ),
-              onPressed: context.read<Controller>().controlMenu,
+              onPressed: (){},
             ),
             elevation: 0,
             backgroundColor: Colors.white,
