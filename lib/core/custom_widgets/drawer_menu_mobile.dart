@@ -1,72 +1,145 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/drawer_list_tile.dart';
+import 'package:our_test_project/core/styles/colors.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/add_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/desktop_delete_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/mobile_delete_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
 
-class MobileDrawerMenu extends StatelessWidget {
-  MobileDrawerMenu({super.key, required this.name});
-  final String name;
+class MobileDrawerMenu extends StatefulWidget {
+
+  static const String routeName = 'MobileDrawerMenu';
+
+  MobileDrawerMenu({super.key});
 
   @override
+  State<MobileDrawerMenu> createState() => _MobileDrawerMenuState();
+}
 
+class _MobileDrawerMenuState extends State<MobileDrawerMenu> {
+  var currentPage = DrawerSections.dashboard;
+
+  @override
   Widget build(BuildContext context) {
-    return Drawer(
+    var container;
+    if (currentPage == DrawerSections.dashboard) {
+      container =  MobileDashboardView();
+    } else if (currentPage == DrawerSections.reports) {
+      container = const ReportsView();
+    } else if (currentPage == DrawerSections.users) {
+      container = const MobileUpdateUserView();
+    } else if (currentPage == DrawerSections.requests) {
+      container = const ReportsView();
+    } else if (currentPage == DrawerSections.calendar) {
+      container = const CalendarView();
+    }
+    else if (currentPage == DrawerSections.logout) {
+      container = const AddUserView();
+    }
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.grey.shade300,
+        title: const Text(
+          'Botany',
+          style: TextStyle(color: Colors.black, fontSize: 22),
+        ),
+      ),
+      drawer: Drawer(
+        child: MyDrawerList(),
+      ),
+      body: container,
+    );
+  }
+
+  Widget MyDrawerList() {
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+      ),
       child: ListView(
+        // shows the list of menu drawer
         children: [
-          Container(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Welcome  :  $name",
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const Text(
-                  'Dashboard Admin',
-                  style: TextStyle(color: Colors.black45, fontSize: 12),
-                )
-              ],
-            ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.02
           ),
-          DrawerListTile(
-              title: 'Dashboard',
-              icon: const Icon(Icons.dashboard, size: 20, color: Colors.black87),
-              tap: () {
-
-              }),
-          DrawerListTile(
-              title: 'Admin Reports',
-              icon: const Icon(Icons.insert_chart,  size: 20, color: Colors.black),
-              tap: () {
-              }),
-          DrawerListTile(
-              title: 'Add User',
-              icon: const Icon(Icons.person_add_alt_outlined, size: 20, color: Colors.black),
-              tap: () {}),
-          DrawerListTile(
-              title: 'Update User', icon: const Icon(Icons.perm_identity_outlined, size: 20, color: Colors.black), tap: () {}),
-          DrawerListTile(
-              title: 'Delete User',
-              icon: const Icon(Icons.person_off_outlined,  size: 20, color: Colors.black),
-              tap: () {
-
-              }),
-          DrawerListTile(
-              title: 'Calendar',
-              icon: const Icon(Icons.calendar_month_rounded,  size: 20, color: Colors.black),
-              tap: () {}),
+          menuItem(1, "Dashboard", Icons.dashboard_outlined,
+              currentPage == DrawerSections.dashboard ? true : false),
+          menuItem(2, "Admin Reports", Icons.insert_chart,
+              currentPage == DrawerSections.reports? true : false),
+          menuItem(3, "Users", Icons.people_rounded,
+              currentPage == DrawerSections.users ? true : false),
+          menuItem(4, "Requests", Icons.receipt,
+              currentPage == DrawerSections.requests? true : false),
+          menuItem(5, "Calender", Icons.calendar_month_rounded,
+              currentPage == DrawerSections.calendar? true : false),
           const Divider(),
-          DrawerListTile(
-              title: 'Logout',
-              icon: const Icon(Icons.logout,  size: 20, color: Colors.black),
-              tap: () {}),
+          menuItem(8, "Logout", Icons.logout,
+              currentPage == DrawerSections.logout ? true : false),
         ],
       ),
     );
   }
+
+  Widget menuItem(int id, String title, IconData icon, bool selected) {
+    return Material(
+      color: selected ? MyColors.active.withOpacity(0.2): Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Navigator.pop(context);
+          setState(() {
+            if (id == 1) {
+              currentPage = DrawerSections.dashboard;
+            } else if (id == 2) {
+              currentPage = DrawerSections.reports;
+            } else if (id == 3) {
+              currentPage = DrawerSections.users;
+            } else if (id == 4) {
+              currentPage = DrawerSections.requests;
+            } else if (id == 5) {
+              currentPage = DrawerSections.calendar;
+            } else if (id == 6) {
+              currentPage = DrawerSections.logout;
+            }
+          });
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Icon(
+                  icon,
+                  size: 20,
+                  color: Colors.black,
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+enum DrawerSections {
+  dashboard,
+  reports,
+  users,
+  requests,
+  calendar,
+  logout,
 }
