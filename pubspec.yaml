@@ -41,6 +41,8 @@ dependencies:
   firebase_auth: ^4.2.1
   provider: ^6.0.5
   curved_navigation_bar: ^1.0.3
+  fl_chart: ^0.61.0
+  vertical_tabs_flutter: ^1.0.0
 
 dev_dependencies:
   flutter_test:
