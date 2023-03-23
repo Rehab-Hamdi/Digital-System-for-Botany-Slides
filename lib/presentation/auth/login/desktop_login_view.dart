@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
+import 'package:our_test_project/core/custom_widgets/desktop_drawer_menu.dart';
 import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
 import 'login_navigator.dart';
 import 'login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -187,7 +190,7 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
 
   @override
   void goToHome() {
-    //Navigator.pushReplacementNamed(context, HomeView.routeName);
+    Navigator.pushReplacementNamed(context, DashBoardScreenController.routeName);
   }
 
   @override
