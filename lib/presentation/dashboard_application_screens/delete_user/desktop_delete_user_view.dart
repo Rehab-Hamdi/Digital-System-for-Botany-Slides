@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/base.dart';
+import 'package:our_test_project/core/custom_widgets/desktop_titleAndInputField.dart';
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
-import 'package:our_test_project/core/custom_widgets/title_and_textField.dart';
-import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_navigator.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_view_model.dart';
 import 'package:provider/provider.dart';
 
-class DeleteUserView extends StatefulWidget {
-  static const String routeName = 'DeleteUser';
+class DesktopDeleteUserView extends StatefulWidget {
+  static const String routeName = 'desktop DeleteUser';
 
-  const DeleteUserView({super.key});
+  const DesktopDeleteUserView({super.key});
 
   @override
-  State<DeleteUserView> createState() => _DeleteUserScreenState();
+  State<DesktopDeleteUserView> createState() => _DeleteUserScreenState();
 }
 
-class _DeleteUserScreenState extends BaseState<DeleteUserView, DeleteViewModel> implements DeleteNavigator {
+class _DeleteUserScreenState extends BaseState<DesktopDeleteUserView, DeleteViewModel> implements DeleteNavigator {
 
 
   @override
@@ -55,49 +54,52 @@ class _DeleteUserScreenState extends BaseState<DeleteUserView, DeleteViewModel> 
                     children: const [
                       PageTitle(
                         title: 'Delete User Information',
+                        wdth: 0.30,
                       ),
                     ],
                   ),
                   const SizedBox(
                     height: 40,
                   ),
-                  TitleAndInputField(
+                  DesktopTitleAndInputField(
+                    containerPadding: 60.0,
                     txt: 'ID  : ',
                     left_margin:25,
                     controller: deleteController,
                     focusNode: deleteFocusNode,
                     // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
                   ),
-                  const SizedBox(
-                    height: 100,
-                  ),
                   Expanded(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        margin: EdgeInsets.only(right: 25),
-                        width: 180,
-                        height: 50,
-                        child: OutlinedButton(
-                            onPressed: () {;
-                            },
-                            style: OutlinedButton.styleFrom(
+                    child: Center(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          padding: EdgeInsets.only(left: 15),
+                          width: 220,
+                          height: MediaQuery.of(context).size.height*0.07,
+                          child: OutlinedButton(
+                              onPressed: () {
+                              },
+                              style: OutlinedButton.styleFrom(
+                                backgroundColor: Colors.red,
                                 shape: RoundedRectangleBorder(borderRadius:
                                 BorderRadius.circular(25)),
-                                side: const BorderSide(color:MyColors.active)
-                            ),
-                            child: const Text(
-                              "Delete",
-                              style: TextStyle(
+                              ),
+                              child: const Text(
+                                "Delete",
+                                style: TextStyle(
                                   // fontWeight: FontWeight.bold,
-                                  fontSize: 22,
-                                  color: Colors.red),
-                              textAlign: TextAlign.center,
-                            )),
+                                    fontSize: 22,
+                                    color: Colors.white),
+                                textAlign: TextAlign.center,
+                              )),
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 30,)
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.07,
+                  )
                 ],
               ),
             ),
