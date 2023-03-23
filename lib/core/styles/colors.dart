@@ -13,4 +13,11 @@ class MyColors {
   static const Color designGreen = Color(0xff294b53);
   static const Color plantBackground = Color(0xfff6f6f6);
   static const Color active = Color(0xFF5534A5);
+  static const Color categoryBlue = Color(0xff3972C7);
+  static const Color categoryBink = Color(0xffD94A92);
+  static const Color categoryRed = Color(0xff7f0006);
+  static const Color categoryYellow = Color(0xffECAF08);
+  static const Color categoryOrange = Color(0xffEC4E08);
+  static const Color categoryGreen = Color(0xff2D6446);
+  static const Color categoryWhite = Color(0xfff2f2f2);
 }

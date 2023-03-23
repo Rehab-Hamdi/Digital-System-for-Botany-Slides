@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:our_test_project/core/custom_widgets/desktop_drawer_menu.dart';
+import 'package:our_test_project/core/custom_widgets/drawer_menu_mobile.dart';
 import 'package:our_test_project/core/styles/my_themes.dart';
 import 'package:our_test_project/firebase_options.dart';
 import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart';
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/desktop_delete_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/mobile_delete_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
 import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
 import 'package:our_test_project/presentation/planet_info/provider/favorite_provider.dart';
 import 'package:our_test_project/presentation/start/start_view.dart';
 import 'package:our_test_project/presentation/start/mobile_start_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/categories/categories_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
@@ -47,8 +57,19 @@ class MyApp extends StatelessWidget {
             SettingsView.routeName: (c) => SettingsView(),
             CalendarView.routeName: (c) => CalendarView(),
             PlanetInfoView.routeName: (c) => PlanetInfoView(),
+            CategoryView.routeName:(c)=> CategoryView(),
+            DashBoardScreenController.routeName:(c)=>DashBoardScreenController(),
+            DesktopDashboardView.routeName:(c)=>DesktopDashboardView(),
+            MobileDashboardView.routeName:(c)=>MobileDashboardView(),
+            DesktopDrawerMenu.routeName:(c)=>DesktopDrawerMenu(),
+            DesktopDeleteUserView.routeName:(c)=> DesktopDeleteUserView(),
+            MobileDeleteUserView.routeName:(c)=> MobileDeleteUserView(),
+            DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
+            MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
           },
-          initialRoute: LoginView.routeName),
+          initialRoute: StartView.routeName
+      ),
+
     );
   }
 }
