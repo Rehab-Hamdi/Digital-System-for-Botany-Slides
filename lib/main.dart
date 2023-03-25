@@ -22,12 +22,13 @@ import 'package:our_test_project/presentation/user_application_screens/categorie
 import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/settings/seetings_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
-int? isViewed;
+int? isLogin;
+int? isLogout;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +38,10 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-  isViewed= sharedPreferences.getInt('login');
+  isLogin= sharedPreferences.getInt('login');
+  //isLogout= sharedPreferences.getInt('logout');
+  print('Login  = $isLogin');
+  print('Logout  = $isLogout');
 
   runApp(MyApp());
 }
@@ -51,6 +54,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
    return Sizer(builder: (context, orientation, deviceType)
    {
+
      return ChangeNotifierProvider(
        create: (context) => FavoriteProvider(),
        child: MaterialApp(
@@ -78,7 +82,7 @@ class MyApp extends StatelessWidget {
              DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
              MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
            },
-           initialRoute: isViewed ==0 ? StartView.routeName :LoginView.routeName ,
+           initialRoute: isLogin ==1 || isLogin == null?LoginView.routeName :StartView.routeName,
        ),
 
      );

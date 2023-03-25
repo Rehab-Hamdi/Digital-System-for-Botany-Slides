@@ -5,7 +5,6 @@ import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'login_navigator.dart';
@@ -21,6 +20,7 @@ class MobileLoginView extends StatefulWidget {
   State<MobileLoginView> createState() => _LoginViewState();
 }
 
+int isLogin=0;
 class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
     implements LoginNavigator {
   FocusNode emailFocusNode = FocusNode();
@@ -41,10 +41,13 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
     });
     super.initState();
   }
+
+
+
   _storeLoginPageInfo() async{
-    int isViewed= 0;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setInt('login', isViewed);
+    await sharedPreferences.setInt('login', isLogin);
+    print(isLogin);
   }
 
 
@@ -188,9 +191,12 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
   }
 
   @override
-  void goToHome() async{
-    await _storeLoginPageInfo();
+  void goToHome()async {
     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=> HomeScreen()));
+    await _storeLoginPageInfo();
+    setState(() {
+      isLogin = 1;
+    });
   }
 
   @override

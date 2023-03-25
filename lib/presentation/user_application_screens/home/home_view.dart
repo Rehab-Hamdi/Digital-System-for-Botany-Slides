@@ -5,7 +5,7 @@ import 'package:our_test_project/presentation/user_application_screens/calendar/
 import 'package:our_test_project/presentation/user_application_screens/categories/categories_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/settings/seetings_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:our_test_project/utils/responsiveLayout.dart';
 import 'package:sizer/sizer.dart';
 
