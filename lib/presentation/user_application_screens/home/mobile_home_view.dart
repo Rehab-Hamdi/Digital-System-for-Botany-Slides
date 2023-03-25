@@ -4,6 +4,7 @@ import 'package:our_test_project/core/custom_widgets/plants_card_item.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/plants_models.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
+import 'package:sizer/sizer.dart';
 
 class MobileHomeView extends StatefulWidget {
   static const String routeName = "MobileHomeView";
@@ -42,7 +43,7 @@ class _MobileHomeViewState extends State<MobileHomeView> {
   ];
 
   List<String> PlantsName=[
-    'Diatoms',
+    'Diatom',
     'Fucus',
     'Nitella',
     'Notoc',
@@ -167,14 +168,14 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                               :
                           /// plants Show
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.80,
+                            height:72.h,
                             child: GridView.builder(
                                 gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
+                                 SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount:2,
                                   crossAxisSpacing: 1,
-                                  mainAxisSpacing: 4,
-                                  childAspectRatio: 1,
+                                  mainAxisSpacing: 1,
+                                  childAspectRatio: 0.7.sp,
                                 ),
                                 itemCount:_searchTextController.text.isEmpty? PlantsName.length: itemsListSearch!.length,
                                 itemBuilder: (context, index) =>
