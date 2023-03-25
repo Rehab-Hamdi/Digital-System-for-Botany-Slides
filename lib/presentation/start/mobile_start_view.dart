@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
-import 'package:our_test_project/presentation/start/start_navigator.dart';
+import 'package:our_test_project/presentation/start/mobile_start_navigator.dart';
 
 class MobileStartView extends StatelessWidget {
   const MobileStartView({Key? key}) : super(key: key);
@@ -71,7 +71,7 @@ class MobileStartView extends StatelessWidget {
                 color: MyColors.green,
                 title: 'Get Started',
                 radius: 25.0,
-                function: () => StartNavigator.goToLogin(context),
+                function: () => MobileStartNavigator.goToLogin(context),
               ),
             ],
           ),
