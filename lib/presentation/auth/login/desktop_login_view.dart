@@ -8,6 +8,7 @@ import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'login_navigator.dart';
 import 'login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,12 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
     });
     super.initState();
   }
+  _storeLoginPageInfo() async{
+    int isViewed= 0;
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setInt('login', isViewed);
+  }
+
 
 
   @override
@@ -189,7 +196,8 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
   }
 
   @override
-  void goToHome() {
+  void goToHome() async{
+    await _storeLoginPageInfo();
     Navigator.pushReplacementNamed(context, DashBoardScreenController.routeName);
   }
 

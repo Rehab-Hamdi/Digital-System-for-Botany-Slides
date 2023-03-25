@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/desktop_drawer_menu.dart';
-import 'package:our_test_project/core/custom_widgets/drawer_menu_mobile.dart';
 import 'package:our_test_project/core/styles/my_themes.dart';
 import 'package:our_test_project/firebase_options.dart';
 import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart';
@@ -25,12 +24,22 @@ import 'package:our_test_project/presentation/user_application_screens/home/home
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/settings/seetings_view.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
+
+int? isViewed;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+  isViewed= sharedPreferences.getInt('login');
+
   runApp(MyApp());
 }
 
@@ -40,36 +49,39 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FavoriteProvider(),
-      child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: MyThemeData.themeData,
-          routes: {
-            LoginView.routeName: (c) => LoginView(),
-            MobileLoginView.routeName: (c) => MobileLoginView(),
-            DesktopLoginView.routeName: (c) => DesktopLoginView(),
-            MobileStartView.routeName: (c) => MobileStartView(),
-            StartView.routeName: (c) => StartView(),
-            HomeScreen.routeName: (c) => HomeScreen(),
-            MobileHomeView.routeName: (c) => MobileHomeView(),
-            FavoriteView.routeName: (c) => FavoriteView(),
-            SettingsView.routeName: (c) => SettingsView(),
-            CalendarView.routeName: (c) => CalendarView(),
-            PlanetInfoView.routeName: (c) => PlanetInfoView(),
-            CategoryView.routeName:(c)=> CategoryView(),
-            DashBoardScreenController.routeName:(c)=>DashBoardScreenController(),
-            DesktopDashboardView.routeName:(c)=>DesktopDashboardView(),
-            MobileDashboardView.routeName:(c)=>MobileDashboardView(),
-            DesktopDrawerMenu.routeName:(c)=>DesktopDrawerMenu(),
-            DesktopDeleteUserView.routeName:(c)=> DesktopDeleteUserView(),
-            MobileDeleteUserView.routeName:(c)=> MobileDeleteUserView(),
-            DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
-            MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
-          },
-          initialRoute: StartView.routeName
-      ),
+   return Sizer(builder: (context, orientation, deviceType)
+   {
+     return ChangeNotifierProvider(
+       create: (context) => FavoriteProvider(),
+       child: MaterialApp(
+           debugShowCheckedModeBanner: false,
+           theme: MyThemeData.themeData,
+           routes: {
+             LoginView.routeName: (c) => LoginView(),
+             MobileLoginView.routeName: (c) => MobileLoginView(),
+             DesktopLoginView.routeName: (c) => DesktopLoginView(),
+             MobileStartView.routeName: (c) => MobileStartView(),
+             StartView.routeName: (c) => StartView(),
+             HomeScreen.routeName: (c) => HomeScreen(),
+             MobileHomeView.routeName: (c) => MobileHomeView(),
+             FavoriteView.routeName: (c) => FavoriteView(),
+             SettingsView.routeName: (c) => SettingsView(),
+             CalendarView.routeName: (c) => CalendarView(),
+             PlanetInfoView.routeName: (c) => PlanetInfoView(),
+             CategoryView.routeName:(c)=> CategoryView(),
+             DashBoardScreenController.routeName:(c)=>DashBoardScreenController(),
+             DesktopDashboardView.routeName:(c)=>DesktopDashboardView(),
+             MobileDashboardView.routeName:(c)=>MobileDashboardView(),
+             DesktopDrawerMenu.routeName:(c)=>DesktopDrawerMenu(),
+             DesktopDeleteUserView.routeName:(c)=> DesktopDeleteUserView(),
+             MobileDeleteUserView.routeName:(c)=> MobileDeleteUserView(),
+             DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
+             MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
+           },
+           initialRoute: isViewed ==0 ? StartView.routeName :LoginView.routeName ,
+       ),
 
-    );
+     );
+   });
   }
 }

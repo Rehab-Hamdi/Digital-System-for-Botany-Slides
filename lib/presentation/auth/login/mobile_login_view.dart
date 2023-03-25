@@ -5,6 +5,9 @@ import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'login_navigator.dart';
 import 'login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +41,11 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
     });
     super.initState();
   }
+  _storeLoginPageInfo() async{
+    int isViewed= 0;
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setInt('login', isViewed);
+  }
 
 
   @override
@@ -67,11 +75,11 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
 
                               /// Login
                               Row(
-                                children: const [
+                                children:  [
                                   Text(
                                     "Login ",
                                     style: TextStyle(
-                                        fontSize: 30, fontWeight: FontWeight.bold),
+                                        fontSize: 25.sp, fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -87,10 +95,10 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                                       Container(
                                         margin: const EdgeInsets.fromLTRB(
                                             25.0, 0, 0, 8.0),
-                                        child: const Text(
+                                        child:  Text(
                                           "Email",
                                           style: TextStyle(
-                                              fontSize: 20, color: Colors.grey),
+                                              fontSize: 16.sp, color: Colors.grey),
                                         ),
                                       ),
                                     ],
@@ -112,14 +120,14 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                               Column(
                                 children: [
                                   Row(
-                                    children: const [
+                                    children:  [
                                       Padding(
                                         padding:
                                         EdgeInsets.fromLTRB(25.0, 0, 0, 8.0),
                                         child: Text(
                                           "Password",
                                           style: TextStyle(
-                                              fontSize: 20, color: Colors.grey),
+                                              fontSize: 16.sp, color: Colors.grey),
                                         ),
                                       ),
                                     ],
@@ -149,11 +157,11 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                                         BorderRadius.circular(25)),
                                         side: const BorderSide(color: MyColors.lightBlack)
                                     ),
-                                    child: const Text(
+                                    child:  Text(
                                       "Login",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 22,
+                                          fontSize: 19.sp,
                                           color: Colors.white),
                                       textAlign: TextAlign.center,
                                     )),
@@ -180,8 +188,9 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
   }
 
   @override
-  void goToHome() {
-    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+  void goToHome() async{
+    await _storeLoginPageInfo();
+    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=> HomeScreen()));
   }
 
   @override
