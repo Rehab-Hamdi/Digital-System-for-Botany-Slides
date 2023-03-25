@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/categorg_card_item.dart';
+import 'package:our_test_project/core/views/categorg_card_item.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/categorg_model.dart';
 import 'package:sizer/sizer.dart';

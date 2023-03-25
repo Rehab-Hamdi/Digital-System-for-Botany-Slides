@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/plants_card_item.dart';
+import 'package:our_test_project/core/views/plants_card_item.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/plants_models.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';

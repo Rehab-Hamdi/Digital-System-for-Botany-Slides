@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/desktop_drawer_menu.dart';
+import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
 import 'package:our_test_project/core/styles/my_themes.dart';
 import 'package:our_test_project/firebase_options.dart';
 import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart';

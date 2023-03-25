@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/desktop_drawer_menu.dart';
-import 'package:our_test_project/core/custom_widgets/drawer_menu_mobile.dart';
+import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
+import 'package:our_test_project/core/components/drawer_menu_mobile.dart';
 import 'package:our_test_project/utils/responsive.dart';
 
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
-import 'package:our_test_project/core/custom_widgets/desktop_drawer_menu.dart';
+import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
 import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
