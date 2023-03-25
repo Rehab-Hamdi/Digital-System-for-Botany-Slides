@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/categorg_model.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
+import 'package:sizer/sizer.dart';
 
 class CategoryCardItem extends StatelessWidget
 {
@@ -13,7 +14,7 @@ class CategoryCardItem extends StatelessWidget
   Widget build(BuildContext context) {
     return  InkWell(
           onTap: (){
-            Navigator.pushReplacementNamed(context, MobileHomeView.routeName);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MobileHomeView()));
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -23,7 +24,7 @@ class CategoryCardItem extends StatelessWidget
                   BoxShadow(
                     color:Colors.grey.withOpacity(0.4),
                     blurRadius: 7.0, // soften the shadow
-                    offset: Offset(
+                    offset: const Offset(
                       1.0, // Move to right 10  horizontally
                       2.0, // Move to bottom 10 Vertically
                     ),
@@ -36,6 +37,7 @@ class CategoryCardItem extends StatelessWidget
                 color: Colors.white,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.50,
+                  //height: 80.sp,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -46,10 +48,10 @@ class CategoryCardItem extends StatelessWidget
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: 35.0,
-                          child: Text(categoryModel.categoryNumber, style: TextStyle(color: categoryModel.color, fontSize: 20),),
+                          child: Text(categoryModel.categoryNumber, style: TextStyle(color: categoryModel.color, fontSize: 18.sp),),
                         ),
                       ),
-                      Text(categoryModel.categoryName, style: TextStyle(color: categoryModel.color, fontSize: 18)),
+                      Text(categoryModel.categoryName, style: TextStyle(color: categoryModel.color, fontSize: 13.sp)),
                     ],
                   ),
                 ),

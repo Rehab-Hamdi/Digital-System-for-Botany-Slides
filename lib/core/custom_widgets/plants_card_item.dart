@@ -32,25 +32,30 @@ class PlantsCardItem extends StatelessWidget
               ),
             ],
           ),
-          child: Card(
-            color: MyColors.plantBackground,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: Column(
-              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 3.0),
-                  width: 500,
-                  height: 128,
-                  child: Image.asset('assets/images/myPlant.png',
-                  ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Card(
+                color: MyColors.plantBackground,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                child: Column(
+                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 3.0),
+                      width: 500,
+                      height: 128,
+                      child: Image.asset('assets/images/myPlant.png',
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(bottom: 10.0),
+                      //alignment: Alignment.centerLeft,
+                        child: Text( plantsModel.plant_name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: 25.0, bottom: 5.0),
-                  alignment: Alignment.centerLeft,
-                    child: Text( plantsModel.plant_name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
