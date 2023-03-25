@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/categorg_model.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
 import 'package:sizer/sizer.dart';
@@ -14,7 +13,7 @@ class CategoryCardItem extends StatelessWidget
   Widget build(BuildContext context) {
     return  InkWell(
           onTap: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MobileHomeView()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>MobileHomeView()));
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
