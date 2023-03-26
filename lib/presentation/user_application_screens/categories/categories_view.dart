@@ -44,7 +44,7 @@ class _CategoryViewState extends State<CategoryView> {
     CategoryModel(
         color: Colors.black,
         categoryNumber: '7',
-        categoryName: 'Special Group'),
+        categoryName: 'Special groups'),
   ];
   int touchedIndex=0;
   @override
