@@ -15,12 +15,12 @@ class MobileDeleteUserView extends StatefulWidget {
   State<MobileDeleteUserView> createState() => _DeleteUserScreenState();
 }
 
-class _DeleteUserScreenState extends BaseState<MobileDeleteUserView, DeleteViewModel> implements DeleteNavigator {
+class _DeleteUserScreenState extends BaseState<MobileDeleteUserView, DeleteUserViewModel> implements DeleteNavigator {
 
 
   @override
-  DeleteViewModel initViewModel() {
-    return DeleteViewModel();
+  DeleteUserViewModel initViewModel() {
+    return DeleteUserViewModel();
   }
 
   FocusNode deleteFocusNode = FocusNode();
