@@ -4,7 +4,7 @@ import 'package:our_test_project/core/custom_widgets/desktop_titleAndInputField.
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_navigator.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_view_model.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_view_model.dart';
 import 'package:provider/provider.dart';
 
 class   DesktopUpdateUserView extends StatefulWidget {
@@ -13,15 +13,15 @@ class   DesktopUpdateUserView extends StatefulWidget {
   const DesktopUpdateUserView({super.key});
 
   @override
-  State<DesktopUpdateUserView> createState() => _DeleteUserScreenState();
+  State<DesktopUpdateUserView> createState() => _DesktopUpdateUserView();
 }
 
-class _DeleteUserScreenState extends BaseState<DesktopUpdateUserView, DeleteViewModel> implements DeleteNavigator {
+class _DesktopUpdateUserView extends BaseState<DesktopUpdateUserView, UpdateUserViewModel> implements DeleteNavigator {
 
 
   @override
-  DeleteViewModel initViewModel() {
-    return DeleteViewModel();
+  UpdateUserViewModel initViewModel() {
+    return UpdateUserViewModel();
   }
 
   FocusNode idFocusNode = FocusNode();
@@ -92,7 +92,7 @@ class _DeleteUserScreenState extends BaseState<DesktopUpdateUserView, DeleteView
                   DesktopTitleAndInputField(
                     containerPadding: 60.0,
                     txt: 'ID  : ',
-                    left_margin:67,
+                    left_margin:72,
                     controller: idController,
                     focusNode: idFocusNode,
                     // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
@@ -103,9 +103,20 @@ class _DeleteUserScreenState extends BaseState<DesktopUpdateUserView, DeleteView
                   DesktopTitleAndInputField(
                     containerPadding: 60.0,
                     txt: 'Name  : ',
-                    left_margin:37,
+                    left_margin:40,
                     controller: nameController,
                     focusNode: nameFocusNode,
+                    // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.03,
+                  ),
+                  DesktopTitleAndInputField(
+                    containerPadding: 60.0,
+                    txt: 'Email  : ',
+                    left_margin:44,
+                    controller: emailController,
+                    focusNode: emailFocusNode,
                     // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
                   ),
                   SizedBox(
@@ -125,7 +136,7 @@ class _DeleteUserScreenState extends BaseState<DesktopUpdateUserView, DeleteView
                   DesktopTitleAndInputField(
                     containerPadding: 60.0,
                     txt: 'Phone  : ',
-                    left_margin:39,
+                    left_margin:36,
                     controller: phoneController,
                     focusNode: phoneFocusNode,
                     // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
@@ -154,7 +165,10 @@ class _DeleteUserScreenState extends BaseState<DesktopUpdateUserView, DeleteView
                               onPressed: () {
                               },
                               style: OutlinedButton.styleFrom(
-                                backgroundColor: MyColors.active,
+                                backgroundColor:Colors.transparent,
+                                side:BorderSide(
+                                  color:MyColors.active
+                                ) ,
                                 shape: RoundedRectangleBorder(borderRadius:
                                 BorderRadius.circular(25)),
                               ),
@@ -163,7 +177,7 @@ class _DeleteUserScreenState extends BaseState<DesktopUpdateUserView, DeleteView
                                 style: TextStyle(
                                   // fontWeight: FontWeight.bold,
                                     fontSize: 22,
-                                    color: Colors.white),
+                                    color: MyColors.active),
                                 textAlign: TextAlign.center,
                               )),
                         ),

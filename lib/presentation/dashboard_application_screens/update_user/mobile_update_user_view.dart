@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/base.dart';
-import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:our_test_project/core/custom_widgets/title_and_textField.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_navigator.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_view_model.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_view_model.dart';
 import 'package:provider/provider.dart';
 
 class MobileUpdateUserView extends StatefulWidget {
@@ -13,15 +12,15 @@ class MobileUpdateUserView extends StatefulWidget {
   const MobileUpdateUserView({super.key});
 
   @override
-  State<MobileUpdateUserView> createState() => _DeleteUserScreenState();
+  State<MobileUpdateUserView> createState() => _MobileUpdateUserView();
 }
 
-class _DeleteUserScreenState extends BaseState<MobileUpdateUserView, DeleteViewModel> implements DeleteNavigator {
+class _MobileUpdateUserView extends BaseState<MobileUpdateUserView, UpdateUserViewModel> implements DeleteNavigator {
 
 
   @override
-  DeleteViewModel initViewModel() {
-    return DeleteViewModel();
+  UpdateUserViewModel initViewModel() {
+    return UpdateUserViewModel();
   }
 
   FocusNode idFocusNode = FocusNode();
@@ -92,7 +91,7 @@ class _DeleteUserScreenState extends BaseState<MobileUpdateUserView, DeleteViewM
                   MobileTitleAndInputField(
                     containerPadding: 16.0,
                     txt: 'ID  : ',
-                    left_margin:67,
+                    left_margin:70,
                     controller: idController,
                     focusNode: idFocusNode,
                     // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
@@ -103,9 +102,20 @@ class _DeleteUserScreenState extends BaseState<MobileUpdateUserView, DeleteViewM
                   MobileTitleAndInputField(
                     containerPadding: 16.0,
                     txt: 'Name  : ',
-                    left_margin:37,
+                    left_margin:39,
                     controller: nameController,
                     focusNode: nameFocusNode,
+                    // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.03,
+                  ),
+                  MobileTitleAndInputField(
+                    containerPadding: 16.0,
+                    txt: 'Email  : ',
+                    left_margin:41,
+                    controller:emailController,
+                    focusNode: emailFocusNode,
                     // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
                   ),
                   SizedBox(
@@ -125,7 +135,7 @@ class _DeleteUserScreenState extends BaseState<MobileUpdateUserView, DeleteViewM
                   MobileTitleAndInputField(
                     containerPadding: 16.0,
                     txt: 'Phone  : ',
-                    left_margin:39,
+                    left_margin:37,
                     controller: phoneController,
                     focusNode: phoneFocusNode,
                     // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
@@ -147,14 +157,17 @@ class _DeleteUserScreenState extends BaseState<MobileUpdateUserView, DeleteViewM
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-                          padding: EdgeInsets.only(left: 15),
+                          padding: const EdgeInsets.only(left: 15),
                           width: MediaQuery.of(context).size.width*0.45,
                           height: MediaQuery.of(context).size.height*0.06,
                           child: OutlinedButton(
                               onPressed: () {
                               },
                               style: OutlinedButton.styleFrom(
-                                backgroundColor: MyColors.active,
+                                side: const BorderSide(
+                                  color: MyColors.active
+                                ),
+                                backgroundColor: Colors.transparent,
                                 shape: RoundedRectangleBorder(borderRadius:
                                 BorderRadius.circular(25)),
                               ),
@@ -163,7 +176,7 @@ class _DeleteUserScreenState extends BaseState<MobileUpdateUserView, DeleteViewM
                                 style: TextStyle(
                                   // fontWeight: FontWeight.bold,
                                     fontSize: 22,
-                                    color: Colors.white),
+                                    color: MyColors.active),
                                 textAlign: TextAlign.center,
                               )),
                         ),
