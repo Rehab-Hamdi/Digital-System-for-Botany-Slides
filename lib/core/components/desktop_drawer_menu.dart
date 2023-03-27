@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/drawer_list_tile.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/add_user/add_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/desktop_add_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/calendar/calendar_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/desktop_delete_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
 import 'package:vertical_tabs_flutter/vertical_tabs.dart';
 
@@ -134,10 +134,10 @@ class DesktopDrawerMenu extends StatelessWidget {
               ],
               contents: const [
                 DesktopDashboardView(),
-                AddUserView(),
+                DesktopAddNewUserView(),
                 DesktopUpdateUserView(),
                 DesktopDeleteUserView(),
-                RequestView(),
+                DesktopRequestsView(),
                 ReportsView(),
                 CalendarDashboardView(),
                 Text('done'),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/add_user/add_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/desktop_add_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/desktop_delete_user_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/mobile_delete_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/small_screen_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
 
@@ -30,14 +29,14 @@ class _MobileDrawerMenuState extends State<MobileDrawerMenu> {
     } else if (currentPage == DrawerSections.reports) {
       container = const ReportsView();
     } else if (currentPage == DrawerSections.users) {
-      container = const MobileUpdateUserView();
+      container = const MobileAddNewUserView();
     } else if (currentPage == DrawerSections.requests) {
-      container = const ReportsView();
+      container = const SmallScreenRequestsView();
     } else if (currentPage == DrawerSections.calendar) {
       container = const CalendarView();
     }
     else if (currentPage == DrawerSections.logout) {
-      container = const AddUserView();
+      container =  MobileAddNewUserView();
     }
     return Scaffold(
       appBar: AppBar(
