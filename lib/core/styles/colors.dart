@@ -4,6 +4,7 @@ class MyColors {
   static const Color bink = Color(0xffad4363);
   static const Color lightPink = Color(0xff7a1a36);
   static const Color gray = Color(0xffc8cccc);
+  static const Color lightGrey = Color(0xFFA4A6B3);
   static const Color lightBlack = Color(0xff868181);
   static const Color offwhite = Color(0xfffbfdf8);
   static const Color green = Color(0xf5193E46);
