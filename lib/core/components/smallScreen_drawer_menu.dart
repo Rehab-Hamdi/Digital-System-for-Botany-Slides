@@ -4,7 +4,7 @@ import 'package:our_test_project/presentation/dashboard_application_screens/add_
 import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/requests/small_screen_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/mobile_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
 
@@ -31,7 +31,7 @@ class _MobileDrawerMenuState extends State<MobileDrawerMenu> {
     } else if (currentPage == DrawerSections.users) {
       container = const MobileAddNewUserView();
     } else if (currentPage == DrawerSections.requests) {
-      container = const SmallScreenRequestsView();
+      container = const MobileRequestsView();
     } else if (currentPage == DrawerSections.calendar) {
       container = const CalendarView();
     }

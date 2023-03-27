@@ -6,11 +6,15 @@ import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/desktop_add_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/desktop_delete_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/mobile_delete_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/mobile_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
 import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
@@ -81,6 +85,10 @@ class MyApp extends StatelessWidget {
              MobileDeleteUserView.routeName:(c)=> MobileDeleteUserView(),
              DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
              MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
+             MobileRequestsView.routeName:(c)=> MobileRequestsView(),
+             DesktopRequestsView.routeName:(c)=>DesktopRequestsView(),
+             DesktopAddNewUserView.routeName:(c)=> DesktopAddNewUserView(),
+             MobileAddNewUserView.routeName:(c)=> MobileAddNewUserView(),
            },
            initialRoute: isLogin ==1 || isLogin == null?LoginView.routeName :StartView.routeName,
        ),

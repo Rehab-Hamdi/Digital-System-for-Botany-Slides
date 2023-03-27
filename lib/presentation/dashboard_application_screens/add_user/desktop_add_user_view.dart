@@ -12,10 +12,10 @@ class   DesktopAddNewUserView extends StatefulWidget {
   const DesktopAddNewUserView({super.key});
 
   @override
-  State<DesktopAddNewUserView> createState() => _DeleteUserScreenState();
+  State<DesktopAddNewUserView> createState() => _DesktopAddNewUserView();
 }
 
-class _DeleteUserScreenState extends BaseState<DesktopAddNewUserView, AddUserViewModel> implements DeleteNavigator {
+class _DesktopAddNewUserView extends BaseState<DesktopAddNewUserView, AddUserViewModel> implements DeleteNavigator {
 
 
   @override

@@ -4,17 +4,17 @@ import 'package:http/http.dart' as http;
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/requests_model.dart';
-class SmallScreenRequestsView extends StatefulWidget {
+class MobileRequestsView extends StatefulWidget {
 
-  static const String routeName = 'SmallScreenRequestsView';
+  static const String routeName = 'Mobile Requests View';
 
-  const SmallScreenRequestsView({super.key});
+  const MobileRequestsView({super.key});
 
   @override
-  State<SmallScreenRequestsView> createState() => _RequestsTableState();
+  State<MobileRequestsView> createState() => _RequestsTableState();
 }
 
-class _RequestsTableState extends State<SmallScreenRequestsView> {
+class _RequestsTableState extends State<MobileRequestsView> {
 
   final List<Request> _requests = [
     Request(ssn: '14785236941', name: 'Mamhoud', email: 'mahmoud@gmail.com', slideName: 'stem , pinus', date: '12:8:00'),
