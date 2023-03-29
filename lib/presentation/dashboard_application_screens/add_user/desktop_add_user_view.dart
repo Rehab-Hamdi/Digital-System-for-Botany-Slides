@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/desktop_titleAndInputField.dart';
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/add_user/add_user_navigator.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/add_user/add_user_view_model.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_navigator.dart';
 import 'package:provider/provider.dart';
 
 class   DesktopAddNewUserView extends StatefulWidget {
@@ -15,7 +15,7 @@ class   DesktopAddNewUserView extends StatefulWidget {
   State<DesktopAddNewUserView> createState() => _DesktopAddNewUserView();
 }
 
-class _DesktopAddNewUserView extends BaseState<DesktopAddNewUserView, AddUserViewModel> implements DeleteNavigator {
+class _DesktopAddNewUserView extends BaseState<DesktopAddNewUserView, AddUserViewModel> implements AddUserNavigator  {
 
 
   @override
