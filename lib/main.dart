@@ -90,7 +90,8 @@ class MyApp extends StatelessWidget {
              DesktopAddNewUserView.routeName:(c)=> DesktopAddNewUserView(),
              MobileAddNewUserView.routeName:(c)=> MobileAddNewUserView(),
            },
-           initialRoute: isLogin ==1 || isLogin == null?LoginView.routeName :StartView.routeName,
+          // initialRoute: isLogin ==1 || isLogin == null?LoginView.routeName :StartView.routeName,
+         home: MobileRequestsView(),
        ),
 
      );

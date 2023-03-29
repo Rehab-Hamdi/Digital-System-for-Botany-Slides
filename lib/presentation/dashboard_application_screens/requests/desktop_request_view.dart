@@ -4,8 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/requests_model.dart';
-class DesktopRequestsView extends StatefulWidget {
+import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/edit_request_view_model.dart';
 
+class DesktopRequestsView extends StatefulWidget {
   static const String routeName = 'desktopRequestsView';
 
   const DesktopRequestsView({super.key});
@@ -15,25 +17,105 @@ class DesktopRequestsView extends StatefulWidget {
 }
 
 class _RequestsTableState extends State<DesktopRequestsView> {
-
   final List<Request> _requests = [
-    Request(ssn: '14785236941', name: 'Mamhoud', email: 'mahmoud@gmail.com', slideName: 'stem , pinus', date: '12:8:00'),
-    Request(ssn: '17853524042', name: 'Hagar', email: 'hagar@gmail.com', slideName: 'stem , pinus', date: '18:8:50'),
-    Request(ssn: '45545786541', name: 'Rehab', email: 'rehab@gmail.com', slideName: 'stem , pinus', date: '09:8:05'),
-    Request(ssn: '54200472941', name: 'Mohamed', email: 'mohamed@gmail.com', slideName: 'stem , pinus', date: '17:00:08'),
-    Request(ssn: '44104054712', name: 'Eman', email: 'Eman@gmail.com', slideName: 'stem , pinus', date: '10:08:30',),
-    Request(ssn: '27504072872', name: 'Ahmed', email: 'ahmed@gmail.com', slideName: 'stem , pinus', date: '12:08:01'),
-    Request(ssn: '27442502572', name: 'Sohaila', email: 'Sohaila@gmail.com', slideName: 'stem , pinus', date: '08:00:00'),
-    Request(ssn: '24275875722', name: 'Asmaa', email: 'asmaagmail.com', slideName: 'stem , pinus', date: '01:8:12'),
-    Request(ssn: '14785236941', name: 'Mamhoud', email: 'mahmoud@gmail.com', slideName: 'stem , pinus', date: '12:8:00'),
-    Request(ssn: '17853524042', name: 'Hagar', email: 'hagar@gmail.com', slideName: 'stem , pinus', date: '18:8:50'),
-    Request(ssn: '45545786541', name: 'Rehab', email: 'rehab@gmail.com', slideName: 'stem , pinus', date: '09:8:05'),
-    Request(ssn: '54200472941', name: 'Mohamed', email: 'mohamed@gmail.com', slideName: 'stem , pinus', date: '17:00:08'),
-    Request(ssn: '44104054712', name: 'Eman', email: 'Eman@gmail.com', slideName: 'stem , pinus', date: '10:08:30',),
-    Request(ssn: '27504072872', name: 'Ahmed', email: 'ahmed@gmail.com', slideName: 'stem , pinus', date: '12:08:01'),
-    Request(ssn: '27442502572', name: 'Sohaila', email: 'Sohaila@gmail.com', slideName: 'stem , pinus', date: '08:00:00'),
-    Request(ssn: '24275875722', name: 'Asmaa', email: 'asmaagmail.com', slideName: 'stem , pinus', date: '01:8:12'),
-
+    Request(
+        ssn: '14785236941',
+        name: 'Mamhoud',
+        email: 'mahmoud@gmail.com',
+        slideName: 'stem , pinus',
+        date: '12:8:00'),
+    Request(
+        ssn: '17853524042',
+        name: 'Hagar',
+        email: 'hagar@gmail.com',
+        slideName: 'stem , pinus',
+        date: '16:8:50'),
+    Request(
+        ssn: '45545786541',
+        name: 'Rehab',
+        email: 'rehab@gmail.com',
+        slideName: 'stem , pinus',
+        date: '09:8:05'),
+    Request(
+        ssn: '54200472941',
+        name: 'Mohamed',
+        email: 'mohamed@gmail.com',
+        slideName: 'stem , pinus',
+        date: '17:00:08'),
+    Request(
+      ssn: '44104054712',
+      name: 'Eman',
+      email: 'Eman@gmail.com',
+      slideName: 'stem , pinus',
+      date: '10:08:30',
+    ),
+    Request(
+        ssn: '27504072872',
+        name: 'Ahmed',
+        email: 'ahmed@gmail.com',
+        slideName: 'stem , pinus',
+        date: '12:08:01'),
+    Request(
+        ssn: '27442502572',
+        name: 'Sohaila',
+        email: 'Sohaila@gmail.com',
+        slideName: 'stem , pinus',
+        date: '08:00:00'),
+    Request(
+        ssn: '24275875722',
+        name: 'Asmaa',
+        email: 'asmaagmail.com',
+        slideName: 'stem , pinus',
+        date: '01:8:12'),
+    Request(
+        ssn: '14785236941',
+        name: 'Mamhoud',
+        email: 'mahmoud@gmail.com',
+        slideName: 'stem , pinus',
+        date: '12:8:00'),
+    Request(
+        ssn: '17853524042',
+        name: 'Hagar',
+        email: 'hagar@gmail.com',
+        slideName: 'stem , pinus',
+        date: '16:8:50'),
+    Request(
+        ssn: '45545786541',
+        name: 'Rehab',
+        email: 'rehab@gmail.com',
+        slideName: 'stem , pinus',
+        date: '09:8:05'),
+    Request(
+        ssn: '54200472941',
+        name: 'Mohamed',
+        email: 'mohamed@gmail.com',
+        slideName: 'stem , pinus',
+        date: '17:00:08'),
+    Request(
+      ssn: '44104054712',
+      name: 'Eman',
+      email: 'Eman@gmail.com',
+      slideName: 'stem , pinus',
+      date: '10:08:30',
+    ),
+    Request(
+        ssn: '27504072872',
+        name: 'Ahmed',
+        email: 'ahmed@gmail.com',
+        slideName: 'stem , pinus',
+        date: '12:08:01'),
+    Request(
+        ssn: '27442502572',
+        name: 'Sohaila',
+        email: 'Sohaila@gmail.com',
+        slideName: 'stem , pinus',
+        date: '08:00:00'),
+    Request(
+        ssn: '24275875722',
+        name: 'Asmaa',
+        email: 'asmaagmail.com',
+        slideName: 'stem , pinus',
+        date: '01:8:12'),
   ];
   @override
   void initState() {
@@ -42,7 +124,8 @@ class _RequestsTableState extends State<DesktopRequestsView> {
   }
 
   Future<void> _getRequests() async {
-    final response = await http.get(Uri.parse('https://example.com/api/requests'));
+    final response =
+        await http.get(Uri.parse('https://example.com/api/requests'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body) as List<dynamic>;
       setState(() {
@@ -60,39 +143,62 @@ class _RequestsTableState extends State<DesktopRequestsView> {
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height*0.02,
+              height: MediaQuery.of(context).size.height * 0.02,
             ),
-            PageTitle(title: 'Requests', wdth: 0.30),
+            const PageTitle(title: 'Requests', wdth: 0.30),
             SizedBox(
-              height: MediaQuery.of(context).size.height*0.03,
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             Center(
               child: Container(
-                padding: EdgeInsets.all(8.0),
-                margin: EdgeInsets.all(8.0),
-                height:MediaQuery.of(context).size.height*0.85,
-                width: MediaQuery.of(context).size.width*0.62,
+                padding: const EdgeInsets.all(8.0),
+                margin: const EdgeInsets.all(8.0),
+                height: MediaQuery.of(context).size.height * 0.85,
+                //width: MediaQuery.of(context).size.width*0.62,
 
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(
                       color: MyColors.active,
-                    )
-                ),
-                child:
-                SingleChildScrollView(
+                    )),
+                child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: DataTable(
-                      headingRowColor:MaterialStateColor.resolveWith((states) => MyColors.lightGrey.withOpacity(0.2)),
+                      headingRowColor: MaterialStateColor.resolveWith(
+                          (states) => MyColors.lightGrey.withOpacity(0.2)),
                       columns: const [
-                        DataColumn(label: Text('SSN')),
-                        DataColumn(label: Text('Name')),
-                        DataColumn(label: Text('Email')),
-                        DataColumn(label: Text('Slide Name')),
-                        DataColumn(label: Text('Date')),
-                        DataColumn(label: Text('Action')),
+                        DataColumn(
+                            label: Text(
+                          'User ID',
+                          style: TextStyle(fontSize: 16),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Name',
+                          style: TextStyle(fontSize: 16),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Email',
+                          style: TextStyle(fontSize: 16),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Slide Name',
+                          style: TextStyle(fontSize: 16),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Requested Date',
+                          style: TextStyle(fontSize: 16),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Actions',
+                          style: TextStyle(fontSize: 16),
+                        )),
                       ],
                       rows: _requests.map((request) {
                         return DataRow(cells: [
@@ -105,47 +211,102 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4.0),
-                                      color:Colors.green,
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.done,
+                                      color: Colors.black,
                                     ),
-                                    child: InkWell(
-                                      onTap: (){},
-                                      child: Row(
-                                        children: const [
-                                          Icon(Icons.done, size: 20,),
-                                          Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Text("Accept"),
-                                          ),
-                                        ],
-                                      ),
+                                    label: const Text(
+                                      'Approve',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateColor.resolveWith(
+                                              (states) => Colors.green),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4.0),
-                                      color:Colors.red,
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DesktopEditRequestView()));
+                                    },
+                                    icon: const Icon(
+                                      Icons.edit,
+                                      color: Colors.black,
                                     ),
-                                    child: InkWell(
-                                      onTap: (){},
-                                      child: Row(
-                                        children: const [
-                                          Icon(Icons.close, size: 20,),
-                                          Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Text("Refuse"),
-                                          ),
-                                        ],
-                                      ),
+                                    label: const Text(
+                                      'Edit',
+                                      style: TextStyle(color: Colors.black),
                                     ),
                                   ),
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.delete_outline,
+                                      color: Colors.black,
+                                    ),
+                                    label: const Text(
+                                      'Reject',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateColor.resolveWith(
+                                              (states) => Colors.red),
+                                   //   textStyle: MaterialStateProperty<TextStyle> ,
+                                    ),
+                                  ),
+                                )
+                                // Padding(
+                                //   padding: const EdgeInsets.all(8.0),
+                                //   child: Container(
+                                //     decoration: BoxDecoration(
+                                //       borderRadius: BorderRadius.circular(4.0),
+                                //       color:Colors.green,
+                                //     ),
+                                //     child: InkWell(
+                                //       onTap: (){},
+                                //       child: Row(
+                                //         children: const [
+                                //           Icon(Icons.done, size: 20,),
+                                //           Padding(
+                                //             padding: EdgeInsets.all(8.0),
+                                //             child: Text("Accept"),
+                                //           ),
+                                //         ],
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: const EdgeInsets.all(8.0),
+                                //   child: Container(
+                                //     decoration: BoxDecoration(
+                                //       borderRadius: BorderRadius.circular(4.0),
+                                //       color:Colors.red,
+                                //     ),
+                                //     child: InkWell(
+                                //       onTap: (){},
+                                //       child: Row(
+                                //         children: const [
+                                //           Icon(Icons.close, size: 20,),
+                                //           Padding(
+                                //             padding: EdgeInsets.all(8.0),
+                                //             child: Text("Refuse"),
+                                //           ),
+                                //         ],
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/requests_model.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/mobile_edit_request_view.dart';
+import 'package:sizer/sizer.dart';
 class MobileRequestsView extends StatefulWidget {
 
   static const String routeName = 'Mobile Requests View';
@@ -65,14 +67,14 @@ class _RequestsTableState extends State<MobileRequestsView> {
               ),
               PageTitle(title: 'Requests', wdth: 0.30),
               SizedBox(
-                height: MediaQuery.of(context).size.height*0.03,
+                height: MediaQuery.of(context).size.height*0.015,
               ),
                Center(
                  child: Container(
                    padding: EdgeInsets.all(8.0),
                    margin: EdgeInsets.all(8.0),
-                    height:MediaQuery.of(context).size.height*0.75,
-                    width: MediaQuery.of(context).size.width*0.98,
+                    height:MediaQuery.of(context).size.height*0.85,
+                    //width: MediaQuery.of(context).size.width*0.98,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
@@ -86,13 +88,13 @@ class _RequestsTableState extends State<MobileRequestsView> {
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
                           headingRowColor:MaterialStateColor.resolveWith((states) => MyColors.lightGrey.withOpacity(0.2)),
-                          columns: const [
-                            DataColumn(label: Text('SSN')),
-                            DataColumn(label: Text('Name')),
-                            DataColumn(label: Text('Email')),
-                            DataColumn(label: Text('Slide Name')),
-                            DataColumn(label: Text('Date')),
-                            DataColumn(label: Text('Action')),
+                          columns:  [
+                            DataColumn(label: Text('User ID', style: TextStyle(fontSize: 13.sp),)),
+                            DataColumn(label: Text('Name', style: TextStyle(fontSize: 13.sp),)),
+                            DataColumn(label: Text('Email', style: TextStyle(fontSize: 13.sp),)),
+                            DataColumn(label: Text('Slide Name', style: TextStyle(fontSize: 13.sp),)),
+                            DataColumn(label: Text('Date', style: TextStyle(fontSize: 13.sp),)),
+                            DataColumn(label: Text('Action', style: TextStyle(fontSize: 13.sp),)),
                           ],
                           rows: _requests.map((request) {
                             return DataRow(cells: [
@@ -105,47 +107,102 @@ class _RequestsTableState extends State<MobileRequestsView> {
                                 Row(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(4.0),
-                                          color:Colors.green,
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: OutlinedButton.icon(
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                          Icons.done,
+                                          color: Colors.black,
                                         ),
-                                        child: InkWell(
-                                          onTap: (){},
-                                          child: Row(
-                                            children: const [
-                                              Icon(Icons.done, size: 20,),
-                                              Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text("Accept"),
-                                              ),
-                                            ],
-                                          ),
+                                        label: const Text(
+                                          'Approve',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateColor.resolveWith(
+                                                  (states) => Colors.green),
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(4.0),
-                                          color:Colors.red,
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: OutlinedButton.icon(
+                                        onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> MobileEditRequestView()));
+                                        },
+                                        icon: const Icon(
+                                          Icons.edit,
+                                          color: Colors.black,
                                         ),
-                                        child: InkWell(
-                                          onTap: (){},
-                                          child: Row(
-                                            children: const [
-                                              Icon(Icons.close, size: 20,),
-                                              Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text("Refuse"),
-                                              ),
-                                            ],
-                                          ),
+                                        label: const Text(
+                                          'Edit',
+                                          style: TextStyle(color: Colors.black),
                                         ),
                                       ),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: OutlinedButton.icon(
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                          Icons.delete_outline,
+                                          color: Colors.black,
+                                        ),
+                                        label: const Text(
+                                          'Reject',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateColor.resolveWith(
+                                                  (states) => Colors.red),
+                                          //   textStyle: MaterialStateProperty<TextStyle> ,
+                                        ),
+                                      ),
+                                    )
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(8.0),
+                                    //   child: Container(
+                                    //     decoration: BoxDecoration(
+                                    //       borderRadius: BorderRadius.circular(4.0),
+                                    //       color:Colors.green,
+                                    //     ),
+                                    //     child: InkWell(
+                                    //       onTap: (){},
+                                    //       child: Row(
+                                    //         children: const [
+                                    //           Icon(Icons.done, size: 20,),
+                                    //           Padding(
+                                    //             padding: EdgeInsets.all(8.0),
+                                    //             child: Text("Accept"),
+                                    //           ),
+                                    //         ],
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(8.0),
+                                    //   child: Container(
+                                    //     decoration: BoxDecoration(
+                                    //       borderRadius: BorderRadius.circular(4.0),
+                                    //       color:Colors.red,
+                                    //     ),
+                                    //     child: InkWell(
+                                    //       onTap: (){},
+                                    //       child: Row(
+                                    //         children: const [
+                                    //           Icon(Icons.close, size: 20,),
+                                    //           Padding(
+                                    //             padding: EdgeInsets.all(8.0),
+                                    //             child: Text("Refuse"),
+                                    //           ),
+                                    //         ],
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),

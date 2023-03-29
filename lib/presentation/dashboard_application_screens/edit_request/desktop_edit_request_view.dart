@@ -80,7 +80,7 @@ class _DesktopEditRequestView extends BaseState<DesktopEditRequestView, EditRequ
                     height: MediaQuery.of(context).size.height*0.05,
                   ),
                   DesktopTitleAndInputField(
-                    containerPadding: 60.0,
+                    containerPadding: 30.0,
                     txt: 'Start Date : ',
                     left_margin:5,
                     controller: startDateController,
@@ -91,7 +91,7 @@ class _DesktopEditRequestView extends BaseState<DesktopEditRequestView, EditRequ
                     height: MediaQuery.of(context).size.height*0.03,
                   ),
                   DesktopTitleAndInputField(
-                    containerPadding: 60.0,
+                    containerPadding: 30.0,
                     txt: 'End Date : ',
                     left_margin:13,
                     controller: endDateController,
@@ -102,7 +102,7 @@ class _DesktopEditRequestView extends BaseState<DesktopEditRequestView, EditRequ
                     height: MediaQuery.of(context).size.height*0.03,
                   ),
                   DesktopTitleAndInputField(
-                    containerPadding: 60.0,
+                    containerPadding: 30.0,
                     txt: 'Status  : ',
                     left_margin:29,
                     controller: statusController,
@@ -113,7 +113,7 @@ class _DesktopEditRequestView extends BaseState<DesktopEditRequestView, EditRequ
                     height: MediaQuery.of(context).size.height*0.03,
                   ),
                   DesktopTitleAndInputField(
-                    containerPadding: 60.0,
+                    containerPadding: 30.0,
                     txt: 'Notes  : ',
                     left_margin:33,
                     controller: notesController,

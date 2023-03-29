@@ -126,7 +126,7 @@ class _MobileUpdateUserView extends BaseState<MobileEditRequestView, EditRequest
                         alignment: Alignment.bottomCenter,
                         child: Container(
                           padding: const EdgeInsets.only(left: 15),
-                          width: MediaQuery.of(context).size.width*0.45,
+                          width: MediaQuery.of(context).size.width*0.52,
                           height: MediaQuery.of(context).size.height*0.06,
                           child: OutlinedButton(
                               onPressed: () {
