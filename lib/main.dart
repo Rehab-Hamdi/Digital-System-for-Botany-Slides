@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
+import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
 import 'package:our_test_project/core/styles/my_themes.dart';
 import 'package:our_test_project/firebase_options.dart';
 import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart';
@@ -13,6 +14,8 @@ import 'package:our_test_project/presentation/dashboard_application_screens/dash
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/desktop_delete_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/mobile_delete_user_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/mobile_edit_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/mobile_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
@@ -78,20 +81,23 @@ class MyApp extends StatelessWidget {
              PlanetInfoView.routeName: (c) => PlanetInfoView(),
              CategoryView.routeName:(c)=> CategoryView(),
              DashBoardScreenController.routeName:(c)=>DashBoardScreenController(),
+             DesktopDrawerMenu.routeName:(c)=>DesktopDrawerMenu(),
+             MobileDrawerMenu.routeName:(c)=>MobileDrawerMenu(),
              DesktopDashboardView.routeName:(c)=>DesktopDashboardView(),
              MobileDashboardView.routeName:(c)=>MobileDashboardView(),
-             DesktopDrawerMenu.routeName:(c)=>DesktopDrawerMenu(),
-             DesktopDeleteUserView.routeName:(c)=> DesktopDeleteUserView(),
-             MobileDeleteUserView.routeName:(c)=> MobileDeleteUserView(),
-             DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
-             MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
-             MobileRequestsView.routeName:(c)=> MobileRequestsView(),
-             DesktopRequestsView.routeName:(c)=>DesktopRequestsView(),
              DesktopAddNewUserView.routeName:(c)=> DesktopAddNewUserView(),
              MobileAddNewUserView.routeName:(c)=> MobileAddNewUserView(),
+             DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
+             MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
+             DesktopDeleteUserView.routeName:(c)=> DesktopDeleteUserView(),
+             MobileDeleteUserView.routeName:(c)=> MobileDeleteUserView(),
+             DesktopRequestsView.routeName:(c)=>DesktopRequestsView(),
+             MobileRequestsView.routeName:(c)=> MobileRequestsView(),
+             DesktopEditRequestView.routeName:(c)=> DesktopEditRequestView(),
+             MobileEditRequestView.routeName:(c)=> MobileEditRequestView(),
+
            },
-          // initialRoute: isLogin ==1 || isLogin == null?LoginView.routeName :StartView.routeName,
-         home: MobileRequestsView(),
+           initialRoute: isLogin ==1 || isLogin == null?LoginView.routeName :StartView.routeName,
        ),
 
      );
