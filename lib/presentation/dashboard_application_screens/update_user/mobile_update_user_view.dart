@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/title_and_textField.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_navigator.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_navigator.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,7 @@ class MobileUpdateUserView extends StatefulWidget {
   State<MobileUpdateUserView> createState() => _MobileUpdateUserView();
 }
 
-class _MobileUpdateUserView extends BaseState<MobileUpdateUserView, UpdateUserViewModel> implements DeleteNavigator {
+class _MobileUpdateUserView extends BaseState<MobileUpdateUserView, UpdateUserViewModel> implements UpdateUserNavigator {
 
 
   @override

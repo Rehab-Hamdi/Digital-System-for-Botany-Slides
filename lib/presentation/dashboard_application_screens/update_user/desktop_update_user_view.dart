@@ -3,7 +3,7 @@ import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/desktop_titleAndInputField.dart';
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/delete_user/delete_user_navigator.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_navigator.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +16,7 @@ class   DesktopUpdateUserView extends StatefulWidget {
   State<DesktopUpdateUserView> createState() => _DesktopUpdateUserView();
 }
 
-class _DesktopUpdateUserView extends BaseState<DesktopUpdateUserView, UpdateUserViewModel> implements DeleteNavigator {
+class _DesktopUpdateUserView extends BaseState<DesktopUpdateUserView, UpdateUserViewModel> implements UpdateUserNavigator {
 
 
   @override
