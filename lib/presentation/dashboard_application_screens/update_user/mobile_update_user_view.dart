@@ -74,17 +74,6 @@ class _MobileUpdateUserView extends BaseState<MobileUpdateUserView, UpdateUserVi
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.02,
                   ),
-                  /*SizedBox(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        PageTitle(
-                          title: 'Update User Information',
-                          wdth: 0.47,
-                        ),
-                      ],
-                    ),
-                  ),*/
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.03,
                   ),
