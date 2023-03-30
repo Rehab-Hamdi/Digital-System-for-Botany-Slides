@@ -32,19 +32,19 @@ class MobileTitleAndInputField extends StatelessWidget {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.60,
-              height: MediaQuery.of(context).size.height*0.05,
+              //height: MediaQuery.of(context).size.height*0.05,
               child: TextFormField(
                 controller: controller,
                 focusNode: focusNode,
                 validator: validatorFunction,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(50.0),
                       borderSide: const BorderSide(
                         color: MyColors.active,
                       )),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(50.0),
                       borderSide: const BorderSide(
                         color: MyColors.active,
                       )),

@@ -23,11 +23,14 @@ class _DesktopEditRequestView extends BaseState<DesktopEditRequestView, EditRequ
   EditRequestViewModel initViewModel() {
     return EditRequestViewModel();
   }
-
+  FocusNode userIdFocusNode= FocusNode();
+  FocusNode slideIdFocusNode=FocusNode();
   FocusNode startDateFocusNode = FocusNode();
   FocusNode endDateFocusNode = FocusNode();
   FocusNode notesFocusNode = FocusNode();
   FocusNode statusFocusNode = FocusNode();
+  var userIdController = TextEditingController();
+  var slideIDController= TextEditingController();
   var startDateController = TextEditingController();
   var endDateController = TextEditingController();
   var notesController = TextEditingController();
@@ -78,6 +81,28 @@ class _DesktopEditRequestView extends BaseState<DesktopEditRequestView, EditRequ
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.05,
+                  ),
+                  DesktopTitleAndInputField(
+                    containerPadding: 30.0,
+                    txt: 'User ID : ',
+                    left_margin:25.0,
+                    controller: userIdController,
+                    focusNode: userIdFocusNode,
+                    // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.03,
+                  ),
+                  DesktopTitleAndInputField(
+                    containerPadding: 30.0,
+                    txt: 'Slide ID : ',
+                    left_margin:23.0,
+                    controller: slideIDController,
+                    focusNode: slideIdFocusNode,
+                    // validatorFunction: (text) => viewModel.IdValidation(text), // TODO : there is something
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.03,
                   ),
                   DesktopTitleAndInputField(
                     containerPadding: 30.0,
