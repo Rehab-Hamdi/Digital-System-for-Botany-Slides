@@ -51,9 +51,9 @@ class _CategoryViewState extends State<CategoryView> {
   Widget build(BuildContext context)
   {
 
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -69,13 +69,13 @@ class _CategoryViewState extends State<CategoryView> {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.79,
+              height: MediaQuery.of(context).size.height * 0.82,
               child: GridView.builder(
                   gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 1,
                       mainAxisSpacing: 2,
-                      childAspectRatio: 0.7.sp
+                      childAspectRatio: 0.7.sp,
                   ),
                   itemCount: allCategories.length,
                   itemBuilder:(context, index)=> CategoryCardItem(categoryModel:allCategories[index])),

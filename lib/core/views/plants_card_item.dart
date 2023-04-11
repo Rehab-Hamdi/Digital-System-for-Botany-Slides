@@ -18,13 +18,13 @@ class PlantsCardItem extends StatelessWidget
             arguments: plantsModel);
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(2.0),
         child: Container(
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color:MyColors.lightGray,
-                blurRadius: 7.0, // soften the shadow
+                color:Colors.grey.withOpacity(0.4),
+                blurRadius: 5.0, // soften the shadow
                 offset: Offset(
                   1.0, // Move to right 10  horizontally
                   2.0, // Move to bottom 10 Vertically
@@ -42,14 +42,14 @@ class PlantsCardItem extends StatelessWidget
                   //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(top: 3.0),
-                      width: 500,
-                      height: 128,
-                      child: Image.asset('assets/images/myPlant.png',
-                      ),
+                      //padding: EdgeInsets.only(top: 8.0, bottom: 4.0),
+                      padding: EdgeInsets.all(15.0),
+                      width: 450,
+                      height: 125,
+                      child: Image.asset(plantsModel.plant_image),
                     ),
                     Container(
-                      padding: EdgeInsets.only(bottom: 10.0),
+                      margin: EdgeInsets.only(bottom: 20.0, left: 5, right: 5),
                       //alignment: Alignment.centerLeft,
                         child: Text( plantsModel.plant_name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
                   ],
