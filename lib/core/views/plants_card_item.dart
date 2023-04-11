@@ -51,7 +51,7 @@ class PlantsCardItem extends StatelessWidget
                     Container(
                       margin: EdgeInsets.only(bottom: 20.0, left: 5, right: 5),
                       //alignment: Alignment.centerLeft,
-                        child: Text( plantsModel.plant_name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                        child: Text( plantsModel.plant_name, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),)),
                   ],
                 ),
               ),

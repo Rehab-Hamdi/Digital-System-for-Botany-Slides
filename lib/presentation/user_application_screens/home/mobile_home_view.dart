@@ -171,7 +171,7 @@ class _MobileHomeViewState extends State<MobileHomeView> {
 
                         /// plants Show
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.80,
+                            height: MediaQuery.of(context).size.height * 0.77,
                             child: GridView.builder(
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
@@ -198,6 +198,7 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                                           )),
                           ),
                   ],
+
                 ),
               ),
             ],
