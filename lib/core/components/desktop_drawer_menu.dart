@@ -26,30 +26,6 @@ class DesktopDrawerMenu extends StatelessWidget {
               indicatorColor: MyColors.active.withOpacity(0.7),
               selectedTabBackgroundColor: MyColors.active.withOpacity(0.1),
               tabs: [
-                // Tab(
-                //   child:    Container(
-                //     padding: const EdgeInsets.only(top: 15.0),
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       children: [
-                //         Padding(
-                //           padding: const EdgeInsets.all(8.0),
-                //           child: Text(
-                //             "Welcome  :  $name",
-                //             style: const TextStyle(
-                //                 color: Colors.black,
-                //                 fontSize: 14,
-                //                 fontWeight: FontWeight.bold),
-                //           ),
-                //         ),
-                //         const Text(
-                //           'Dashboard Admin',
-                //           style: TextStyle(color: Colors.black45, fontSize: 12),
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // ),
                 Tab(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0),
