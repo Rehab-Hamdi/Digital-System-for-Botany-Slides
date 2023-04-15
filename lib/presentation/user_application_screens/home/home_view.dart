@@ -47,7 +47,7 @@ class _HomeView extends State<HomeScreen> {
           Icon(Icons.home, size: 22.sp, color: MyColors.designGreen,),
           Icon(Icons.favorite, size: 22.sp, color: Colors.red,),
           Icon(Icons.calendar_month_outlined, size: 22.sp, color: MyColors.designGreen),
-          Icon(Icons.person, size: 22.sp, color:MyColors.designGreen,),
+          Icon(Icons.settings, size: 22.sp, color:MyColors.designGreen,),
         ],
       ),
     );

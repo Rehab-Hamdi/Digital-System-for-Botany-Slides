@@ -170,33 +170,38 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                         :
 
                         /// plants Show
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.77,
-                            child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 1,
-                                  mainAxisSpacing: 15,
-                                  childAspectRatio: 0.75.sp,
-                                ),
-                                itemCount: _searchTextController.text.isEmpty
-                                    ? PlantsName.length
-                                    : itemsListSearch!.length,
-                                itemBuilder: (context, index) =>
-                                    _searchTextController.text.isEmpty
-                                        ? PlantsCardItem(
-                                            plantsModel: PlantsModel(
-                                                plant_image: PlantsImage[index],
-                                                plant_name: PlantsName[index]),
-                                          )
-                                        : PlantsCardItem(
-                                            plantsModel: PlantsModel(
-                                                plant_image: PlantsImage[index],
-                                                plant_name:
-                                                    itemsListSearch![index]),
-                                          )),
-                          ),
+                        Column(
+                          children: [
+                            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                            SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.75,
+                                child: GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 2.5,
+                                      mainAxisSpacing: 17,
+                                      childAspectRatio: 0.75.sp,
+                                    ),
+                                    itemCount: _searchTextController.text.isEmpty
+                                        ? PlantsName.length
+                                        : itemsListSearch!.length,
+                                    itemBuilder: (context, index) =>
+                                        _searchTextController.text.isEmpty
+                                            ? PlantsCardItem(
+                                                plantsModel: PlantsModel(
+                                                    plant_image: PlantsImage[index],
+                                                    plant_name: PlantsName[index]),
+                                              )
+                                            : PlantsCardItem(
+                                                plantsModel: PlantsModel(
+                                                    plant_image: PlantsImage[index],
+                                                    plant_name:
+                                                        itemsListSearch![index]),
+                                              )),
+                              ),
+                          ],
+                        ),
                   ],
 
                 ),
