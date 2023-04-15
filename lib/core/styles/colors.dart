@@ -6,6 +6,7 @@ class MyColors {
   static const Color gray = Color(0xffc8cccc);
   static const Color lightGrey = Color(0xFFA4A6B3);
   static const Color lightBlack = Color(0xff868181);
+  static const Color lightBlack2 = Color(0xff343434);
   static const Color offwhite = Color(0xfffbfdf8);
   static const Color green = Color(0xf5193E46);
   static const Color lightGray = Color(0xf3f3f3f3);
@@ -21,4 +22,6 @@ class MyColors {
   static const Color categoryOrange = Color(0xffEC4E08);
   static const Color categoryGreen = Color(0xff2D6446);
   static const Color categoryWhite = Color(0xfff2f2f2);
+  static const Color userInfoColor = Color(0xff64748B);
+
 }

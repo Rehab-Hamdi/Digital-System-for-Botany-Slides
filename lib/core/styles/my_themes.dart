@@ -13,6 +13,26 @@ class MyThemeData{
         fontWeight: FontWeight.bold,
         fontSize: 20,
       ),
+      headline3: TextStyle(
+        color: MyColors.lightBlack2,
+        fontWeight: FontWeight.w800,
+        fontSize: 13,
+      ),
+      headline4: TextStyle(
+          color: MyColors.lightBlack2,
+          fontSize: 18,
+          fontWeight: FontWeight.bold
+      ),
+      headline5: TextStyle(
+          color: Colors.grey,
+          fontSize: 12,
+          fontWeight: FontWeight.normal
+      ),
+      headline6: TextStyle(
+          color: MyColors.userInfoColor,
+          fontSize: 16,
+          fontWeight: FontWeight.bold
+      ),
     ),
   );
 }

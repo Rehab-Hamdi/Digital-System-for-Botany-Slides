@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/add_user/desktop_add_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/mobile_request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
 
 class MobileDrawerMenu extends StatefulWidget {

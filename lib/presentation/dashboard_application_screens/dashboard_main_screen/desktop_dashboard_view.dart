@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:our_test_project/core/components/analytic_cards.dart';
+
+
 class DesktopDashboardView extends StatelessWidget
 {
   static const String routeName = 'DashboardContentScreen';
@@ -10,9 +13,10 @@ class DesktopDashboardView extends StatelessWidget
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Center(child: Text('Main Screen'),)
+              AnalyticCards(),
             ],
           ),
         ),
