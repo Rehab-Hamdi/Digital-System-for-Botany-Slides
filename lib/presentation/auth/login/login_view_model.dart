@@ -3,7 +3,6 @@ import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/constants.dart';
 import 'login_navigator.dart';
 
-
 class LoginViewModel extends BaseViewModel<LoginNavigator> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 

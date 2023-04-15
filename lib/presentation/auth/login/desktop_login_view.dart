@@ -76,7 +76,7 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
                     key: keyForm,
                     child:  Container(
                         width: 550,
-                        height: MediaQuery.of(context).size.height/1.2,
+                        height: MediaQuery.of(context).size.height/1.3,
                         padding: const EdgeInsets.only(top: 20.0, left: 20.0, bottom: 8.0),
                         /// main Container
                         decoration: BoxDecoration(

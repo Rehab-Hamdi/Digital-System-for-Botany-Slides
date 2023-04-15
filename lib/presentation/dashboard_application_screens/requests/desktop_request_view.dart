@@ -153,7 +153,7 @@ class _RequestsTableState extends State<DesktopRequestsView> {
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 margin: const EdgeInsets.all(8.0),
-                height: MediaQuery.of(context).size.height * 0.85,
+                height: MediaQuery.of(context).size.height * 0.75,
                 //width: MediaQuery.of(context).size.width*0.62,
 
                 decoration: BoxDecoration(

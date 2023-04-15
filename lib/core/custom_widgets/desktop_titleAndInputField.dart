@@ -8,7 +8,7 @@ class DesktopTitleAndInputField extends StatelessWidget {
     this.left_margin,
     required this.focusNode,
     required this.controller,
-    this.validatorFunction,
+    String? Function(String?)? validatorFunction,
     required this.containerPadding
   });
   final String txt;
