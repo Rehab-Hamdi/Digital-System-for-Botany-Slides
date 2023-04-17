@@ -13,27 +13,25 @@ class AnalyticCards extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
-      child: Container(
-        child: ResponsiveLayout(
-          desktopWidget: AnalyticInfoCardGridView(
-            childAspectRatio: size.width < 638 ? 2 :
-                             (size.width < 800 ? 2.7 :
-                             (size.width >= 800 && size.width <= 911 ? 2 :
-                             (size.width > 911 && size.width <= 982 ? 2.8 :
-                             (size.width > 982 && size.width <= 985 ? 2.4 :
-                             ((size.width > 985 && size.width < 1171 ? 1.4 : 1.8)
-                             ))))),
-            textSize: size.width < 1035 ? 1 : 0,
-            iconSize: (size.width < 1035 && size.width >= 985) ? 5 : 0,
-            size: size.width,
-            crossAxisCount: size.width <= 985 ? 2 : 4,
-          ),
-          mobileWidget: AnalyticInfoCardGridView(
-            crossAxisCount: size.width <= 860 ? 2 : 4,
-            childAspectRatio: 2.8,
-            size: size.width,
-            //childAspectRatio: ,
-          ),
+      child: ResponsiveLayout(
+        desktopWidget: AnalyticInfoCardGridView(
+          childAspectRatio: size.width < 638 ? 2 :
+                           (size.width < 800 ? 2.7 :
+                           (size.width >= 800 && size.width <= 911 ? 2 :
+                           (size.width > 911 && size.width <= 982 ? 2.8 :
+                           (size.width > 982 && size.width <= 985 ? 2.4 :
+                           ((size.width > 985 && size.width < 1171 ? 1.4 : 1.8)
+                           ))))),
+          textSize: size.width < 1035 ? 1 : 0,
+          iconSize: (size.width < 1035 && size.width >= 985) ? 5 : 0,
+          size: size.width,
+          crossAxisCount: size.width <= 985 ? 2 : 4,
+        ),
+        mobileWidget: AnalyticInfoCardGridView(
+          crossAxisCount: size.width <= 860 ? 2 : 4,
+          childAspectRatio: 2.8,
+          size: size.width,
+          //childAspectRatio: ,
         ),
       ),
     );
@@ -62,7 +60,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
     return Column(
       children: [
         GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: analyticData.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -77,7 +75,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
             iconSize: iconSize,
           ),
         ),
-        Center(child: Text("${size}"),)
+        Center(child: Text("$size"),)
       ],
     );
   }

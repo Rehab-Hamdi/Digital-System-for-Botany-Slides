@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/planet_info/provider/favorite_provider.dart';
 import 'package:our_test_project/models/plants_models.dart';
 import 'package:our_test_project/presentation/planet_info/planet_info_navigator.dart';
 import 'package:our_test_project/presentation/planet_info/planet_info_view_model.dart';
+import 'package:our_test_project/presentation/planet_info/provider/favorite_provider.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +78,7 @@ class _PlanetInfoViewState
                           BorderRadius.only(bottomRight: Radius.circular(40))),
                   child: Center(
                     child: Image.asset(
-                      "assets/images/myPlant.png",
+                      plantsModel!.plant_image,
                       width: MediaQuery.of(context).size.width * 0.66,
                       height: MediaQuery.of(context).size.height * 0.66,
                     ),

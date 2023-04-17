@@ -91,12 +91,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                 alignment: Alignment.topRight,
                 margin: const EdgeInsets.only(top: 15, right: 15),
                 padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-
-                    TextButton(onPressed: openAddNewUserDialog, child: const Text('add new user +'),),
-                  ],
-                ),
+                child: TextButton(onPressed: openAddNewUserDialog, child: const Text('add new user +'),),
               ),
               Expanded(
                 child: SingleChildScrollView(
