@@ -11,7 +11,7 @@ class PlantsCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushReplacementNamed(context, PlanetInfoView.routeName,
+        Navigator.pushNamed(context, PlanetInfoView.routeName,
             arguments: plantsModel);
       },
       child: Container(
@@ -40,17 +40,19 @@ class PlantsCardItem extends StatelessWidget {
                 children: [
                   Container(
                     //padding: EdgeInsets.only(top: 8.0, bottom: 4.0),
-                    padding: EdgeInsets.all(12.0),
-                    height: 140,
+                    padding: EdgeInsets.only(
+                        right: 15, left: 15,top: 2, bottom: 8),
+                    height: MediaQuery.of(context).size.height * 0.185,
+                    decoration: BoxDecoration(),
                     child: Image.asset(
                       plantsModel.plant_image,
-                      width: double.infinity,
+                      width: MediaQuery.of(context).size.width*0.338,
                       height: double.infinity,
                       fit: BoxFit.fill,
                     ),
                   ),
-                  Container(
-                      margin: EdgeInsets.only(bottom: 15.0, left: 5, right: 5),
+                  Padding(
+                      padding: EdgeInsets.only(top: 4.0, bottom: 12),
                       //alignment: Alignment.centerLeft,
                       child: Text(
                         plantsModel.plant_name,

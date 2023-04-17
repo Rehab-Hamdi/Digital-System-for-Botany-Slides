@@ -42,11 +42,6 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
     });
     super.initState();
   }
-  _storeLoginPageInfo() async{
-    int isViewed= 0;
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setInt('login', isViewed);
-  }
 
 
 
@@ -197,8 +192,9 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
 
   @override
   void goToHome() async{
-    await _storeLoginPageInfo();
-    Navigator.pushReplacementNamed(context, DashBoardScreenController.routeName);
+    //Navigator.pushReplacementNamed(context, DashBoardScreenController.routeName);
+    Navigator.pushNamedAndRemoveUntil(context, DashBoardScreenController.routeName, (route) => false);
+
   }
 
   @override

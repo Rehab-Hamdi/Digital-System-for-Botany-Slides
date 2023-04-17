@@ -32,14 +32,14 @@ class _PlanetInfoViewState
           extendBodyBehindAppBar: true,
           backgroundColor: Colors.white,
           appBar: AppBar(
-            leading: IconButton(
-              color: Colors.black,
-              icon: const Icon(Icons.arrow_back),
-              iconSize: 30.0,
-              onPressed: () {
-                goToHome();
-              },
-            ),
+            // leading: IconButton(
+            //   color: Colors.black,
+            //   icon: const Icon(Icons.arrow_back),
+            //   iconSize: 30.0,
+            //   onPressed: () {
+            //     goToHome();
+            //   },
+            // ),
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [

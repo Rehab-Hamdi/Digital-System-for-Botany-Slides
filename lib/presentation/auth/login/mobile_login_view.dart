@@ -42,15 +42,6 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
     super.initState();
   }
 
-
-
-  _storeLoginPageInfo() async{
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setInt('login', isLogin);
-    print(isLogin);
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -192,11 +183,8 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
 
   @override
   void goToHome()async {
-    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=> HomeScreen()));
-    await _storeLoginPageInfo();
-    setState(() {
-      isLogin = 1;
-    });
+    //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=> HomeScreen()));
+    Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
@@ -32,8 +33,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
-int? isLogin;
-int? isLogout;
+bool check= false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,11 +42,17 @@ void main() async {
   );
 
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  isLogin= sharedPreferences.getInt('login');
-  //isLogout= sharedPreferences.getInt('logout');
-  print('Login  = $isLogin');
-  print('Logout  = $isLogout');
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  // Check if user is already logged in
+  if (auth.currentUser != null) {
+    print('User is logged in');
+    check= true;
+  } else {
+    print('User is not logged in');
+    check = false;
+  }
 
   runApp(MyApp());
 }
@@ -93,7 +99,7 @@ class MyApp extends StatelessWidget {
              MobileEditRequestView.routeName:(c)=> MobileEditRequestView(),
 
            },
-           initialRoute: isLogin ==1 || isLogin == null?LoginView.routeName :StartView.routeName,
+           initialRoute:check?StartView.routeName: LoginView.routeName,
        ),
 
      );
