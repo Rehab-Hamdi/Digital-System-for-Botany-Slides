@@ -5,26 +5,35 @@ import 'package:our_test_project/presentation/dashboard_application_screens/cale
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/settings/desktop_settings.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view.dart';
 import 'package:vertical_tabs_flutter/vertical_tabs.dart';
 
 class DesktopDrawerMenu extends StatelessWidget {
-
   static const String routeName = 'DesktopDrawerMenu';
   const DesktopDrawerMenu({super.key});
   @override
   Widget build(BuildContext context) {
-
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset('assets/icons/botany_icon2.png',),
+          child: Image.asset(
+            'assets/icons/botany_icon2.png',
+          ),
         ),
         actions: [
-          Center(child: Text('Alsafa', style: Theme.of(context).textTheme.headline5,)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.person), color: Colors.grey,),
+          Center(
+              child: Text(
+            'Alsafa',
+            style: Theme.of(context).textTheme.headline5,
+          )),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.person),
+            color: Colors.grey,
+          ),
         ],
       ),
       body: Column(
@@ -42,10 +51,13 @@ class DesktopDrawerMenu extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10.0),
                     child: Column(
                       children: const [
-                        SizedBox(height: 8,),
+                        SizedBox(
+                          height: 8,
+                        ),
                         DrawerListTile(
                           title: 'Dashboard',
-                          icon: Icon(Icons.dashboard, size: 20, color: Colors.black87),
+                          icon: Icon(Icons.dashboard,
+                              size: 20, color: Colors.black87),
                         ),
                       ],
                     ),
@@ -76,7 +88,8 @@ class DesktopDrawerMenu extends StatelessWidget {
                     padding: EdgeInsets.only(left: 10.0),
                     child: DrawerListTile(
                       title: 'Admin Reports',
-                      icon: Icon(Icons.insert_chart, size: 20, color: Colors.black),
+                      icon: Icon(Icons.insert_chart,
+                          size: 20, color: Colors.black),
                     ),
                   ),
                 ),
@@ -94,8 +107,8 @@ class DesktopDrawerMenu extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
                     child: DrawerListTile(
-                      title: 'Logout',
-                      icon: Icon(Icons.logout, size: 20, color: Colors.black),
+                      title: 'Setting',
+                      icon: Icon(Icons.settings, size: 20, color: Colors.black),
                     ),
                   ),
                 ),
@@ -106,7 +119,7 @@ class DesktopDrawerMenu extends StatelessWidget {
                 DesktopRequestsView(),
                 ReportsView(),
                 CalendarDashboardView(),
-                Text('done'),
+                DesktopSettingsView(),
               ],
             ),
           ),
