@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/views/plants_card_item.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/plants_models.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:sizer/sizer.dart';
 
 class MobileHomeView extends StatefulWidget {
@@ -17,49 +16,35 @@ class MobileHomeView extends StatefulWidget {
 class _MobileHomeViewState extends State<MobileHomeView> {
   final FocusNode _node = FocusNode();
   var _searchTextController = TextEditingController();
-  List<String>? itemsListSearch;
+  List<PlantsModel>? itemsListSearch;
 
-  List<String> PlantsImage = [
-    'assets/images/cat1.png',
-    'assets/images/cat2.png',
-    'assets/images/cat3.png',
-    'assets/images/cat4.png',
-    'assets/images/cat5.png',
-    'assets/images/cat6.png',
-    'assets/images/cat7.png',
-    'assets/images/cat8.png',
-    'assets/images/cat9.png',
-    'assets/images/cat10.png',
-    'assets/images/cat11.png',
-    'assets/images/cat12.png',
-    'assets/images/cat13.png',
-    'assets/images/cat14.png',
-    'assets/images/cat15.png',
-    'assets/images/cat16.png',
-    'assets/images/cat17.png',
-    'assets/images/cat18.png',
-    'assets/images/cat19.png',
-  ];
-
-  List<String> PlantsName = [
-    'Batrachospermum',
-    'Chaetophora',
-    'Cladophora',
-    'Diatoms',
-    'Dictyota',
-    'Enteromorpha',
-    'Euglena',
-    'Fucus',
-    'Nitella',
-    'Nostoc',
-    'Oedogonium',
-    'Pandorina',
-    'Polysiphonia',
-    'Stigeoclonium',
-    'Olothrix',
-    'Cyperus',
-    'Volvox',
-    'Zygnena',
+  List allPlants = [
+    PlantsModel(
+        plant_image: 'assets/images/cat1.png', plant_name: 'Batrachospermum'),
+    PlantsModel(
+        plant_image: 'assets/images/cat2.png', plant_name: 'Chaetophora'),
+    PlantsModel(
+        plant_image: 'assets/images/cat3.png', plant_name: 'Cladophora'),
+    PlantsModel(plant_image: 'assets/images/cat4.png', plant_name: 'Diatoms'),
+    PlantsModel(plant_image: 'assets/images/cat6.png', plant_name: 'Dictyota'),
+    PlantsModel(
+        plant_image: 'assets/images/cat7.png', plant_name: 'Enteromorpha'),
+    PlantsModel(plant_image: 'assets/images/cat8.png', plant_name: 'Euglena'),
+    PlantsModel(plant_image: 'assets/images/cat9.png', plant_name: 'Fucus'),
+    PlantsModel(plant_image: 'assets/images/cat10.png', plant_name: 'Nitella'),
+    PlantsModel(plant_image: 'assets/images/cat11.png', plant_name: 'Nostoc'),
+    PlantsModel(
+        plant_image: 'assets/images/cat12.png', plant_name: 'Oedogonium'),
+    PlantsModel(
+        plant_image: 'assets/images/cat13.png', plant_name: 'Pandorina'),
+    PlantsModel(
+        plant_image: 'assets/images/cat14.png', plant_name: 'Polysiphonia'),
+    PlantsModel(
+        plant_image: 'assets/images/cat15.png', plant_name: 'Stigeoclonium'),
+    PlantsModel(plant_image: 'assets/images/cat16.png', plant_name: 'Olothrix'),
+    PlantsModel(plant_image: 'assets/images/cat17.png', plant_name: 'Cyperus'),
+    PlantsModel(plant_image: 'assets/images/cat18.png', plant_name: 'Volvox'),
+    PlantsModel(plant_image: 'assets/images/cat19.png', plant_name: 'Zygnena'),
   ];
 
   void dispose() {
@@ -90,8 +75,8 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                     padding: const EdgeInsets.all(7.0),
                     child: const Text(
                       "Let's Find \nYour Slide",
-                      style: TextStyle(
-                          fontSize: 25, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                   ),
 
@@ -107,10 +92,12 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                       child: TextField(
                         onChanged: (value) {
                           setState(() {
-                            itemsListSearch = PlantsName.where((element) =>
-                                element
+                            itemsListSearch = allPlants
+                                .where((element) => element.plant_name
                                     .toLowerCase()
-                                    .contains(value.toLowerCase())).toList();
+                                    .contains(value.toLowerCase()))
+                                .cast<PlantsModel>()
+                                .toList();
                             if (_searchTextController!.text.isNotEmpty &&
                                 itemsListSearch!.isEmpty) {
                               print(
@@ -150,12 +137,10 @@ class _MobileHomeViewState extends State<MobileHomeView> {
                       ? Column(
                           children: [
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.03,
+                              height: MediaQuery.of(context).size.height * 0.03,
                             ),
                             Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.65,
+                              height: MediaQuery.of(context).size.height * 0.65,
                               decoration: const BoxDecoration(
                                   image: DecorationImage(
                                 image: AssetImage(
@@ -170,39 +155,36 @@ class _MobileHomeViewState extends State<MobileHomeView> {
 
                       /// plants Show
                       Column(
-                        children: [
-                          SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                          SizedBox(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.01,
+                            ),
+                            SizedBox(
                               height: MediaQuery.of(context).size.height * 0.75,
                               child: GridView.builder(
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 15,
-                                    mainAxisSpacing: 17,
-                                    childAspectRatio: 0.65.sp,
-                                  ),
-                                  itemCount: _searchTextController.text.isEmpty
-                                      ? PlantsName.length
-                                      : itemsListSearch!.length,
-                                  itemBuilder: (context, index) =>
-                                      _searchTextController.text.isEmpty
-                                          ? PlantsCardItem(
-                                              plantsModel: PlantsModel(
-                                                  plant_image: PlantsImage[index],
-                                                  plant_name: PlantsName[index]),
-                                            )
-                                          : PlantsCardItem(
-                                              plantsModel: PlantsModel(
-                                                  plant_image: PlantsImage[index],
-                                                  plant_name:
-                                                      itemsListSearch![index]),
-                                            )),
-                            ),
-                        ],
-                      ),
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 15,
+                                  mainAxisSpacing: 17,
+                                  childAspectRatio: 0.65.sp,
+                                ),
+                                itemCount: _searchTextController.text.isEmpty
+                                    ? allPlants.length
+                                    : itemsListSearch!.length,
+                                itemBuilder: (context, index) =>
+                                    _searchTextController.text.isEmpty
+                                        ? PlantsCardItem(
+                                            plantsModel: allPlants[index],
+                                          )
+                                        : PlantsCardItem(
+                                            plantsModel:
+                                                itemsListSearch![index]),
+                              ),
+                            )
+                          ],
+                        ),
                 ],
-
               ),
             ),
           ],

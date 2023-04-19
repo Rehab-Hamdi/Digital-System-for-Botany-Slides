@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/requests_model.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/edit_request_view_model.dart';
 
 class DesktopRequestsView extends StatefulWidget {
   static const String routeName = 'desktopRequestsView';
@@ -20,7 +18,7 @@ class _RequestsTableState extends State<DesktopRequestsView> {
   final List<Request> _requests = [
     Request(
         ssn: '14785236941',
-        name: 'Mamhoud',
+        name: 'Mahmoud',
         email: 'mahmoud@gmail.com',
         slideName: 'stem , pinus',
         date: '12:8:00'),
@@ -69,7 +67,7 @@ class _RequestsTableState extends State<DesktopRequestsView> {
         date: '01:8:12'),
     Request(
         ssn: '14785236941',
-        name: 'Mamhoud',
+        name: 'Mahmoud',
         email: 'mahmoud@gmail.com',
         slideName: 'stem , pinus',
         date: '12:8:00'),
@@ -117,50 +115,67 @@ class _RequestsTableState extends State<DesktopRequestsView> {
         slideName: 'stem , pinus',
         date: '01:8:12'),
   ];
+  List<Request> _filteredRequests = [];
+  String _searchQuery = ''; //
+  Widget _buildSearchBar() {
+    return Container(
+      alignment: Alignment.topLeft,
+      height: MediaQuery.of(context).size.height*0.06,
+      width: MediaQuery.of(context).size.width * 0.50,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),
+          border: Border.all(color: MyColors.userInfoColor)),
+      child: TextField(
+        onChanged: (query) {
+          setState(() {
+            _searchQuery = query;
+            _filteredRequests = _requests
+                .where((request) =>
+                    request.name
+                        .toLowerCase()
+                        .contains(_searchQuery.toLowerCase()) ||
+                    request.ssn
+                        .toLowerCase()
+                        .contains(_searchQuery.toLowerCase()))
+                .toList();
+          });
+        },
+        decoration: InputDecoration(
+          hintText: 'Search by name or ssn',
+          prefixIcon: Icon(Icons.search),
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    _getRequests();
-  }
-
-  Future<void> _getRequests() async {
-    final response =
-        await http.get(Uri.parse('https://example.com/api/requests'));
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body) as List<dynamic>;
-      setState(() {
-        //_requests = List<Request>.from(data.map((item) => Request.fromJson(item)));
-      });
-    } else {
-      throw Exception('Failed to load requests');
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Request> _requestsToDisplay =
+        _searchQuery.isEmpty ? _requests : _filteredRequests;
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: MediaQuery.of(context).size.height * 0.015,
             ),
-            const PageTitle(title: 'Requests', wdth: 0.30),
+            _buildSearchBar(),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
+              height: MediaQuery.of(context).size.height * 0.005,
             ),
-            Center(
+            Expanded(
               child: Container(
-                padding: const EdgeInsets.all(8.0),
                 margin: const EdgeInsets.all(8.0),
-                height: MediaQuery.of(context).size.height * 0.75,
-                //width: MediaQuery.of(context).size.width*0.62,
-
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(
-                      color: MyColors.active,
-                    )),
+                    color: Colors.white,
+                ),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: SingleChildScrollView(
@@ -168,45 +183,60 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                     child: DataTable(
                       headingRowColor: MaterialStateColor.resolveWith(
                           (states) => MyColors.lightGrey.withOpacity(0.2)),
-                      columns: const [
+                      columns: [
                         DataColumn(
                             label: Text(
                           'User ID',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Name',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Email',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Slide Name',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Requested Date',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Actions',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                       ],
-                      rows: _requests.map((request) {
+                      rows: _requestsToDisplay.map((request) {
                         return DataRow(cells: [
-                          DataCell(Text(request.ssn)),
-                          DataCell(Text(request.name)),
-                          DataCell(Text(request.email)),
-                          DataCell(Text(request.slideName)),
-                          DataCell(Text(request.date)),
+                          DataCell(Text(
+                            request.ssn,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.name,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.email,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.slideName,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.date,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
                           DataCell(
                             Row(
                               children: [
@@ -233,7 +263,11 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                                   padding: const EdgeInsets.all(4.0),
                                   child: OutlinedButton.icon(
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DesktopEditRequestView()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DesktopEditRequestView()));
                                     },
                                     icon: const Icon(
                                       Icons.edit,
@@ -261,52 +295,10 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                                       backgroundColor:
                                           MaterialStateColor.resolveWith(
                                               (states) => Colors.red),
-                                   //   textStyle: MaterialStateProperty<TextStyle> ,
+                                      //   textStyle: MaterialStateProperty<TextStyle> ,
                                     ),
                                   ),
                                 )
-                                // Padding(
-                                //   padding: const EdgeInsets.all(8.0),
-                                //   child: Container(
-                                //     decoration: BoxDecoration(
-                                //       borderRadius: BorderRadius.circular(4.0),
-                                //       color:Colors.green,
-                                //     ),
-                                //     child: InkWell(
-                                //       onTap: (){},
-                                //       child: Row(
-                                //         children: const [
-                                //           Icon(Icons.done, size: 20,),
-                                //           Padding(
-                                //             padding: EdgeInsets.all(8.0),
-                                //             child: Text("Accept"),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
-                                // Padding(
-                                //   padding: const EdgeInsets.all(8.0),
-                                //   child: Container(
-                                //     decoration: BoxDecoration(
-                                //       borderRadius: BorderRadius.circular(4.0),
-                                //       color:Colors.red,
-                                //     ),
-                                //     child: InkWell(
-                                //       onTap: (){},
-                                //       child: Row(
-                                //         children: const [
-                                //           Icon(Icons.close, size: 20,),
-                                //           Padding(
-                                //             padding: EdgeInsets.all(8.0),
-                                //             child: Text("Refuse"),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),
@@ -316,6 +308,18 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  "assets/images/plant1.png",
+                ),
+                Image.asset("assets/images/plant1.png")
+              ],
             ),
           ],
         ),

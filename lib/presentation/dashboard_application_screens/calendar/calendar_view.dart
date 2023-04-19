@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/custom_widgets/page_title.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarDashboardView extends StatelessWidget {
-
   static const String routeName = 'calendar dashboard';
 
   const CalendarDashboardView({Key? key}) : super(key: key);
@@ -15,11 +13,11 @@ class CalendarDashboardView extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 15,),
-            const PageTitle(title: 'Calender', wdth: 0.20,),
-            const SizedBox(height: 15,),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.04,
+            ),
             Container(
-              decoration:  const BoxDecoration(
+              decoration: const BoxDecoration(
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey,
@@ -42,7 +40,7 @@ class CalendarDashboardView extends StatelessWidget {
               height: 500,
               child: TableCalendar(
                 firstDay: DateTime.utc(1900, 10, 20),
-                lastDay: DateTime.utc(2050,10, 20),
+                lastDay: DateTime.utc(2050, 10, 20),
                 focusedDay: DateTime.now(),
                 rowHeight: 60,
                 headerVisible: true,
@@ -52,14 +50,25 @@ class CalendarDashboardView extends StatelessWidget {
                 // headerStyle: const HeaderStyle(titleTextStyle:TextStyle(fontSize: 30, color: MyColors.active),
                 //     formatButtonVisible: false,
                 //     titleCentered: true),
-                calendarStyle: const CalendarStyle(todayTextStyle: TextStyle(fontSize: 22, color: Colors.red)),
-
+                calendarStyle: const CalendarStyle(
+                    todayTextStyle: TextStyle(fontSize: 22, color: Colors.red)),
               ),
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.09,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  "assets/images/plant1.png",
+                ),
+                Image.asset("assets/images/plant1.png")
+              ],
+            )
           ],
         ),
       ),
     );
-
   }
 }

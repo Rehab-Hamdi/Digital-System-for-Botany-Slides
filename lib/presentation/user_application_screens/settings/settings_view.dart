@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-
-int? isLogout = 0;
 
 class SettingsView extends StatefulWidget {
   static const String routeName = 'settingsView';
