@@ -24,6 +24,7 @@ class CustomTextField extends StatelessWidget {
         focusNode: focusNode,
         controller: controller,
         validator: validatorFunction,
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
             prefixIcon: Icon(preIcon.icon, color: MyColors.lightGreen ),
             border: OutlineInputBorder(

@@ -34,6 +34,7 @@ class _PasswordField extends State<PasswordField>
         obscureText:pass ,
         controller: widget.controller,
         validator: widget.validatorFunction,
+        keyboardType: TextInputType.visiblePassword,
         decoration: InputDecoration(
             prefixIcon: const Icon(
               Icons.lock,
