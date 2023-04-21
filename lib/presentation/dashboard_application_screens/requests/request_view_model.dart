@@ -69,9 +69,6 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
   }
 
   String? notesValidation(String? text) {
-    if (text == null || text.trim().isEmpty) {
-      return 'Please enter some notes';
-    }
     return null;
   }
 
