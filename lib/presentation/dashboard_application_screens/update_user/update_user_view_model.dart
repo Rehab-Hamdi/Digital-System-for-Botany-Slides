@@ -4,14 +4,15 @@ import 'package:our_test_project/presentation/dashboard_application_screens/upda
 class UpdateUserViewModel extends BaseViewModel<UpdateUserNavigator> {
 
 
-  String? IDValidation(text) {
-    bool IdValid = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(text!);
+  String? IDValidation(String? text) {
     if (text == null || text.trim().isEmpty) {
-      return 'Please enter ID';
-    } else if ((text.length < 6|| text.length>6)|| (text.length < 14|| text.length>14)) {
-      return 'Id number must == 6 if you enter Faculty Id or id == 14 if you enter National Id ';
-    } else if (!IdValid) {
-      return 'ID must contain only numbers';
+      return 'Please enter an ID';
+    }
+    if (text.length != 6 && text.length != 14) {
+      return 'ID must be either 6 digits (Faculty ID) or 14 digits (National ID)';
+    }
+    if (!RegExp(r'^\d+$').hasMatch(text)) {
+      return 'ID must contain only digits';
     }
     return null;
   }
