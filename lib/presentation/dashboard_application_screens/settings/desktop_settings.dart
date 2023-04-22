@@ -25,7 +25,7 @@ class _SettingsViewState extends State<DesktopSettingsView> {
           ListTile(
             title: Text(
               'Logout',
-              style: TextStyle(fontSize: 5.sp),
+              style: TextStyle(fontSize: 5.sp, color: Colors.black),
             ),
             leading: Icon(
               Icons.logout,
@@ -37,10 +37,10 @@ class _SettingsViewState extends State<DesktopSettingsView> {
                 builder: (context) => AlertDialog(
                   title: Text(
                     'Logout',
-                    style: TextStyle(fontSize: 3.sp),
+                    style: TextStyle(fontSize: 5.sp),
                   ),
                   content: Text('Are you sure you want to logout?',
-                      style: TextStyle(fontSize: 3.sp)),
+                      style: TextStyle(fontSize: 5.sp)),
                   actions: [
                     TextButton(
                       child: Text('Cancel',

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
 import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
 import 'package:our_test_project/core/styles/my_themes.dart';
@@ -16,7 +17,6 @@ import 'package:our_test_project/presentation/dashboard_application_screens/dash
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/mobile_edit_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/requests/mobile_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
 import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
@@ -30,7 +30,6 @@ import 'package:our_test_project/presentation/user_application_screens/home/home
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 bool check= false;
@@ -40,6 +39,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -65,7 +67,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
    return Sizer(builder: (context, orientation, deviceType)
    {
-
      return ChangeNotifierProvider(
        create: (context) => FavoriteProvider(),
        child: MaterialApp(
@@ -93,15 +94,13 @@ class MyApp extends StatelessWidget {
              MobileAddNewUserView.routeName:(c)=> MobileAddNewUserView(),
              DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
              MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
-             DesktopRequestsView.routeName:(c)=>DesktopRequestsView(),
-             MobileRequestsView.routeName:(c)=> MobileRequestsView(),
+             RequestsView.routeName:(c)=>RequestsView(),
              DesktopEditRequestView.routeName:(c)=> DesktopEditRequestView(),
              MobileEditRequestView.routeName:(c)=> MobileEditRequestView(),
 
            },
            initialRoute:check?StartView.routeName: LoginView.routeName,
        ),
-
      );
    });
   }

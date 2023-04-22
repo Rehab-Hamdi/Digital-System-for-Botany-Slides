@@ -13,17 +13,17 @@ import 'package:our_test_project/presentation/dashboard_application_screens/requ
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/requet_navifator.dart';
 import 'package:sizer/sizer.dart';
 
-class DesktopRequestsView extends StatefulWidget {
+class RequestsView extends StatefulWidget {
   static const String routeName = 'desktopRequestsView';
 
-  const DesktopRequestsView({super.key});
+  const RequestsView({super.key});
 
   @override
-  State<DesktopRequestsView> createState() => _RequestsTableState();
+  State<RequestsView> createState() => _RequestsTableState();
 }
 
 class _RequestsTableState
-    extends BaseState<DesktopRequestsView, RequestViewModel>
+    extends BaseState<RequestsView, RequestViewModel>
     implements RequestNavigator {
   final List<Request> _requests = [
     Request(
@@ -131,7 +131,7 @@ class _RequestsTableState
     return Container(
       alignment: Alignment.topLeft,
       height: MediaQuery.of(context).size.height * 0.06,
-      width: MediaQuery.of(context).size.width * 0.50,
+      width: MediaQuery.of(context).size.width * 0.70,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           border: Border.all(color: MyColors.userInfoColor)),
@@ -289,7 +289,9 @@ class _RequestsTableState
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: OutlinedButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      ApproveRequest();
+                                    },
                                     icon: const Icon(
                                       Icons.done,
                                       color: Colors.black,
@@ -324,7 +326,9 @@ class _RequestsTableState
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: OutlinedButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      RejectRequest();
+                                    },
                                     icon: const Icon(
                                       Icons.delete_outline,
                                       color: Colors.black,
@@ -352,7 +356,7 @@ class _RequestsTableState
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
+              height: MediaQuery.of(context).size.height * 0.14,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -374,17 +378,94 @@ class _RequestsTableState
     return RequestViewModel();
   }
 
+  Future? ApproveRequest() {
+    showDialog(
+        context: context,
+        builder: (contextBuilder) {
+          return AlertDialog(
+            title: Text('Approve Request'),
+            titleTextStyle: TextStyle(fontSize: 20),
+            titlePadding: EdgeInsets.all(12.0),
+            contentPadding: EdgeInsets.all(12.0),
+            content: Container(
+              width: MediaQuery.of(context).size.width * 0.23,
+              child: SingleChildScrollView(
+                child: WillPopScope(
+                  onWillPop: () async {
+                    return false; // Prevents closing the dialog by pressing the back button
+                  },
+                  child: Form(
+                    key: keyForm,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AlertTextFormField(
+                          focusNode: userIdFocusNode,
+                          controller: userIdController,
+                          validatorFunction: (text) =>
+                              viewModel.userIdValidation(text),
+                          label: 'User Id',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        AlertTextFormField(
+                          focusNode: slideIdFocusNode,
+                          controller: slideIdController,
+                          validatorFunction: (text) =>
+                              viewModel.slideIdValidation(text),
+                          label: 'Slide Id',
+                        ),
+                        ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    clearAllControllars();
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.green, fontSize: 15),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    ApproveRequestButton();
+                  },
+                  child: Text(
+                    'Approve Request',
+                    style: TextStyle(fontSize: 18, color: MyColors.active),
+                  ),
+                ),
+              )
+            ],
+          );
+        });
+  }
+
   Future? EditRequest() {
     showDialog(
         context: context,
         builder: (contextBuilder) {
           return AlertDialog(
             title: Text('Edit Request'),
-            titleTextStyle: TextStyle(fontSize: 20, color: MyColors.active),
+            titleTextStyle: TextStyle(fontSize: 20),
             titlePadding: EdgeInsets.all(12.0),
             contentPadding: EdgeInsets.all(12.0),
             content: Container(
-              width: MediaQuery.of(context).size.width * 0.30,
+              width: MediaQuery.of(context).size.width * 0.23,
               child: SingleChildScrollView(
                 child: WillPopScope(
                   onWillPop: () async {
@@ -489,9 +570,102 @@ class _RequestsTableState
         });
   }
 
+  Future? RejectRequest() {
+    showDialog(
+        context: context,
+        builder: (contextBuilder) {
+          return AlertDialog(
+            title: Text('Reject Request'),
+            titleTextStyle: TextStyle(fontSize: 20),
+            titlePadding: EdgeInsets.all(12.0),
+            contentPadding: EdgeInsets.all(12.0),
+            content: Container(
+              width: MediaQuery.of(context).size.width * 0.23,
+              child: SingleChildScrollView(
+                child: WillPopScope(
+                  onWillPop: () async {
+                    return false; // Prevents closing the dialog by pressing the back button
+                  },
+                  child: Form(
+                    key: keyForm,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AlertTextFormField(
+                          focusNode: userIdFocusNode,
+                          controller: userIdController,
+                          validatorFunction: (text) =>
+                              viewModel.userIdValidation(text),
+                          label: 'User Id',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        AlertTextFormField(
+                          focusNode: slideIdFocusNode,
+                          controller: slideIdController,
+                          validatorFunction: (text) =>
+                              viewModel.slideIdValidation(text),
+                          label: 'Slide Id',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    clearAllControllars();
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.green, fontSize: 15),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    RejectRequestButton();
+                  },
+                  child: Text(
+                    'Reject Request',
+                    style: TextStyle(fontSize: 18, color: MyColors.active),
+                  ),
+                ),
+              )
+            ],
+          );
+        });
+  }
+
+  ApproveRequestButton() {
+    if (keyForm.currentState!.validate() == true) {
+      print("check data in approve request done");
+      clearAllControllars();
+      Navigator.pop(context);
+    }
+  }
+
   EditRequestButton() {
     if (keyForm.currentState!.validate() == true) {
-      print("check data is done");
+      print("check data in edit data done");
+      clearAllControllars();
+      Navigator.pop(context);
+    }
+  }
+
+  RejectRequestButton() {
+    if (keyForm.currentState!.validate() == true) {
+      print("check data in reject request done");
       clearAllControllars();
       Navigator.pop(context);
     }
