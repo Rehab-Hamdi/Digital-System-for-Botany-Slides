@@ -17,11 +17,11 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
   }
 
   String? slideIdValidation(text) {
-    bool slideIdValid = RegExp(r'^[1-9]\.[1-9]$').hasMatch(text!);
+    bool slideIdValid = RegExp(r'^\d{1,2}$').hasMatch(text!);
     if (text == null || text.trim().isEmpty) {
       return 'Please enter Slide ID';
     } else if (!slideIdValid) {
-      return 'Slide ID must be in the format "X.X", where X is a digit from 1 to 9';
+      return 'Slide ID must contains only digits, it can be one or two digits';
     }
     return null;
   }
