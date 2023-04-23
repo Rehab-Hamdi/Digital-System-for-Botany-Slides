@@ -8,6 +8,5 @@ class MobileDashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body:Center(child: Text("Mobile Screen", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)));
-
   }
 }

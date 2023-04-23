@@ -6,38 +6,34 @@ import 'package:our_test_project/utils/responsiveLayout.dart';
 
 class AnalyticCards extends StatelessWidget {
   const AnalyticCards({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
-
     return SingleChildScrollView(
       child: ResponsiveLayout(
         desktopWidget: AnalyticInfoCardGridView(
-          childAspectRatio: size.width < 638 ? 2 :
-                           (size.width < 800 ? 2.7 :
+          crossAxisCount: size.width <= 985 ? 2 : 4,
+          childAspectRatio: (size.width < 665 && size.width >=550) ? 2.2 :
+                           ((size.width < 800 && size.width >= 665) ? 2.7 :
                            (size.width >= 800 && size.width <= 911 ? 2 :
                            (size.width > 911 && size.width <= 982 ? 2.8 :
                            (size.width > 982 && size.width <= 985 ? 2.4 :
-                           ((size.width > 985 && size.width < 1171 ? 1.4 : 1.8)
+                           ((size.width > 985 && size.width < 1171 ? 1.4: 1.8)
                            ))))),
           textSize: size.width < 1035 ? 1 : 0,
           iconSize: (size.width < 1035 && size.width >= 985) ? 5 : 0,
           size: size.width,
-          crossAxisCount: size.width <= 985 ? 2 : 4,
         ),
-        mobileWidget: AnalyticInfoCardGridView(
-          crossAxisCount: size.width <= 860 ? 2 : 4,
-          childAspectRatio: 2.8,
+        mobileWidget: AnalyticInfoCardGridView( // size = 511
+          crossAxisCount: 2,
+          childAspectRatio: size.width <= 511 ? 1.8 : 2,
+          textSize: size.width <= 511 ? 1 : 0,
           size: size.width,
-          //childAspectRatio: ,
         ),
       ),
     );
   }
 }
-
 
 class AnalyticInfoCardGridView extends StatelessWidget {
   const AnalyticInfoCardGridView({
@@ -58,6 +54,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
@@ -75,7 +72,6 @@ class AnalyticInfoCardGridView extends StatelessWidget {
             iconSize: iconSize,
           ),
         ),
-        Center(child: Text("$size"),)
       ],
     );
   }

@@ -23,5 +23,8 @@ class MyColors {
   static const Color categoryGreen = Color(0xff2D6446);
   static const Color categoryWhite = Color(0xfff2f2f2);
   static const Color userInfoColor = Color(0xff64748B);
+  static const Color myBlue = Color(0xff5932EA);
+  static const Color myGray = Color(0xffBCBCBC);
+  static const Color myDarkBlue = Color(0xff1A2B88);
 
 }

@@ -9,9 +9,10 @@ import 'package:our_test_project/presentation/dashboard_application_screens/user
 import 'package:vertical_tabs_flutter/vertical_tabs.dart';
 
 class DesktopDrawerMenu extends StatelessWidget {
+  DesktopDrawerMenu({super.key});
 
   static const String routeName = 'DesktopDrawerMenu';
-  const DesktopDrawerMenu({super.key});
+
   @override
   Widget build(BuildContext context) {
 
@@ -51,7 +52,7 @@ class DesktopDrawerMenu extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Tab(
+                 const Tab(
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
                     child: DrawerListTile(
@@ -100,7 +101,7 @@ class DesktopDrawerMenu extends StatelessWidget {
                   ),
                 ),
               ],
-              contents: const [
+              contents:  [
                 DesktopDashboardView(),
                 UsersView(),
                 DesktopRequestsView(),
