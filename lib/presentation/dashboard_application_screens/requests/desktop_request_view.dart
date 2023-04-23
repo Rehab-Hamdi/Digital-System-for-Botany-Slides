@@ -22,8 +22,7 @@ class RequestsView extends StatefulWidget {
   State<RequestsView> createState() => _RequestsTableState();
 }
 
-class _RequestsTableState
-    extends BaseState<RequestsView, RequestViewModel>
+class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
     implements RequestNavigator {
   final List<Request> _requests = [
     Request(
@@ -159,46 +158,68 @@ class _RequestsTableState
     );
   }
 
-  var keyForm = GlobalKey<FormState>();
-  FocusNode userIdFocusNode = FocusNode();
-  FocusNode slideIdFocusNode = FocusNode();
-  FocusNode startDateFocusNode = FocusNode();
-  FocusNode endDateFocusNode = FocusNode();
-  FocusNode statusFocusNode = FocusNode();
-  FocusNode notesFocusNode = FocusNode();
-  TextEditingController userIdController = TextEditingController();
-  TextEditingController slideIdController = TextEditingController();
-  TextEditingController startDateController = TextEditingController();
-  TextEditingController endDateController = TextEditingController();
-  TextEditingController statusController = TextEditingController();
-  TextEditingController notesController = TextEditingController();
+  var approvekeyForm = GlobalKey<FormState>();
+  var editkeyForm = GlobalKey<FormState>();
+  var rejectkeyForm = GlobalKey<FormState>();
+  FocusNode approveUserIdFocusNode = FocusNode();
+  FocusNode approveSlideIdFocusNode = FocusNode();
+  FocusNode editUserIdFocusNode = FocusNode();
+  FocusNode editSlideIdFocusNode = FocusNode();
+  FocusNode editStartDateFocusNode = FocusNode();
+  FocusNode editEndDateFocusNode = FocusNode();
+  FocusNode editStatusFocusNode = FocusNode();
+  FocusNode editNotesFocusNode = FocusNode();
+  FocusNode rejectUserIdFocusNode = FocusNode();
+  FocusNode rejectSlideIdFocusNode = FocusNode();
+  TextEditingController approveUserIdController= TextEditingController();
+  TextEditingController approveSlideIdController= TextEditingController();
+  TextEditingController editUserIdController = TextEditingController();
+  TextEditingController editSlideIdController = TextEditingController();
+  TextEditingController editStartDateController = TextEditingController();
+  TextEditingController editEndDateController = TextEditingController();
+  TextEditingController editStatusController = TextEditingController();
+  TextEditingController editNotesController = TextEditingController();
+  TextEditingController rejectUserIdController= TextEditingController();
+  TextEditingController rejectSlideIdController= TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    userIdFocusNode.addListener(() {
+    approveUserIdFocusNode.addListener(() {
       setState(() {});
     });
-    slideIdFocusNode.addListener(() {
+    approveSlideIdFocusNode.addListener(() {
       setState(() {});
     });
-    startDateFocusNode.addListener(() {
+    editUserIdFocusNode.addListener(() {
       setState(() {});
     });
-    endDateFocusNode.addListener(() {
+    editSlideIdFocusNode.addListener(() {
       setState(() {});
     });
-    statusFocusNode.addListener(() {
+    editStartDateFocusNode.addListener(() {
       setState(() {});
     });
-    notesFocusNode.addListener(() {
+    editEndDateFocusNode.addListener(() {
+      setState(() {});
+    });
+    editStatusFocusNode.addListener(() {
+      setState(() {});
+    });
+    editNotesFocusNode.addListener(() {
+      setState(() {});
+    });
+    rejectUserIdFocusNode.addListener(() {
+      setState(() {});
+    });
+    rejectSlideIdFocusNode.addListener(() {
       setState(() {});
     });
   }
 
   // @override
   // void dispose() {
-  //   userIdController.dispose();
+  //   UserIdController.dispose();
   // }
   @override
   Widget build(BuildContext context) {
@@ -395,13 +416,13 @@ class _RequestsTableState
                     return false; // Prevents closing the dialog by pressing the back button
                   },
                   child: Form(
-                    key: keyForm,
+                    key: approvekeyForm,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         AlertTextFormField(
-                          focusNode: userIdFocusNode,
-                          controller: userIdController,
+                          focusNode: approveUserIdFocusNode,
+                          controller: approveUserIdController,
                           validatorFunction: (text) =>
                               viewModel.userIdValidation(text),
                           label: 'User Id',
@@ -410,13 +431,13 @@ class _RequestsTableState
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         AlertTextFormField(
-                          focusNode: slideIdFocusNode,
-                          controller: slideIdController,
+                          focusNode: approveSlideIdFocusNode,
+                          controller: approveSlideIdController,
                           validatorFunction: (text) =>
                               viewModel.slideIdValidation(text),
                           label: 'Slide Id',
                         ),
-                        ],
+                      ],
                     ),
                   ),
                 ),
@@ -439,7 +460,7 @@ class _RequestsTableState
               ),
               Padding(
                 padding:
-                const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                    const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
                 child: TextButton(
                   onPressed: () {
                     ApproveRequestButton();
@@ -472,13 +493,13 @@ class _RequestsTableState
                     return false; // Prevents closing the dialog by pressing the back button
                   },
                   child: Form(
-                    key: keyForm,
+                    key: editkeyForm,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         AlertTextFormField(
-                          focusNode: userIdFocusNode,
-                          controller: userIdController,
+                          focusNode: editUserIdFocusNode,
+                          controller: editUserIdController,
                           validatorFunction: (text) =>
                               viewModel.userIdValidation(text),
                           label: 'User Id',
@@ -487,8 +508,8 @@ class _RequestsTableState
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         AlertTextFormField(
-                          focusNode: slideIdFocusNode,
-                          controller: slideIdController,
+                          focusNode: editSlideIdFocusNode,
+                          controller: editSlideIdController,
                           validatorFunction: (text) =>
                               viewModel.slideIdValidation(text),
                           label: 'Slide Id',
@@ -498,8 +519,8 @@ class _RequestsTableState
                         ),
                         SelectDate(
                           label: 'Start Date',
-                          focusNode: startDateFocusNode,
-                          controller: startDateController,
+                          focusNode: editStartDateFocusNode,
+                          controller: editStartDateController,
                           validatorFunction: (text) =>
                               viewModel.startDateValidation(text),
                         ),
@@ -508,16 +529,16 @@ class _RequestsTableState
                         ),
                         SelectDate(
                             label: 'End Date',
-                            focusNode: endDateFocusNode,
-                            controller: endDateController,
+                            focusNode: editEndDateFocusNode,
+                            controller: editEndDateController,
                             validatorFunction: (text) =>
                                 viewModel.endDateValidation(text)),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         AlertTextFormField(
-                            focusNode: statusFocusNode,
-                            controller: statusController,
+                            focusNode: editStatusFocusNode,
+                            controller: editStatusController,
                             validatorFunction: (text) =>
                                 viewModel.stateValidation(text),
                             label: 'Returned Status'),
@@ -525,8 +546,8 @@ class _RequestsTableState
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         AlertTextFormField(
-                          focusNode: notesFocusNode,
-                          controller: notesController,
+                          focusNode: editNotesFocusNode,
+                          controller: editNotesController,
                           validatorFunction: (text) =>
                               viewModel.notesValidation(text),
                           label: 'Notes',
@@ -587,13 +608,13 @@ class _RequestsTableState
                     return false; // Prevents closing the dialog by pressing the back button
                   },
                   child: Form(
-                    key: keyForm,
+                    key: rejectkeyForm,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         AlertTextFormField(
-                          focusNode: userIdFocusNode,
-                          controller: userIdController,
+                          focusNode: rejectUserIdFocusNode,
+                          controller: rejectUserIdController,
                           validatorFunction: (text) =>
                               viewModel.userIdValidation(text),
                           label: 'User Id',
@@ -602,8 +623,8 @@ class _RequestsTableState
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         AlertTextFormField(
-                          focusNode: slideIdFocusNode,
-                          controller: slideIdController,
+                          focusNode: rejectSlideIdFocusNode,
+                          controller: rejectSlideIdController,
                           validatorFunction: (text) =>
                               viewModel.slideIdValidation(text),
                           label: 'Slide Id',
@@ -631,7 +652,7 @@ class _RequestsTableState
               ),
               Padding(
                 padding:
-                const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                    const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
                 child: TextButton(
                   onPressed: () {
                     RejectRequestButton();
@@ -648,7 +669,7 @@ class _RequestsTableState
   }
 
   ApproveRequestButton() {
-    if (keyForm.currentState!.validate() == true) {
+    if (approvekeyForm.currentState!.validate() == true) {
       print("check data in approve request done");
       clearAllControllars();
       Navigator.pop(context);
@@ -656,7 +677,7 @@ class _RequestsTableState
   }
 
   EditRequestButton() {
-    if (keyForm.currentState!.validate() == true) {
+    if (editkeyForm.currentState!.validate() == true) {
       print("check data in edit data done");
       clearAllControllars();
       Navigator.pop(context);
@@ -664,7 +685,7 @@ class _RequestsTableState
   }
 
   RejectRequestButton() {
-    if (keyForm.currentState!.validate() == true) {
+    if (rejectkeyForm.currentState!.validate() == true) {
       print("check data in reject request done");
       clearAllControllars();
       Navigator.pop(context);
@@ -672,11 +693,15 @@ class _RequestsTableState
   }
 
   clearAllControllars() {
-    userIdController.clear();
-    slideIdController.clear();
-    startDateController.clear();
-    endDateController.clear();
-    statusController.clear();
-    notesController.clear();
+    approveUserIdController.clear();
+    approveSlideIdController.clear();
+    editUserIdController.clear();
+    editSlideIdController.clear();
+    editStartDateController.clear();
+    editEndDateController.clear();
+    editStatusController.clear();
+    editNotesController.clear();
+    rejectUserIdController.clear();
+    rejectSlideIdController.clear();
   }
 }
