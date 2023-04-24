@@ -8,7 +8,7 @@ import 'package:our_test_project/utils/responsive.dart';
 class DashBoardScreenController extends StatelessWidget {
   static const String routeName = 'DashBoardScreen';
 
- DashBoardScreenController({super.key});
+  const DashBoardScreenController({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class DashBoardScreenController extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ResponsiveWidget.isDestop(context)?
-            Expanded( child: DesktopDrawerMenu()):  Expanded(child: MobileDrawerMenu()),
+            const Expanded( child: DesktopDrawerMenu()):  Expanded(child: MobileDrawerMenu()),
           ],
         ),
       ),

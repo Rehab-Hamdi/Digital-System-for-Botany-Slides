@@ -3,30 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
 import 'package:sizer/sizer.dart';
 
-class SettingsView extends StatefulWidget {
+class DesktopSettingsView extends StatefulWidget {
   static const String routeName = 'settingsView';
 
-  const SettingsView({super.key});
+  const DesktopSettingsView({super.key});
 
   @override
-  State<SettingsView> createState() => _SettingsViewState();
+  State<DesktopSettingsView> createState() => _SettingsViewState();
 }
 
-class _SettingsViewState extends State<SettingsView> {
+class _SettingsViewState extends State<DesktopSettingsView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           body: ListView(
         children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
           ListTile(
             title: Text(
               'Logout',
-              style: TextStyle(fontSize: 15.sp),
+              style: TextStyle(fontSize: 5.sp, color: Colors.black),
             ),
             leading: Icon(
               Icons.logout,
-              size: 15.sp,
+              size: 5.sp,
             ),
             onTap: () async {
               await showDialog(
@@ -34,21 +37,21 @@ class _SettingsViewState extends State<SettingsView> {
                 builder: (context) => AlertDialog(
                   title: Text(
                     'Logout',
-                    style: TextStyle(fontSize: 16.sp),
+                    style: TextStyle(fontSize: 5.sp),
                   ),
                   content: Text('Are you sure you want to logout?',
-                      style: TextStyle(fontSize: 13.sp)),
+                      style: TextStyle(fontSize: 5.sp)),
                   actions: [
                     TextButton(
                       child: Text('Cancel',
                           style:
-                              TextStyle(fontSize: 13.sp, color: Colors.green)),
+                              TextStyle(fontSize: 4.sp, color: Colors.green)),
                       onPressed: () => Navigator.of(context).pop(false),
                     ),
                     TextButton(
                         child: Text('Logout',
                             style:
-                                TextStyle(fontSize: 14.sp, color: Colors.red)),
+                                TextStyle(fontSize: 4.sp, color: Colors.red)),
                         onPressed: () async {
                           await FirebaseAuth.instance.signOut();
                           //MobileLoginView.isViewed=0;
@@ -59,6 +62,19 @@ class _SettingsViewState extends State<SettingsView> {
                 ),
               );
             },
+          ),
+          Divider(),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.69,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
+                "assets/images/plant1.png",
+              ),
+              Image.asset("assets/images/plant1.png")
+            ],
           ),
         ],
       )),

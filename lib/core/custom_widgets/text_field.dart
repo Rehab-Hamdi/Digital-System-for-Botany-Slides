@@ -5,13 +5,13 @@ class CustomTextField extends StatelessWidget {
   FocusNode focusNode;
   String? Function(String?)? validatorFunction;
   var controller;
-  Icon preIcon;
+  Icon? preIcon;
 
   CustomTextField({super.key,
     required this.focusNode,
     required this.controller,
     required this.validatorFunction,
-    required this.preIcon,
+    this.preIcon,
   }
   );
 
@@ -24,8 +24,9 @@ class CustomTextField extends StatelessWidget {
         focusNode: focusNode,
         controller: controller,
         validator: validatorFunction,
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-            prefixIcon: Icon(preIcon.icon, color: MyColors.lightGreen ),
+            prefixIcon: Icon(preIcon?.icon, color: MyColors.lightGreen ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(40.0),
             ),

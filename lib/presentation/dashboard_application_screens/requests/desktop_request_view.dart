@@ -1,26 +1,33 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:our_test_project/core/custom_widgets/page_title.dart';
+import 'package:intl/intl.dart';
+import 'package:our_test_project/core/base.dart';
+import 'package:our_test_project/core/custom_widgets/alretTextFormFiled.dart';
+import 'package:our_test_project/core/custom_widgets/selectDate.dart';
+import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/requests_model.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/edit_request_view_model.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view_model.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/requet_navifator.dart';
+import 'package:sizer/sizer.dart';
 
-class DesktopRequestsView extends StatefulWidget {
+class RequestsView extends StatefulWidget {
   static const String routeName = 'desktopRequestsView';
 
-  const DesktopRequestsView({super.key});
+  const RequestsView({super.key});
 
   @override
-  State<DesktopRequestsView> createState() => _RequestsTableState();
+  State<RequestsView> createState() => _RequestsTableState();
 }
 
-class _RequestsTableState extends State<DesktopRequestsView> {
+class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
+    implements RequestNavigator {
   final List<Request> _requests = [
     Request(
         ssn: '14785236941',
-        name: 'Mamhoud',
+        name: 'Mahmoud',
         email: 'mahmoud@gmail.com',
         slideName: 'stem , pinus',
         date: '12:8:00'),
@@ -69,7 +76,7 @@ class _RequestsTableState extends State<DesktopRequestsView> {
         date: '01:8:12'),
     Request(
         ssn: '14785236941',
-        name: 'Mamhoud',
+        name: 'Mahmoud',
         email: 'mahmoud@gmail.com',
         slideName: 'stem , pinus',
         date: '12:8:00'),
@@ -117,50 +124,125 @@ class _RequestsTableState extends State<DesktopRequestsView> {
         slideName: 'stem , pinus',
         date: '01:8:12'),
   ];
+  List<Request> _filteredRequests = [];
+  String _searchQuery = ''; //
+  Widget _buildSearchBar() {
+    return Container(
+      alignment: Alignment.topLeft,
+      height: MediaQuery.of(context).size.height * 0.06,
+      width: MediaQuery.of(context).size.width * 0.70,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),
+          border: Border.all(color: MyColors.userInfoColor)),
+      child: TextField(
+        onChanged: (query) {
+          setState(() {
+            _searchQuery = query;
+            _filteredRequests = _requests
+                .where((request) =>
+                    request.name
+                        .toLowerCase()
+                        .contains(_searchQuery.toLowerCase()) ||
+                    request.ssn
+                        .toLowerCase()
+                        .contains(_searchQuery.toLowerCase()))
+                .toList();
+          });
+        },
+        decoration: InputDecoration(
+          hintText: 'Search by name or ssn',
+          prefixIcon: Icon(Icons.search),
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+
+  var approvekeyForm = GlobalKey<FormState>();
+  var editkeyForm = GlobalKey<FormState>();
+  var rejectkeyForm = GlobalKey<FormState>();
+  FocusNode approveUserIdFocusNode = FocusNode();
+  FocusNode approveSlideIdFocusNode = FocusNode();
+  FocusNode editUserIdFocusNode = FocusNode();
+  FocusNode editSlideIdFocusNode = FocusNode();
+  FocusNode editStartDateFocusNode = FocusNode();
+  FocusNode editEndDateFocusNode = FocusNode();
+  FocusNode editStatusFocusNode = FocusNode();
+  FocusNode editNotesFocusNode = FocusNode();
+  FocusNode rejectUserIdFocusNode = FocusNode();
+  FocusNode rejectSlideIdFocusNode = FocusNode();
+  TextEditingController approveUserIdController= TextEditingController();
+  TextEditingController approveSlideIdController= TextEditingController();
+  TextEditingController editUserIdController = TextEditingController();
+  TextEditingController editSlideIdController = TextEditingController();
+  TextEditingController editStartDateController = TextEditingController();
+  TextEditingController editEndDateController = TextEditingController();
+  TextEditingController editStatusController = TextEditingController();
+  TextEditingController editNotesController = TextEditingController();
+  TextEditingController rejectUserIdController= TextEditingController();
+  TextEditingController rejectSlideIdController= TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    _getRequests();
+    approveUserIdFocusNode.addListener(() {
+      setState(() {});
+    });
+    approveSlideIdFocusNode.addListener(() {
+      setState(() {});
+    });
+    editUserIdFocusNode.addListener(() {
+      setState(() {});
+    });
+    editSlideIdFocusNode.addListener(() {
+      setState(() {});
+    });
+    editStartDateFocusNode.addListener(() {
+      setState(() {});
+    });
+    editEndDateFocusNode.addListener(() {
+      setState(() {});
+    });
+    editStatusFocusNode.addListener(() {
+      setState(() {});
+    });
+    editNotesFocusNode.addListener(() {
+      setState(() {});
+    });
+    rejectUserIdFocusNode.addListener(() {
+      setState(() {});
+    });
+    rejectSlideIdFocusNode.addListener(() {
+      setState(() {});
+    });
   }
 
-  Future<void> _getRequests() async {
-    final response =
-        await http.get(Uri.parse('https://example.com/api/requests'));
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body) as List<dynamic>;
-      setState(() {
-        //_requests = List<Request>.from(data.map((item) => Request.fromJson(item)));
-      });
-    } else {
-      throw Exception('Failed to load requests');
-    }
-  }
-
+  // @override
+  // void dispose() {
+  //   UserIdController.dispose();
+  // }
   @override
   Widget build(BuildContext context) {
+    List<Request> _requestsToDisplay =
+        _searchQuery.isEmpty ? _requests : _filteredRequests;
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: MediaQuery.of(context).size.height * 0.015,
             ),
-            const PageTitle(title: 'Requests', wdth: 0.30),
+            _buildSearchBar(),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
+              height: MediaQuery.of(context).size.height * 0.005,
             ),
-            Center(
+            Expanded(
               child: Container(
-                padding: const EdgeInsets.all(8.0),
                 margin: const EdgeInsets.all(8.0),
-                height: MediaQuery.of(context).size.height * 0.75,
-                //width: MediaQuery.of(context).size.width*0.62,
-
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(
-                      color: MyColors.active,
-                    )),
+                  borderRadius: BorderRadius.circular(12.0),
+                  color: Colors.white,
+                ),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: SingleChildScrollView(
@@ -168,52 +250,69 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                     child: DataTable(
                       headingRowColor: MaterialStateColor.resolveWith(
                           (states) => MyColors.lightGrey.withOpacity(0.2)),
-                      columns: const [
+                      columns: [
                         DataColumn(
                             label: Text(
                           'User ID',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Name',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Email',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Slide Name',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Requested Date',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                         DataColumn(
                             label: Text(
                           'Actions',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.headline6,
                         )),
                       ],
-                      rows: _requests.map((request) {
+                      rows: _requestsToDisplay.map((request) {
                         return DataRow(cells: [
-                          DataCell(Text(request.ssn)),
-                          DataCell(Text(request.name)),
-                          DataCell(Text(request.email)),
-                          DataCell(Text(request.slideName)),
-                          DataCell(Text(request.date)),
+                          DataCell(Text(
+                            request.ssn,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.name,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.email,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.slideName,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
+                          DataCell(Text(
+                            request.date,
+                            style: TextStyle(color: MyColors.userInfoColor),
+                          )),
                           DataCell(
                             Row(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: OutlinedButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      ApproveRequest();
+                                    },
                                     icon: const Icon(
                                       Icons.done,
                                       color: Colors.black,
@@ -233,7 +332,7 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                                   padding: const EdgeInsets.all(4.0),
                                   child: OutlinedButton.icon(
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DesktopEditRequestView()));
+                                      EditRequest();
                                     },
                                     icon: const Icon(
                                       Icons.edit,
@@ -248,7 +347,9 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: OutlinedButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      RejectRequest();
+                                    },
                                     icon: const Icon(
                                       Icons.delete_outline,
                                       color: Colors.black,
@@ -261,52 +362,10 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                                       backgroundColor:
                                           MaterialStateColor.resolveWith(
                                               (states) => Colors.red),
-                                   //   textStyle: MaterialStateProperty<TextStyle> ,
+                                      //   textStyle: MaterialStateProperty<TextStyle> ,
                                     ),
                                   ),
                                 )
-                                // Padding(
-                                //   padding: const EdgeInsets.all(8.0),
-                                //   child: Container(
-                                //     decoration: BoxDecoration(
-                                //       borderRadius: BorderRadius.circular(4.0),
-                                //       color:Colors.green,
-                                //     ),
-                                //     child: InkWell(
-                                //       onTap: (){},
-                                //       child: Row(
-                                //         children: const [
-                                //           Icon(Icons.done, size: 20,),
-                                //           Padding(
-                                //             padding: EdgeInsets.all(8.0),
-                                //             child: Text("Accept"),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
-                                // Padding(
-                                //   padding: const EdgeInsets.all(8.0),
-                                //   child: Container(
-                                //     decoration: BoxDecoration(
-                                //       borderRadius: BorderRadius.circular(4.0),
-                                //       color:Colors.red,
-                                //     ),
-                                //     child: InkWell(
-                                //       onTap: (){},
-                                //       child: Row(
-                                //         children: const [
-                                //           Icon(Icons.close, size: 20,),
-                                //           Padding(
-                                //             padding: EdgeInsets.all(8.0),
-                                //             child: Text("Refuse"),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),
@@ -317,9 +376,332 @@ class _RequestsTableState extends State<DesktopRequestsView> {
                 ),
               ),
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.14,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  "assets/images/plant1.png",
+                ),
+                Image.asset("assets/images/plant1.png")
+              ],
+            ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  RequestViewModel initViewModel() {
+    return RequestViewModel();
+  }
+
+  Future? ApproveRequest() {
+    showDialog(
+        context: context,
+        builder: (contextBuilder) {
+          return AlertDialog(
+            title: Text('Approve Request'),
+            titleTextStyle: TextStyle(fontSize: 20),
+            titlePadding: EdgeInsets.all(12.0),
+            contentPadding: EdgeInsets.all(12.0),
+            content: Container(
+              width: MediaQuery.of(context).size.width * 0.23,
+              child: SingleChildScrollView(
+                child: WillPopScope(
+                  onWillPop: () async {
+                    return false; // Prevents closing the dialog by pressing the back button
+                  },
+                  child: Form(
+                    key: approvekeyForm,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AlertTextFormField(
+                          focusNode: approveUserIdFocusNode,
+                          controller: approveUserIdController,
+                          validatorFunction: (text) =>
+                              viewModel.userIdValidation(text),
+                          label: 'User Id',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        AlertTextFormField(
+                          focusNode: approveSlideIdFocusNode,
+                          controller: approveSlideIdController,
+                          validatorFunction: (text) =>
+                              viewModel.slideIdValidation(text),
+                          label: 'Slide Id',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    clearAllControllars();
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.green, fontSize: 15),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    ApproveRequestButton();
+                  },
+                  child: Text(
+                    'Approve Request',
+                    style: TextStyle(fontSize: 18, color: MyColors.active),
+                  ),
+                ),
+              )
+            ],
+          );
+        });
+  }
+
+  Future? EditRequest() {
+    showDialog(
+        context: context,
+        builder: (contextBuilder) {
+          return AlertDialog(
+            title: Text('Edit Request'),
+            titleTextStyle: TextStyle(fontSize: 20),
+            titlePadding: EdgeInsets.all(12.0),
+            contentPadding: EdgeInsets.all(12.0),
+            content: Container(
+              width: MediaQuery.of(context).size.width * 0.23,
+              child: SingleChildScrollView(
+                child: WillPopScope(
+                  onWillPop: () async {
+                    return false; // Prevents closing the dialog by pressing the back button
+                  },
+                  child: Form(
+                    key: editkeyForm,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AlertTextFormField(
+                          focusNode: editUserIdFocusNode,
+                          controller: editUserIdController,
+                          validatorFunction: (text) =>
+                              viewModel.userIdValidation(text),
+                          label: 'User Id',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        AlertTextFormField(
+                          focusNode: editSlideIdFocusNode,
+                          controller: editSlideIdController,
+                          validatorFunction: (text) =>
+                              viewModel.slideIdValidation(text),
+                          label: 'Slide Id',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        SelectDate(
+                          label: 'Start Date',
+                          focusNode: editStartDateFocusNode,
+                          controller: editStartDateController,
+                          validatorFunction: (text) =>
+                              viewModel.startDateValidation(text),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        SelectDate(
+                            label: 'End Date',
+                            focusNode: editEndDateFocusNode,
+                            controller: editEndDateController,
+                            validatorFunction: (text) =>
+                                viewModel.endDateValidation(text)),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        AlertTextFormField(
+                            focusNode: editStatusFocusNode,
+                            controller: editStatusController,
+                            validatorFunction: (text) =>
+                                viewModel.stateValidation(text),
+                            label: 'Returned Status'),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        AlertTextFormField(
+                          focusNode: editNotesFocusNode,
+                          controller: editNotesController,
+                          validatorFunction: (text) =>
+                              viewModel.notesValidation(text),
+                          label: 'Notes',
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    clearAllControllars();
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.green, fontSize: 15),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    EditRequestButton();
+                  },
+                  child: Text(
+                    'Update Request',
+                    style: TextStyle(fontSize: 18, color: MyColors.active),
+                  ),
+                ),
+              )
+            ],
+          );
+        });
+  }
+
+  Future? RejectRequest() {
+    showDialog(
+        context: context,
+        builder: (contextBuilder) {
+          return AlertDialog(
+            title: Text('Reject Request'),
+            titleTextStyle: TextStyle(fontSize: 20),
+            titlePadding: EdgeInsets.all(12.0),
+            contentPadding: EdgeInsets.all(12.0),
+            content: Container(
+              width: MediaQuery.of(context).size.width * 0.23,
+              child: SingleChildScrollView(
+                child: WillPopScope(
+                  onWillPop: () async {
+                    return false; // Prevents closing the dialog by pressing the back button
+                  },
+                  child: Form(
+                    key: rejectkeyForm,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AlertTextFormField(
+                          focusNode: rejectUserIdFocusNode,
+                          controller: rejectUserIdController,
+                          validatorFunction: (text) =>
+                              viewModel.userIdValidation(text),
+                          label: 'User Id',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        AlertTextFormField(
+                          focusNode: rejectSlideIdFocusNode,
+                          controller: rejectSlideIdController,
+                          validatorFunction: (text) =>
+                              viewModel.slideIdValidation(text),
+                          label: 'Slide Id',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    clearAllControllars();
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.green, fontSize: 15),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                child: TextButton(
+                  onPressed: () {
+                    RejectRequestButton();
+                  },
+                  child: Text(
+                    'Reject Request',
+                    style: TextStyle(fontSize: 18, color: MyColors.active),
+                  ),
+                ),
+              )
+            ],
+          );
+        });
+  }
+
+  ApproveRequestButton() {
+    if (approvekeyForm.currentState!.validate() == true) {
+      print("check data in approve request done");
+      clearAllControllars();
+      Navigator.pop(context);
+    }
+  }
+
+  EditRequestButton() {
+    if (editkeyForm.currentState!.validate() == true) {
+      print("check data in edit data done");
+      clearAllControllars();
+      Navigator.pop(context);
+    }
+  }
+
+  RejectRequestButton() {
+    if (rejectkeyForm.currentState!.validate() == true) {
+      print("check data in reject request done");
+      clearAllControllars();
+      Navigator.pop(context);
+    }
+  }
+
+  clearAllControllars() {
+    approveUserIdController.clear();
+    approveSlideIdController.clear();
+    editUserIdController.clear();
+    editSlideIdController.clear();
+    editStartDateController.clear();
+    editEndDateController.clear();
+    editStatusController.clear();
+    editNotesController.clear();
+    rejectUserIdController.clear();
+    rejectSlideIdController.clear();
   }
 }
