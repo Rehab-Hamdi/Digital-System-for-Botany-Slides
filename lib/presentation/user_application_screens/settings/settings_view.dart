@@ -19,46 +19,49 @@ class _SettingsViewState extends State<SettingsView> {
       child: Scaffold(
           body: ListView(
         children: [
-          ListTile(
-            title: Text(
-              'Logout',
-              style: TextStyle(fontSize: 15.sp),
-            ),
-            leading: Icon(
-              Icons.logout,
-              size: 15.sp,
-            ),
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text(
-                    'Logout',
-                    style: TextStyle(fontSize: 16.sp),
-                  ),
-                  content: Text('Are you sure you want to logout?',
-                      style: TextStyle(fontSize: 13.sp)),
-                  actions: [
-                    TextButton(
-                      child: Text('Cancel',
-                          style:
-                              TextStyle(fontSize: 13.sp, color: Colors.green)),
-                      onPressed: () => Navigator.of(context).pop(false),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              title: Text(
+                'Logout',
+                style: TextStyle(fontSize: 15.sp),
+              ),
+              leading: Icon(
+                Icons.logout,
+                size: 15.sp,
+              ),
+              onTap: () async {
+                await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(
+                      'Logout',
+                      style: TextStyle(fontSize: 16.sp),
                     ),
-                    TextButton(
-                        child: Text('Logout',
+                    content: Text('Are you sure you want to logout?',
+                        style: TextStyle(fontSize: 13.sp)),
+                    actions: [
+                      TextButton(
+                        child: Text('Cancel',
                             style:
-                                TextStyle(fontSize: 14.sp, color: Colors.red)),
-                        onPressed: () async {
-                          await FirebaseAuth.instance.signOut();
-                          //MobileLoginView.isViewed=0;
-                          Navigator.pushReplacementNamed(
-                              context, LoginView.routeName);
-                        }),
-                  ],
-                ),
-              );
-            },
+                                TextStyle(fontSize: 13.sp, color: Colors.green)),
+                        onPressed: () => Navigator.of(context).pop(false),
+                      ),
+                      TextButton(
+                          child: Text('Logout',
+                              style:
+                                  TextStyle(fontSize: 14.sp, color: Colors.red)),
+                          onPressed: () async {
+                            await FirebaseAuth.instance.signOut();
+                            //MobileLoginView.isViewed=0;
+                            Navigator.pushReplacementNamed(
+                                context, LoginView.routeName);
+                          }),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         ],
       )),

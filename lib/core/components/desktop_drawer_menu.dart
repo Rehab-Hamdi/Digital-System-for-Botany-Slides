@@ -5,6 +5,7 @@ import 'package:our_test_project/presentation/dashboard_application_screens/cale
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/settings/desktop_settings.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view.dart';
 import 'package:vertical_tabs_flutter/vertical_tabs.dart';
 
@@ -94,8 +95,8 @@ class DesktopDrawerMenu extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
                     child: DrawerListTile(
-                      title: 'Logout',
-                      icon: Icon(Icons.logout, size: 20, color: Colors.black),
+                      title: 'Settings',
+                      icon: Icon(Icons.settings, size: 20, color: Colors.black),
                     ),
                   ),
                 ),
@@ -106,7 +107,7 @@ class DesktopDrawerMenu extends StatelessWidget {
                 RequestsView(),
                 ReportsView(),
                 CalendarDashboardView(),
-                Text('done'),
+                DesktopSettingsView(),
               ],
             ),
           ),
