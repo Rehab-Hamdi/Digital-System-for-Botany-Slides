@@ -103,7 +103,7 @@ class DesktopDrawerMenu extends StatelessWidget {
               contents: const [
                 DesktopDashboardView(),
                 UsersView(),
-                DesktopRequestsView(),
+                RequestsView(),
                 ReportsView(),
                 CalendarDashboardView(),
                 Text('done'),

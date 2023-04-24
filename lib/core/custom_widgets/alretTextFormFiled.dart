@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
 
 class AlertTextFormField extends StatelessWidget {
   FocusNode focusNode;

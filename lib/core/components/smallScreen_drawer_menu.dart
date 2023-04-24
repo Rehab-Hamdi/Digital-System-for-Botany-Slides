@@ -3,7 +3,7 @@ import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/requests/mobile_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
 
 class MobileDrawerMenu extends StatefulWidget {
@@ -29,7 +29,7 @@ class _MobileDrawerMenuState extends State<MobileDrawerMenu> {
     } else if (currentPage == DrawerSections.users) {
       container = const MobileAddNewUserView();
     } else if (currentPage == DrawerSections.requests) {
-      container = const MobileRequestsView();
+      container = const RequestsView();
     } else if (currentPage == DrawerSections.calendar) {
       container = const CalendarView();
     }
