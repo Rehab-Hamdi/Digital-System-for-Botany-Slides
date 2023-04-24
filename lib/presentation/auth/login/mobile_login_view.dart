@@ -5,11 +5,11 @@ import 'package:our_test_project/core/custom_widgets/password_field.dart';
 import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
 import 'login_navigator.dart';
 import 'login_view_model.dart';
-import 'package:provider/provider.dart';
 
 class MobileLoginView extends StatefulWidget {
   const MobileLoginView({Key? key}) : super(key: key);

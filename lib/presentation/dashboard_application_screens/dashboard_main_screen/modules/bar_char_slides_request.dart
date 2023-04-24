@@ -50,7 +50,7 @@ class BarChartSlidesRequest extends StatelessWidget {
             sideTitles: SideTitles(
               showTitles: true,
               getTitlesWidget: (double y, TitleMeta meta){
-                return Text('$y', style: style,);
+                return Text(y.toInt().toString(), style: style,);
               },
             ),
           ),

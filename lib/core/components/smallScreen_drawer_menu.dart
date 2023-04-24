@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view.dart';
@@ -42,16 +40,16 @@ class _MobileDrawerMenuState extends State<MobileDrawerMenu> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black, // change the color here
         ),
         title: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('assets/icons/botany_icon2.png',),
+          padding: const EdgeInsets.all(3.0),
+          child: Image.asset('assets/icons/botany_icon2.png', width: MediaQuery.of(context).size.width/2.8,),
         ),
         actions: [
           Center(child: Text('Alsafa', style: Theme.of(context).textTheme.headline5,)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.person), color: Colors.grey,),
+          IconButton(onPressed: (){}, icon: const Icon(Icons.person), color: Colors.grey,),
         ],
       ),
       drawer: Drawer(
@@ -70,7 +68,7 @@ class _MobileDrawerMenuState extends State<MobileDrawerMenu> {
         // shows the list of menu drawer
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height*0.02
+              height: MediaQuery.of(context).size.height*0.02
           ),
           menuItem(1, "Dashboard", Icons.dashboard,
               currentPage == DrawerSections.dashboard ? true : false),

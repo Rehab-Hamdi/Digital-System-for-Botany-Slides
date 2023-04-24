@@ -26,8 +26,9 @@ class AnalyticCards extends StatelessWidget {
         ),
         mobileWidget: AnalyticInfoCardGridView( // size = 511
           crossAxisCount: 2,
-          childAspectRatio: size.width <= 511 ? 1.8 : 2,
-          textSize: size.width <= 511 ? 1 : 0,
+          childAspectRatio: size.width <= 395 ? 1.3 : (size.width <= 511 && size.width > 395 ? 1.8 : 2),
+          textSize: size.width <= 395 ? 3 : (size.width <= 511 && size.width > 395 ? 1 : 0) ,
+          iconSize: size.width < 395  ? 2 : 0,
           size: size.width,
         ),
       ),
@@ -72,6 +73,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
             iconSize: iconSize,
           ),
         ),
+        //Center(child: Text("$size")),
       ],
     );
   }
