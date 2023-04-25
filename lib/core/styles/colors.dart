@@ -26,5 +26,8 @@ class MyColors {
   static const Color myBlue = Color(0xff5932EA);
   static const Color myGray = Color(0xffBCBCBC);
   static const Color myDarkBlue = Color(0xff1A2B88);
+  static const Color studentsColor = Color(0xffA85CF9);
+  static const Color doctorsColor = Color(0xff5534A5);
+  static const Color remainSlidesColor = Color(0xff4B7BE5);
 
 }
