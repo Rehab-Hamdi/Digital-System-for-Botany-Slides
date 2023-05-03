@@ -371,7 +371,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.14,
+              height: MediaQuery.of(context).size.height * 0.10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -398,7 +398,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
         context: context,
         builder: (contextBuilder) {
           return AlertDialog(
-            title: Text('Approve Request'),
+            title: Text('Approve Request', style: TextStyle(color: Colors.black),),
             titleTextStyle: TextStyle(fontSize: 20),
             titlePadding: EdgeInsets.all(12.0),
             contentPadding: EdgeInsets.all(12.0),
@@ -475,7 +475,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
         context: context,
         builder: (contextBuilder) {
           return AlertDialog(
-            title: Text('Edit Request'),
+            title: Text('Edit Request', style: TextStyle(color: Colors.black),),
             titleTextStyle: TextStyle(fontSize: 20),
             titlePadding: EdgeInsets.all(12.0),
             contentPadding: EdgeInsets.all(12.0),
@@ -590,7 +590,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
         context: context,
         builder: (contextBuilder) {
           return AlertDialog(
-            title: Text('Reject Request'),
+            title: Text('Reject Request', style: TextStyle(color: Colors.black),),
             titleTextStyle: TextStyle(fontSize: 20),
             titlePadding: EdgeInsets.all(12.0),
             contentPadding: EdgeInsets.all(12.0),

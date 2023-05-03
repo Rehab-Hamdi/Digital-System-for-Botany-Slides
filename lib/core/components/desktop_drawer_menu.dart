@@ -66,7 +66,7 @@ class DesktopDrawerMenu extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
                     child: DrawerListTile(
-                      title: 'Register Slice',
+                      title: 'Requests',
                       icon: Icon(Icons.how_to_reg_outlined,
                           size: 20, color: Colors.black),
                     ),

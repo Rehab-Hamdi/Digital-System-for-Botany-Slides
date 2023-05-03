@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:our_test_project/core/styles/colors.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarDashboardView extends StatelessWidget {
@@ -46,9 +47,9 @@ class CalendarDashboardView extends StatelessWidget {
                 daysOfWeekVisible: false,
                 sixWeekMonthsEnforced: true,
                 shouldFillViewport: false,
-                // headerStyle: const HeaderStyle(titleTextStyle:TextStyle(fontSize: 30, color: MyColors.active),
-                //     formatButtonVisible: false,
-                //     titleCentered: true),
+                headerStyle: const HeaderStyle(titleTextStyle:TextStyle(fontSize: 30, color: MyColors.active),
+                    formatButtonVisible: false,
+                    titleCentered: true),
                 calendarStyle: const CalendarStyle(
                     todayTextStyle: TextStyle(fontSize: 22, color: Colors.red)),
               ),

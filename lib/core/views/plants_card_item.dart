@@ -28,41 +28,48 @@ class PlantsCardItem extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Card(
-              color: MyColors.plantBackground,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    //padding: EdgeInsets.only(top: 8.0, bottom: 4.0),
-                    padding: EdgeInsets.only(
-                        right: 15, left: 15,top: 2, bottom: 8),
-                    height: MediaQuery.of(context).size.height * 0.185,
-                    decoration: BoxDecoration(),
-                    child: Image.asset(
-                      plantsModel.plant_image,
-                      width: MediaQuery.of(context).size.width*0.338,
-                      height: double.infinity,
-                      fit: BoxFit.fill,
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: Card(
+                  color: MyColors.plantBackground,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        //padding: EdgeInsets.only(top: 8.0, bottom: 4.0),
+                        padding: EdgeInsets.only(
+                            right: 15, left: 15,top: 2, bottom: 8),
+                        height: MediaQuery.of(context).size.height * 0.185,
+                        decoration: BoxDecoration(),
+                        child: Image.asset(
+                          plantsModel.plant_image,
+                          width: MediaQuery.of(context).size.width*0.338,
+                          height: double.infinity,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.only(top: 2.0),
+                            //alignment: Alignment.centerLeft,
+                            child: Text(
+                              plantsModel.plant_name,
+                              style: const TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold),
+                            )),
+                      ),
+                    ],
                   ),
-                  Padding(
-                      padding: EdgeInsets.only(top: 4.0, bottom: 12),
-                      //alignment: Alignment.centerLeft,
-                      child: Text(
-                        plantsModel.plant_name,
-                        style: const TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
-                      )),
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
