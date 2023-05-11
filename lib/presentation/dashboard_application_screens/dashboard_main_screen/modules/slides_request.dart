@@ -22,7 +22,6 @@ class _SlidesRequestState extends State<SlidesRequest> {
     dropDownValue = dateTo.toString();
     for (int i = dateFrom; i <= dateTo; i++) {
       years.add(i.toString());
-      print(i.toString());
     }
     return years.toList();
   }
