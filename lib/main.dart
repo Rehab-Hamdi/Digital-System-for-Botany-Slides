@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
              MobileStartView.routeName: (c) => MobileStartView(),
              StartView.routeName: (c) => StartView(),
              HomeScreen.routeName: (c) => HomeScreen(),
-             MobileHomeView.routeName: (c) => MobileHomeView(),
+             HomeView.routeName: (c) => HomeView(),
              FavoriteView.routeName: (c) => FavoriteView(),
              SettingsView.routeName: (c) => SettingsView(),
              CalendarView.routeName: (c) => CalendarView(),
