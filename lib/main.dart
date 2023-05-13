@@ -16,7 +16,7 @@ import 'package:our_test_project/presentation/dashboard_application_screens/dash
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/mobile_edit_request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
 import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
              MobileStartView.routeName: (c) => MobileStartView(),
              StartView.routeName: (c) => StartView(),
              HomeScreen.routeName: (c) => HomeScreen(),
-             MobileHomeView.routeName: (c) => MobileHomeView(),
+             HomeView.routeName: (c) => HomeView(),
              FavoriteView.routeName: (c) => FavoriteView(),
              SettingsView.routeName: (c) => SettingsView(),
              CalendarView.routeName: (c) => CalendarView(),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/reports/reports_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/requests/desktop_request_view.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
