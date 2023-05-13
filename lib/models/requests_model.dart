@@ -1,27 +1,23 @@
 class Request
 {
-  final String ssn;
-  final String name;
-  final String email;
-  final String slideName;
-  final String date;
+   int? id;
+   String name;
+   String email;
+   String slideName;
+   String requestedAt;
+   String? updatedAt;
+   String? endDate;
+   int? slide_id;
 
   Request({
-    required this.ssn,
+    required this.id,
     required this.name,
     required this.email,
     required this.slideName,
-    required this.date,
+    required this.requestedAt,
+     this.updatedAt,
+     this.endDate,
+    this.slide_id
   });
 
-  // Define a named constructor to create a Request object from a JSON map
-  factory Request.fromJson(Map<String, dynamic> json) {
-    return Request(
-      ssn: json['ssn'] as String,
-      name: json['name'] as String,
-      email: json['email'] as String,
-      slideName: json['slideName'] as String,
-      date: json['date'] as String,
-    );
-  }
 }
