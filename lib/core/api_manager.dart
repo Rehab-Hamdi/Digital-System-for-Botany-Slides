@@ -47,7 +47,15 @@ class APIManager{
   // update exist user
   static Future<http.Response>updateUserRequest(Users user)async{
     Uri url = Uri.parse('$BASE_URL/users/${user.id}');
-    http.Response response = await http.put(url, body:user.toJson());
+    http.Response response = await http.put(url, body:jsonEncode({
+      'name' : user.name,
+      'password' : user.password,
+      'email': user.email,
+      'phone': user.phone,
+      'type' : user.type,
+      'ssn' : user.ssn,
+      'blocked': '${user.blocked}',
+    }));
     if(response.statusCode == 203)
     {
       print('user updated successfully...!');
