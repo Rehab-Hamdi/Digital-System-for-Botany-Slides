@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:our_test_project/database_models/requests/GetAllRequests.dart';
 import 'package:our_test_project/models/users.dart';
 
 class APIManager{
@@ -72,5 +73,107 @@ class APIManager{
     }
     print (response.body);
     return response;
+  }
+
+  static Future<GetAllRequests> getAllRequestsInfo()async{
+    Uri url= Uri.parse('$BASE_URL/requests');
+    http.Response response= await http.get(url);
+    var json= jsonDecode(response.body);
+    GetAllRequests requests = GetAllRequests.fromJson(json);
+    return requests;
+  }
+
+  static putApproveRequest(user_id, slide_id) async {
+    // var url = Uri.parse('$BASE_URL/accept_request');
+    Uri url = Uri.parse('$BASE_URL/accept_request');
+    var body = {
+      'user_id': '${user_id}',
+      'slide_id': '${slide_id}',
+    };
+    try {
+      http.Response response = await http.put(
+          url,
+          //headers: {'Content-Type': 'application/json'},
+          body:body
+      );
+      if (response.statusCode == 200) {
+        // Successful PUT request
+        print('PUT approve request successful!');
+        print('Response body: ${response.body}');
+      } else {
+        // Handle error response
+        print(
+            'PUT approve request failed with status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+      }
+    } catch (error) {
+      // Handle request failure
+      print('Error making PUT approve request: $error');
+    }
+  }
+
+  static putRejectRequest(user_id,slide_id) async {
+    Uri url = Uri.parse('$BASE_URL/reject_request');
+    var body = {
+      'user_id': '${user_id}',
+      'slide_id': '${slide_id}',
+    };
+
+    try {
+      http.Response response = await http.put(url, body: body);
+
+      if (response.statusCode == 200) {
+        // Successful PUT request
+        print('PUT reject request successful!');
+        print('Response body: ${response.body}');
+      } else {
+        // Handle error response
+        print(
+            'PUT reject request failed with status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+      }
+    } catch (error) {
+      // Handle request failure
+      print('Error making PUT reject request: $error');
+    }
+  }
+
+  static putUpdateRequest(user_id, slide_id, startDate, endDate , returnedDate , returnedState, notes) async
+  {
+    Uri url= Uri.parse('$BASE_URL/update_request');
+
+    // print('Data');
+    // print('user ${user_id} make request for slide id = ${slide_id}');
+    // print(startDate);
+    // print(endDate);
+    // print(returnedDate);
+    // print(returnedState);
+    // print(notes);
+    try {
+      http.Response response = await http.put(url, body:{
+        'user_id': '${user_id}',
+        'slide_id': '${slide_id}',
+        'start_date':startDate,
+        'end_date':endDate,
+        'returned_date': returnedDate,
+        'notes':notes,
+        'returned_state':returnedState,
+      });
+
+      if (response.statusCode == 200) {
+        // Successful PUT request
+        print('POST Update request successful!');
+        print('Response body: ${response.body}');
+      } else {
+        // Handle error response
+        print(
+            'POST Update request failed with status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+      }
+    } catch (error) {
+      // Handle request failure
+      print('Error making POST Update request: $error');
+    }
+
   }
 }
