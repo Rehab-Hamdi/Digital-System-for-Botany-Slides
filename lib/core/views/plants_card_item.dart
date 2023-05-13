@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
+import 'package:our_test_project/models/categorg_model.dart';
 import 'package:our_test_project/models/plants_models.dart';
 import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
+import 'package:sizer/sizer.dart';
 
 class PlantsCardItem extends StatelessWidget {
-  PlantsCardItem({super.key, required this.plantsModel});
+   PlantsCardItem({Key? key, required this.plantsModel, this.category}) : super(key: key);
 
-  PlantsModel plantsModel;
+  final PlantsModel plantsModel;
+  CategoryModel? category;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -16,58 +20,45 @@ class PlantsCardItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(22.5),
           boxShadow: [
             BoxShadow(
-              color: MyColors.lightGrey.withOpacity(0.3),
-              blurRadius: 1, // soften the shadow
+              color:MyColors.lightGrey.withOpacity(0.45),
+              blurRadius: 3.5, // soften the shadow
               offset: const Offset(
                 1.0, // Move to right 10  horizontally
-                1.0, // Move to bottom 10 Vertically
+                2.0, // Move to bottom 10 Vertically
               ),
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
+        child:Card(
+          color: Colors.white,
+          shape:RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(23.0),
+          ) ,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                child: Card(
-                  color: MyColors.plantBackground,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        //padding: EdgeInsets.only(top: 8.0, bottom: 4.0),
-                        padding: EdgeInsets.only(
-                            right: 15, left: 15,top: 2, bottom: 8),
-                        height: MediaQuery.of(context).size.height * 0.185,
-                        decoration: BoxDecoration(),
-                        child: Image.asset(
-                          plantsModel.plant_image,
-                          width: MediaQuery.of(context).size.width*0.338,
-                          height: double.infinity,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                            padding: EdgeInsets.only(top: 2.0),
-                            //alignment: Alignment.centerLeft,
-                            child: Text(
-                              plantsModel.plant_name,
-                              style: const TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
-                            )),
-                      ),
-                    ],
+                child: Image.asset(
+                  'assets/images/cat19.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                   category!.categoryName=='Special groups'? plantsModel.speciman!:plantsModel.latine_name!,
+                    style:  TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
+
             ],
           ),
         ),
