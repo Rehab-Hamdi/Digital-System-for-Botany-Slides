@@ -65,7 +65,7 @@ class _SettingsViewState extends State<DesktopSettingsView> {
           ),
           Divider(),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.69,
+            height: MediaQuery.of(context).size.height * 0.74,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
