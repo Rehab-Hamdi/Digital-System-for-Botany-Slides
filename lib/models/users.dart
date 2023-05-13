@@ -33,7 +33,8 @@ class Users {
     this.blocked,
     this.createdAt,
     this.updatedAt,
-    this.emailVerifiedAt});
+    this.emailVerifiedAt,
+  });
 
   Users.fromJson(dynamic json) {
     id = json["id"];
@@ -50,7 +51,7 @@ class Users {
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    map["id"] = id.toString(); //
+    map["id"] = id.toString();
     map["name"] = name;
     map["email"] = email;
     map["password"] = password;

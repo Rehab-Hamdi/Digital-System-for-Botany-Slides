@@ -46,16 +46,22 @@ class APIManager{
 
   // update exist user
   static Future<http.Response>updateUserRequest(Users user)async{
-    Uri url = Uri.parse('$BASE_URL/users/${user.id}');
-    http.Response response = await http.put(url, body:jsonEncode({
-      'name' : user.name,
-      'password' : user.password,
-      'email': user.email,
-      'phone': user.phone,
-      'type' : user.type,
-      'ssn' : user.ssn,
-      'blocked': '${user.blocked}',
+    Uri url = Uri.parse('$BASE_URL/users/${user.id}'); //'https://botany.larasci.site/api/users/${user.id}'
+    print(url);
+    http.Response response = await http.put(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body:jsonEncode({
+          "name" : user.name,
+          "password" : user.password,
+          "email": user.email,
+          "phone": user.phone,
+          "type" : user.type,
+          "ssn" : user.ssn,
+          "blocked": user.blocked,
     }));
+
     if(response.statusCode == 203)
     {
       print('user updated successfully...!');

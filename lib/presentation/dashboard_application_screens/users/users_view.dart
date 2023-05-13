@@ -559,7 +559,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
 
   void viewUser() {}
 
-  clearAllControllars() {
+  clearAllControllars() { //
     deleteUserController.clear();
     idController.clear();
     nameController.clear();
