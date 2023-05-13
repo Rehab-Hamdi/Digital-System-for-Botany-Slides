@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 class PlantsModel
 {
-  final String plant_name;
+  String? latine_name;
+  String? ceilName;
+  String? speciman;
   var plant_image;
-  PlantsModel({required this.plant_image, required this.plant_name});
+  PlantsModel({required this.plant_image,  this.latine_name,  this.ceilName,  this.speciman});
 }

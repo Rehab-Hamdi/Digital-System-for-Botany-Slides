@@ -78,7 +78,7 @@ class _PlanetInfoViewState
                           BorderRadius.only(bottomRight: Radius.circular(40))),
                   child: Center(
                     child: Image.asset(
-                      plantsModel!.plant_image,
+                        'assets/images/cat19.png',
                       width: MediaQuery.of(context).size.width * 0.66,
                       height: MediaQuery.of(context).size.height * 0.66,
                     ),
@@ -87,7 +87,7 @@ class _PlanetInfoViewState
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, left: 20.0),
                   child: Text(
-                    plantsModel!.plant_name,
+                    plantsModel!.latine_name!,
                     style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
@@ -116,6 +116,12 @@ class _PlanetInfoViewState
                   child: Text(
                     "About",
                     style: Theme.of(context).textTheme.headline2,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+                  child: Text(
+                    "Ceil name : ${plantsModel!.ceilName}",
                   ),
                 ),
                 const SizedBox(

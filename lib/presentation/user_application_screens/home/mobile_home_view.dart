@@ -1,52 +1,34 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/core/views/plants_card_item.dart';
+import 'package:our_test_project/database_models/Get_by_group.dart';
+import 'package:our_test_project/models/categorg_model.dart';
 import 'package:our_test_project/models/plants_models.dart';
+import 'package:our_test_project/presentation/user_application_screens/home/home_navigator.dart';
+import 'package:our_test_project/presentation/user_application_screens/home/home_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class MobileHomeView extends StatefulWidget {
+class HomeView extends StatefulWidget {
   static const String routeName = "MobileHomeView";
 
-  MobileHomeView({super.key});
+  CategoryModel? category;
+
+  HomeView({super.key, this.category});
 
   @override
-  State<MobileHomeView> createState() => _MobileHomeViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _MobileHomeViewState extends State<MobileHomeView> {
+class _HomeViewState extends BaseState<HomeView, HomeViewModel>
+    implements HomeNavigator {
   final FocusNode _node = FocusNode();
   var _searchTextController = TextEditingController();
   List<PlantsModel>? itemsListSearch;
-
-  List allPlants = [
-    PlantsModel(
-        plant_image: 'assets/images/cat1.png', plant_name: 'Batrachospermum'),
-    PlantsModel(
-        plant_image: 'assets/images/cat2.png', plant_name: 'Chaetophora'),
-    PlantsModel(
-        plant_image: 'assets/images/cat3.png', plant_name: 'Cladophora'),
-    PlantsModel(plant_image: 'assets/images/cat4.png', plant_name: 'Diatoms'),
-    PlantsModel(plant_image: 'assets/images/cat6.png', plant_name: 'Dictyota'),
-    PlantsModel(
-        plant_image: 'assets/images/cat7.png', plant_name: 'Enteromorpha'),
-    PlantsModel(plant_image: 'assets/images/cat8.png', plant_name: 'Euglena'),
-    PlantsModel(plant_image: 'assets/images/cat9.png', plant_name: 'Fucus'),
-    PlantsModel(plant_image: 'assets/images/cat10.png', plant_name: 'Nitella'),
-    PlantsModel(plant_image: 'assets/images/cat11.png', plant_name: 'Nostoc'),
-    PlantsModel(
-        plant_image: 'assets/images/cat12.png', plant_name: 'Oedogonium'),
-    PlantsModel(
-        plant_image: 'assets/images/cat13.png', plant_name: 'Pandorina'),
-    PlantsModel(
-        plant_image: 'assets/images/cat14.png', plant_name: 'Polysiphonia'),
-    PlantsModel(
-        plant_image: 'assets/images/cat15.png', plant_name: 'Stigeoclonium'),
-    PlantsModel(plant_image: 'assets/images/cat16.png', plant_name: 'Olothrix'),
-    PlantsModel(plant_image: 'assets/images/cat17.png', plant_name: 'Cyperus'),
-    PlantsModel(plant_image: 'assets/images/cat18.png', plant_name: 'Volvox'),
-    PlantsModel(plant_image: 'assets/images/cat19.png', plant_name: 'Zygnena'),
-  ];
-
+  String? value;
+  bool isCeilSearch = false;
   void dispose() {
     super.dispose();
     _node.dispose();
@@ -62,134 +44,320 @@ class _MobileHomeViewState extends State<MobileHomeView> {
   }
 
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: ListView(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(7.0),
-                    child: const Text(
-                      "Let's Find \nYour Slide",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-
-                  ///New Code for Search
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40.0),
-                        border: Border.all(
-                          color: MyColors.lightGreen,
-                        )),
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 5, left: 5),
-                      child: TextField(
-                        onChanged: (value) {
-                          setState(() {
-                            itemsListSearch = allPlants
-                                .where((element) => element.plant_name
-                                    .toLowerCase()
-                                    .contains(value.toLowerCase()))
-                                .cast<PlantsModel>()
-                                .toList();
-                            if (_searchTextController!.text.isNotEmpty &&
-                                itemsListSearch!.isEmpty) {
-                              print(
-                                  'itemsListSearch legnth${itemsListSearch!.length}');
-                            }
-                          });
-                        },
-                        controller: _searchTextController,
-                        focusNode: _node,
-                        decoration: InputDecoration(
-                            hintText: 'Find_Your_Slide ',
-                            hintStyle: Theme.of(context).textTheme.bodySmall,
-                            border: InputBorder.none,
-                            prefixIcon: const Icon(
-                              Icons.search,
-                              color: Colors.grey,
-                            ),
-                            suffixIcon: IconButton(
-                              onPressed: _searchTextController!.text.isEmpty
-                                  ? null
-                                  : () {
-                                      _searchTextController?.clear();
-                                      _node.unfocus();
-                                    },
-                              icon: Icon(
-                                Icons.cancel,
-                                color: _searchTextController!.text.isNotEmpty
-                                    ? Colors.red
-                                    : Colors.grey,
-                              ),
-                            )),
-                      ),
-                    ),
-                  ),
-                  _searchTextController!.text.isNotEmpty &&
-                          itemsListSearch!.isEmpty
-                      ? Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.03,
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.65,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                image: AssetImage(
-                                  'assets/images/noResult.jpg',
-                                ),
-                                fit: BoxFit.cover,
-                              )),
-                            )
-                          ],
-                        )
-                      :
-
-                      /// plants Show
-                      Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.01,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.75,
-                              child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 15,
-                                  mainAxisSpacing: 17,
-                                  childAspectRatio: 0.65.sp,
-                                ),
-                                itemCount: _searchTextController.text.isEmpty
-                                    ? allPlants.length
-                                    : itemsListSearch!.length,
-                                itemBuilder: (context, index) =>
-                                    _searchTextController.text.isEmpty
-                                        ? PlantsCardItem(
-                                            plantsModel: allPlants[index],
-                                          )
-                                        : PlantsCardItem(
-                                            plantsModel:
-                                                itemsListSearch![index]),
-                              ),
-                            )
-                          ],
+    return ChangeNotifierProvider(
+      create: (context) => viewModel,
+      child: SafeArea(
+        child: Scaffold(
+            backgroundColor: Colors.white,
+            body: FutureBuilder<GetByGroup>(
+                future: viewModel
+                    .getSlidesByGroupName(widget.category!.categoryName),
+                builder: (buildContext, snapshot) {
+                  if (snapshot.hasError) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          //zheight: MediaQuery.of(context).size.height*0.50,
+                          child: Image.asset(
+                            'assets/images/noNetwork.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                ],
-              ),
-            ),
-          ],
-        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Check your network!',
+                            style: TextStyle(fontSize: 15.sp),
+                          ),
+                        )
+                      ],
+                    );
+                  }
+                  var data = snapshot.data;
+                  var slides_list = data?.payload;
+                  List<PlantsModel> allSlides = slides_list?.map((slide) {
+                        return PlantsModel(
+                          plant_image: slide.image,
+                          latine_name: slide.latineName ?? '',
+                          ceilName: slide.ceilName ?? '',
+                          speciman: slide.specimen ?? '',
+                        );
+                      }).toList() ??
+                      [];
+
+                  return allSlides.length != 0
+                      ? SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 12, left: 12, right: 12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Column(
+                                  children: [
+                                    Text('Let\'s make search', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Radio<bool>(
+                                              value: false,
+                                              groupValue: isCeilSearch,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  isCeilSearch = value!;
+                                                });
+                                              },
+                                            ),
+                                            Text(
+                                                "By Plant name",
+                                                style: TextStyle(
+                                                  fontSize: 13.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: MyColors.green,
+                                                ),
+                                              ),
+
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Radio<bool>(
+                                              value: true,
+                                              groupValue: isCeilSearch,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  isCeilSearch = value!;
+                                                });
+                                              },
+                                            ),
+                                              Text(
+                                                "By Ceil name",
+                                                style: TextStyle(
+                                                  fontSize: 13.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: MyColors.green,
+                                                ),
+                                              ),
+
+
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              ///New Code for Search
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(40.0),
+                                    border: Border.all(
+                                      color: MyColors.lightGreen,
+                                    )),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 5, left: 5),
+                                  child: TextField(
+                                    onChanged: (val) {
+                                      setState(() {
+                                        value = val;
+                                        if (isCeilSearch == false) {
+                                          if (widget.category ==
+                                              "Special groups") {
+                                            itemsListSearch = allSlides
+                                                .where((element) =>
+                                                    element.speciman !=
+                                                        null &&
+                                                    element.speciman!
+                                                        .toLowerCase()
+                                                        .contains(val
+                                                            .toLowerCase()))
+                                                .toList();
+                                          } else {
+                                            itemsListSearch = allSlides
+                                                .where((element) =>
+                                                    element.latine_name !=
+                                                        null &&
+                                                    element.latine_name!
+                                                        .toLowerCase()
+                                                        .contains(val
+                                                            .toLowerCase()))
+                                                .toList();
+                                          }
+                                        } else {
+                                          itemsListSearch = allSlides
+                                              .where((element) =>
+                                                  element.ceilName !=
+                                                      null &&
+                                                  element.ceilName!
+                                                      .toLowerCase()
+                                                      .contains(value!
+                                                          .toLowerCase()))
+                                              .toList();
+                                        }
+
+                                        if (_searchTextController!
+                                                .text.isNotEmpty &&
+                                            itemsListSearch!.isEmpty) {
+                                          print(
+                                              'itemsListSearch length ${itemsListSearch!.length}');
+                                        }
+                                        // If the user has previously searched by ceilName and the search query is not empty,
+                                        // update the search results to show items matching the ceilName again.
+                                      });
+                                    },
+                                    controller: _searchTextController,
+                                    focusNode: _node,
+                                    decoration: InputDecoration(
+                                        hintText: 'Find_Your_Plant/Ceil  ',
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                        border: InputBorder.none,
+                                        prefixIcon: const Icon(
+                                          Icons.search,
+                                          color: Colors.grey,
+                                        ),
+                                        suffixIcon: IconButton(
+                                          onPressed:
+                                              _searchTextController!
+                                                      .text.isEmpty
+                                                  ? null
+                                                  : () {
+                                                      _searchTextController
+                                                          ?.clear();
+                                                      _node.unfocus();
+                                                    },
+                                          icon: Icon(
+                                            Icons.cancel,
+                                            color: _searchTextController!
+                                                    .text.isNotEmpty
+                                                ? Colors.red
+                                                : Colors.grey,
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              ),
+                              _searchTextController!.text.isNotEmpty &&
+                                      itemsListSearch!.isEmpty
+                                  ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Image(
+                                          image: AssetImage(
+                                            'assets/images/noResult.png',
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0),
+                                          child: Text(
+                                            'Ooops , No results found!',
+                                            style: TextStyle(
+                                                fontSize: 15.sp),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  :
+
+                                  /// plants Show
+                                  Column(
+                                      children: [
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.75,
+                                          child: GridView.builder(
+                                            gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: 15,
+                                              mainAxisSpacing: 17,
+                                              childAspectRatio: 0.65.sp,
+                                            ),
+                                            itemCount:
+                                                _searchTextController
+                                                        .text.isEmpty
+                                                    ? allSlides.length
+                                                    : itemsListSearch!
+                                                        .length,
+                                            itemBuilder:
+                                                (context, index) =>
+                                                    _searchTextController
+                                                            .text.isEmpty
+                                                        ? PlantsCardItem(
+                                                            plantsModel:
+                                                                allSlides[
+                                                                    index],
+                                                            category: widget
+                                                                .category,
+                                                          )
+                                                        : PlantsCardItem(
+                                                            plantsModel:
+                                                                itemsListSearch![
+                                                                    index],
+                                                            category: widget
+                                                                .category,
+                                                          ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.0,
+                                        ),
+                                      ],
+                                    ),
+                            ],
+                          ),
+                        ),
+                      )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              //zheight: MediaQuery.of(context).size.height*0.50,
+                              child: Image.asset(
+                                'assets/images/noData.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(
+                                'Ooops , No Data found!',
+                                style: TextStyle(fontSize: 15.sp),
+                              ),
+                            )
+                          ],
+                        );
+                })),
       ),
     );
+  }
+
+  @override
+  HomeViewModel initViewModel() {
+    return HomeViewModel();
   }
 }
