@@ -26,11 +26,11 @@ class AddUserViewModel extends BaseViewModel<AddUserNavigator> {
     if(message=="account created successfully.")
     {
       navigator!.hideLoading();
-      navigator!.showMessage(message);
+      navigator!.showMessage(message, true);
     }
     else {
       navigator!.hideLoading();
-      navigator!.showMessage(message);
+      navigator!.showMessage(message, false);
     }
   }
 
