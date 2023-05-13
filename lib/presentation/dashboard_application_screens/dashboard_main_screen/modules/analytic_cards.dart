@@ -73,7 +73,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
             iconSize: iconSize,
           ),
         ),
-        Center(child: Text("$size")),
+        //Center(child: Text("$size")),
       ],
     );
   }

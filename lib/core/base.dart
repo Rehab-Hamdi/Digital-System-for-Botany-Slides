@@ -6,7 +6,7 @@ abstract class BaseNavigator {
 
   void hideLoading();
 
-  void showMessage(String message);
+  void showMessage(String message, bool success);
 }
 
 class BaseViewModel<Nav extends BaseNavigator> extends ChangeNotifier {
@@ -44,12 +44,16 @@ abstract class BaseState<T extends StatefulWidget, VM extends BaseViewModel>
   }
 
   @override
-  void showMessage(String message) {
+  void showMessage(String message, bool success) {
     showDialog(
         context: context,
         builder: (c) {
           return AlertDialog(
-              content: Text(message, style: TextStyle(color: Colors.red.shade400, fontSize: 17),),
+              content: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Text(message, style: TextStyle(color:
+                    success ? Colors.green : Colors.red.shade400, fontSize: 17),),
+              ),
             actions: [
               Center(child: IconButton( onPressed: (){Navigator.of(context).pop(); }, icon: const Icon(Icons.cancel, color:MyColors.designGreen,),))
             ],

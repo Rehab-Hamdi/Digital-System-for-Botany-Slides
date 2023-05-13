@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/constants.dart';
+
 import 'login_navigator.dart';
 
 class LoginViewModel extends BaseViewModel<LoginNavigator> {
@@ -25,12 +26,12 @@ class LoginViewModel extends BaseViewModel<LoginNavigator> {
     if(message=="login successfully.")
       {
         navigator!.hideLoading();
-        navigator!.showMessage(message);
+        navigator!.showMessage(message, true);
         navigator?.goToHome();
       }
     else {
       navigator!.hideLoading();
-      navigator!.showMessage(message);
+      navigator!.showMessage(message, false);
     }
   }
 
