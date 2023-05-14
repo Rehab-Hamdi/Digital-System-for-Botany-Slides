@@ -17,7 +17,7 @@ class Users {
   String? phone;
   String? type;
   String? ssn;
-  bool? blocked;
+  int? blocked;
   String? createdAt;
   String? updatedAt;
   String? emailVerifiedAt;
@@ -43,7 +43,7 @@ class Users {
     phone = json["phone"];
     type = json["type"];
     ssn = json["ssn"];
-    blocked = json["blocked"]  == 1 ? true : false;
+    blocked = json["blocked"];
     createdAt = json["created_at"];
     updatedAt = json["updated_at"];
     emailVerifiedAt = json["email_verified_at"];

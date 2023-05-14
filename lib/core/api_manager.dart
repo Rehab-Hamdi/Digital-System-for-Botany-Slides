@@ -15,6 +15,14 @@ class APIManager{
     return allUsers;
   }
 
+  static Future<Users> getUserById(String? id) async{
+    Uri url = Uri.parse('$BASE_URL/users/$id');
+    http.Response response = await http.get(url);
+    var responseBody = jsonDecode(response.body);
+    Users user = Users.fromJson(responseBody);
+    return user;
+  }
+
   // create new user
   static Future<http.Response>addNewUserRequest(Users user)async{
     Uri url = Uri.parse('$BASE_URL/users');

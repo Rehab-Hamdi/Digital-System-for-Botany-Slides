@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
+import 'package:our_test_project/models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_navigator.dart';
 
 class UsersViewModel extends BaseViewModel<UserNavigator>{
-  void deleteUserById(String? id, BuildContext context, TextEditingController deleteUserController){
+  void createNewUser(Users? user, BuildContext context){
+    navigator!.showLoading();
+    APIManager.addNewUserRequest(user!);
+    Navigator.pop(context);
+    navigator!.hideLoading();
+    navigator!.showMessage("user added successfully..!", true);
+  }
+  void updateUserInfo(Users? user, BuildContext context){
+    navigator!.showLoading();
+    APIManager.updateUserRequest(user!);
+    Navigator.pop(context);
+    navigator!.hideLoading();
+    navigator!.showMessage("user updated successfully..!", true);
+  }
+  void deleteUserById(String? id, BuildContext context){
     navigator!.showLoading();
     APIManager.deleteUserRequest(id!);
-    Navigator.of(context).pop(deleteUserController.text);
+    Navigator.pop(context);
     navigator!.hideLoading();
     navigator!.showMessage("user deleted successfully..!", true);
   }

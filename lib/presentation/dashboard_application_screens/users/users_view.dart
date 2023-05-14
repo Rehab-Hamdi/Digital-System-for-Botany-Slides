@@ -8,6 +8,8 @@ import 'package:our_test_project/presentation/dashboard_application_screens/user
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view_model.dart';
 import 'package:provider/provider.dart';
 
+import 'modules/custom_alert_dialog.dart';
+
 class UsersView extends StatefulWidget {
   const UsersView({Key? key}) : super(key: key);
   static const String routeName = "userView";
@@ -18,6 +20,47 @@ class UsersView extends StatefulWidget {
 
 class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     implements UserNavigator {
+  List<Users>? _users;
+  List<Users> _filteredUsers = [];
+  String _searchQuery = ''; //
+  Widget _buildSearchBar() {
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: MediaQuery.of(context).size.width*0.12,
+          right: MediaQuery.of(context).size.width*0.13,
+          bottom:MediaQuery.of(context).size.height*.02,
+        ),
+        child: TextField(
+          onChanged: (query) {
+            setState(() {
+              _searchQuery = query;
+              _filteredUsers = _users!
+                  .where((user) =>
+              user.name!.toLowerCase().contains(_searchQuery.toLowerCase())
+                  ||
+                  user.id.toString().toLowerCase().contains(_searchQuery.toLowerCase())).toList();
+            });
+          },
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            hintText: 'Search by name or ssn or ID',
+            prefixIcon: const Icon(Icons.search),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(width: 3, color: MyColors.lightGray,),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(width: 3, color: MyColors.lightGray,),
+              borderRadius: BorderRadius.circular(25),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   late TextEditingController deleteUserController;
   late TextEditingController idController;
   late TextEditingController nameController;
@@ -75,9 +118,14 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                 alignment: Alignment.topRight,
                 margin: const EdgeInsets.only(top: 15, right: 15),
                 padding: const EdgeInsets.all(10),
-                child: TextButton(
-                  onPressed: openAddNewUserDialog,
-                  child: const Text('add new user +'),
+                child: Row(
+                  children: [
+                    _buildSearchBar(),
+                    TextButton(
+                      onPressed: openAddNewUserDialog,
+                      child: const Text('add new user +', style: TextStyle(fontSize: 17),),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -98,114 +146,118 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                               );
                             }
                             if (snapshot.hasData) {
-                              var data = snapshot.data;
-                              var users = data;
-                              return SizedBox(
-                                //width: 950,
-                                child: DataTable(
-                                  headingRowColor: MaterialStateColor.resolveWith(
-                                      (states) => MyColors.userInfoColor
-                                          .withOpacity(0.1)),
-                                  columns: [
-                                    DataColumn(
-                                        label: SizedBox(
-                                      //width: MediaQuery.of(context).size.width *0.15,
-                                      child: Text(
-                                        'User ID',
-                                        style:
-                                            Theme.of(context).textTheme.headline6,
-                                      ),
-                                    )),
-                                    DataColumn(
-                                        label: SizedBox(
-                                      width: MediaQuery.of(context).size.width * 0.13,
-                                      child: Text(
-                                        'User Name',
-                                        style:
-                                            Theme.of(context).textTheme.headline6,
-                                      ),
-                                    )),
-                                    DataColumn(
-                                        label: SizedBox(
-                                     width: MediaQuery.of(context).size.width * 0.13,
-                                      child: Text(
-                                        'User Email',
-                                        style:
-                                            Theme.of(context).textTheme.headline6,
-                                      ),
-                                    )),
-                                    const DataColumn(label: Text('')),
-                                  ],
-                                  rows: users
-                                      !.map(
-                                        (user) => DataRow(
-                                          cells: [
-                                            DataCell(
-                                                user.blocked! ?
-                                                Row(
-                                                  children: [
-                                                    Text('${user.id}',
-                                                    style: const TextStyle(
-                                                        color:
-                                                        MyColors.userInfoColor)),
-                                                    const SizedBox(width: 10,),
-                                                    const Icon(Icons.block, color: Colors.red,),
-                                              ],
-                                            )
-                                            :
-                                              Text('${user.id}',
-                                                style: const TextStyle(
-                                                   color:
-                                                   MyColors.userInfoColor)),
-                                            ),
-                                            DataCell(Text(user.name!,
-                                                style: const TextStyle(
-                                                    color:
-                                                        MyColors.userInfoColor))),
-                                            DataCell(Text(user.email!,
-                                                style: const TextStyle(
-                                                    color:
-                                                        MyColors.userInfoColor))),
-                                            DataCell(
-                                              Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment: MainAxisAlignment.end,
-                                                children: [
-                                                  IconButton(
-                                                    onPressed: () {},
-                                                    icon: const Icon(Icons
-                                                        .visibility_outlined),
-                                                    color: MyColors.userInfoColor,
-                                                  ),
-                                                  IconButton(
-                                                    onPressed:(){
-                                                      updateIdController.text = user.id.toString()!;
-                                                      updateNameController.text = user.name!;
-                                                      updateEmailController.text = user.email!;
-                                                      updatePhoneController.text = user.phone!;
-                                                      updateTypeController.text = user.type!;
-                                                      updateSsnController.text = user.ssn!;
-                                                      updateBlockStateController.text = user.blocked == null ? '0' : '1';
-                                                      openUpdateUserDialog(user);
-                                                      },
-                                                    icon: const Icon(Icons.edit),
-                                                    color: MyColors.userInfoColor,
-                                                  ),
-                                                  IconButton(
-                                                    onPressed: () async {
-                                                      await openDeleteUserDialog();
-                                                    },
-                                                    icon: const Icon(
-                                                        Icons.delete),
-                                                    color: MyColors.userInfoColor,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
+                              _users = snapshot.data;
+                              List<Users> usersToDisplay =
+                              _searchQuery.isEmpty ? _users! : _filteredUsers;
+                              return Column(
+                                children: [
+                                  DataTable(
+                                    headingRowColor: MaterialStateColor.resolveWith(
+                                        (states) => MyColors.userInfoColor
+                                            .withOpacity(0.1)),
+                                    columns: [
+                                      DataColumn(
+                                          label: SizedBox(
+                                        //width: MediaQuery.of(context).size.width *0.15,
+                                        child: Text(
+                                          'User ID',
+                                          style:
+                                              Theme.of(context).textTheme.headline6,
                                         ),
-                                      ).toList(),
-                                ),
+                                      )),
+                                      DataColumn(
+                                          label: SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.13,
+                                        child: Text(
+                                          'User Name',
+                                          style:
+                                              Theme.of(context).textTheme.headline6,
+                                        ),
+                                      )),
+                                      DataColumn(
+                                          label: SizedBox(
+                                       width: MediaQuery.of(context).size.width * 0.13,
+                                        child: Text(
+                                          'User Email',
+                                          style:
+                                              Theme.of(context).textTheme.headline6,
+                                        ),
+                                      )),
+                                      const DataColumn(label: Text('')),
+                                    ],
+                                    rows: usersToDisplay
+                                        .map(
+                                          (user) => DataRow(
+                                            cells: [
+                                              DataCell(
+                                                  user.blocked == 1 ?
+                                                  Row(
+                                                    children: [
+                                                      Text('${user.id}',
+                                                      style: const TextStyle(
+                                                          color:
+                                                          MyColors.userInfoColor)),
+                                                      const SizedBox(width: 10,),
+                                                      const Icon(Icons.block, color: Colors.red,),
+                                                ],
+                                              )
+                                              :
+                                                Text('${user.id}',
+                                                  style: const TextStyle(
+                                                     color:
+                                                     MyColors.userInfoColor)),
+                                              ),
+                                              DataCell(Text(user.name!,
+                                                  style: const TextStyle(
+                                                      color:
+                                                          MyColors.userInfoColor))),
+                                              DataCell(Text(user.email!,
+                                                  style: const TextStyle(
+                                                      color:
+                                                          MyColors.userInfoColor))),
+                                              DataCell(
+                                                Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children: [
+                                                    IconButton(
+                                                      onPressed:(){
+                                                        viewUser(user);
+                                                      },
+                                                      icon: const Icon(Icons
+                                                          .visibility_outlined),
+                                                      color: MyColors.userInfoColor,
+                                                    ),
+                                                    IconButton(
+                                                      onPressed:(){
+                                                        updateIdController.text = user.id.toString()!;
+                                                        updateNameController.text = user.name!;
+                                                        updateEmailController.text = user.email!;
+                                                        updatePhoneController.text = user.phone!;
+                                                        updateTypeController.text = user.type!;
+                                                        updateSsnController.text = user.ssn!;
+                                                        updateBlockStateController.text = user.blocked == null || user.blocked == '0' ? '0' : '1';
+                                                        openUpdateUserDialog(user);
+                                                        },
+                                                      icon: const Icon(Icons.edit),
+                                                      color: MyColors.userInfoColor,
+                                                    ),
+                                                    IconButton(
+                                                      onPressed: () async {
+                                                        await openDeleteUserDialog();
+                                                      },
+                                                      icon: const Icon(
+                                                          Icons.delete),
+                                                      color: MyColors.userInfoColor,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ).toList(),
+                                  ),
+                                ],
                               );
                             }
                             return const Center(
@@ -219,9 +271,6 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.11,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -293,231 +342,51 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
   @override
   Future openAddNewUserDialog() => showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: Text(
-            'Add New User',
-            style:
-                Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16),
-          ),
-          content: SingleChildScrollView(
-            child: Form(
-              key: addNewUserFormKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SimpleTextField(
-                    text: 'Enter Id',
-                    controller: idController,
-                    validatorFunction: (text)=> viewModel.idValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'Enter Name',
-                    controller: nameController,
-                    validatorFunction: (text)=> viewModel.userNameValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'Enter Email',
-                    controller: emailController,
-                    validatorFunction: (text)=> viewModel.emailValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'Enter Password',
-                    controller: passwordController,
-                    validatorFunction: (text)=> viewModel.passwordValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'Enter Phone',
-                    controller: phoneController,
-                    validatorFunction: (text)=> viewModel.phoneValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'Enter Type',
-                    controller: typeController,
-                    validatorFunction: (text)=> viewModel.userNameValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'Enter SSN',
-                    controller: ssnController,
-                    validatorFunction: (text)=> viewModel.phoneValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
-              child: TextButton(
-                onPressed: () {
-                  clearAllControllars();
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(color: Colors.green, fontSize: 15),
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-              const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
-              child: TextButton(
-                onPressed: addNewUser,
-                child: const Text(
-                  'Add',
-                  style: TextStyle(fontSize: 18, color: MyColors.active),
-                ),
-              ),
-            )
-          ],
-        ),
+        builder: (context) => CustomAlertDialog(
+            title: 'Add New User',
+            formKey: addNewUserFormKey,
+            actionText: 'Add',
+            actionFunction: addNewUser,
+            viewModel: viewModel,
+            idController: idController,
+            nameController: nameController,
+            emailController: emailController,
+            passwordController: passwordController,
+            phoneController: phoneController,
+            typeController: typeController,
+            ssnController: ssnController),
       );
 
   @override
   Future openUpdateUserDialog(Users user) => showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: Text(
-            'Update User',
-            style:
-                Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16),
-          ),
-          content: SingleChildScrollView(
-            child: Form(
-              key: updateUserFormKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SimpleTextField(
-                    text: 'User Id',
-                    controller: updateIdController,
-                    validatorFunction: (text)=> viewModel.idValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'User Name',
-                    controller: updateNameController,
-                    validatorFunction: (text)=> viewModel.userNameValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'User Email',
-                    controller: updateEmailController,
-                    validatorFunction: (text)=> viewModel.emailValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'User Password',
-                    controller: updatePasswordController,
-                    validatorFunction: (text)=> viewModel.passwordValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'User Phone',
-                    controller: updatePhoneController,
-                    validatorFunction: (text)=> viewModel.phoneValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'User Type',
-                    controller: updateTypeController,
-                    validatorFunction: (text)=> viewModel.userNameValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'User SSN',
-                    controller: updateSsnController,
-                    validatorFunction: (text)=> viewModel.phoneValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SimpleTextField(
-                    text: 'Blocked State (0 for unBlock or 1 for Block)',
-                    controller: updateBlockStateController,
-                    validatorFunction: (text)=> viewModel.blockedStatusValidation(text),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
-              child: TextButton(
-                onPressed: () {
-                  clearAllControllars();
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(color: Colors.green, fontSize: 15),
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-              const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
-              child: TextButton(
-                onPressed: updateUser,
-                child: const Text(
-                  'Update',
-                  style: TextStyle(fontSize: 18, color: MyColors.active),
-                ),
-              ),
-            )
-          ],
+        builder: (context) => CustomAlertDialog(
+            title: 'Update User Information',
+            formKey: updateUserFormKey,
+            actionText: 'Update',
+            actionFunction: updateUser,
+            viewModel: viewModel,
+            idController: updateIdController,
+            nameController: updateNameController,
+            emailController: updateEmailController,
+            passwordController: updatePasswordController,
+            phoneController: updatePhoneController,
+            typeController: updateTypeController,
+            ssnController: updateSsnController,
+            blockedController: updateBlockStateController,
         ),
       );
 
   void deleteUser() {
     if(deleteUserFormKey.currentState!.validate()) {
       String? id = deleteUserController.text;
-      viewModel.deleteUserById(id, context, deleteUserController);
+      viewModel.deleteUserById(id, context);
     }
   }
 
   void updateUser() {
     if(updateUserFormKey.currentState!.validate()) {
-      Users updatedUser = Users(
+      Users user = Users(
           id: int.parse(updateIdController.text),
           name: updateNameController.text,
           email: updateEmailController.text,
@@ -525,20 +394,16 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
           phone: updatePhoneController.text,
           type: updateTypeController.text,
           ssn: updateSsnController.text,
-          blocked: updateBlockStateController.text == '0' ? false : true,
+          blocked: int.parse(updateBlockStateController.text),
       );
-      viewModel.navigator!.showLoading();
-      APIManager.updateUserRequest(updatedUser);
-      Navigator.of(context).pop(updateUserFormKey.toString());
-      viewModel.navigator!.hideLoading();
-      viewModel.navigator!.showMessage("user updated successfully..!", true);
+      viewModel.updateUserInfo(user, context);
       clearAllControllars();
     }
   }
 
   void addNewUser() {
     if(addNewUserFormKey.currentState!.validate()) {
-      Users newUser = Users(
+      Users user = Users(
         id: int.parse(idController.text),
         name: nameController.text,
         email: emailController.text,
@@ -546,19 +411,102 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
         phone: phoneController.text,
         type: typeController.text,
         ssn: ssnController.text,
-        blocked: false
+        blocked: 0
       );
-      viewModel.navigator!.showLoading();
-      APIManager.addNewUserRequest(newUser);
-      Navigator.of(context).pop(addNewUserFormKey.toString());
-      viewModel.navigator!.hideLoading();
-      viewModel.navigator!.showMessage("user added successfully..!", true);
+      viewModel.createNewUser(user, context);
       clearAllControllars();
     }
   }
 
-  void viewUser() {}
+  TextStyle textStyle = const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 15,
+    color: Colors.white,
+  );
+  TextStyle subtitleStyle = const TextStyle(
+    color: Colors.white70,
+  );
+  Future viewUser(Users user) => showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      scrollable: true,
+      backgroundColor: MyColors.active,
+      title: Center(
+        child: Text(
+          user.name!.toUpperCase(),
+          style:
+          Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16, color: Colors.white),
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            title: Text('Social Security Number:', style: textStyle,),
+            leading: const Icon(Icons.security, color: Colors.white,),
+            subtitle: Text(user.ssn!, style: subtitleStyle,),
+          ),
+          ListTile(
+            title: Text('ID:', style: textStyle,),
+            leading: const Icon(Icons.assignment_ind, color: Colors.white,),
+            subtitle: Text(user.id.toString(), style: subtitleStyle,),
+          ),
+          ListTile(
+            title: Text('Name:', style: textStyle,),
+            leading: const Icon(Icons.person, color: Colors.white,),
+            subtitle: Text(user.name!, style: subtitleStyle,),
+          ),
+          ListTile(
+            title: Text('Email:', style: textStyle,),
+            leading: const Icon(Icons.email, color: Colors.white,),
+            subtitle: Text(user.email!, style: subtitleStyle,),
+          ),
+          ListTile(
+            title: Text('Phone:', style: textStyle,),
+            leading: const Icon(Icons.phone, color: Colors.white,),
+            subtitle: Text(user.phone!, style: subtitleStyle,),
+          ),
+          ListTile(
+            title: Text('Type:', style: textStyle,),
+            leading: const Icon(Icons.groups, color: Colors.white,),
+            subtitle: Text(user.type!, style: subtitleStyle,),
+          ),
+          ListTile(
+            title: Text('Blocked Status:', style: textStyle,),
+            leading: Icon(Icons.block,
+              color: user.blocked == 1 ? Colors.red : Colors.white,
+            ),
+            subtitle: Text(
+              user.blocked == 1 ? 'blocked' : 'not blocked',
+              style: subtitleStyle,),
+          ),
+           ListTile(
+            title: Text('Account Created Date:', style: textStyle,),
+            leading: const Icon(Icons.date_range, color: Colors.white,),
+             subtitle: Text(formattedDate(user.createdAt!)!, style: subtitleStyle,),
+          ),
+        ],
+      ),
+      actions:[
+        Padding(
+          padding: const EdgeInsets.only(
+              left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+          child: TextButton(
+            onPressed: (){Navigator.pop(context);},
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: MyColors.categoryBink, fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 
+  String? formattedDate(String date){
+    DateTime dateTime= DateTime.parse(date);
+    return '${dateTime.year}-${dateTime.month}-${dateTime.day} at ${dateTime.hour}:${dateTime.minute}';
+  }
   clearAllControllars() { //
     deleteUserController.clear();
     idController.clear();
@@ -579,8 +527,4 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     updateBlockStateController.clear();
   }
 
-  @override
-  void openDialog() {
-    // TODO: implement openDialog
-  }
 }
