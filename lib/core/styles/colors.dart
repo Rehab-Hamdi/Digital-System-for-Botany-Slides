@@ -29,5 +29,6 @@ class MyColors {
   static const Color studentsColor = Color(0xffA85CF9);
   static const Color doctorsColor = Color(0xff5534A5);
   static const Color remainSlidesColor = Color(0xff4B7BE5);
+  static const Color userViewColor = Color(0xff6c63ff);
 
 }

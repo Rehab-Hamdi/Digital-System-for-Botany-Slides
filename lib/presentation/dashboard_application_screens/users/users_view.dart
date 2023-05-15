@@ -7,6 +7,7 @@ import 'package:our_test_project/models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_navigator.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import 'modules/custom_alert_dialog.dart';
 
@@ -421,21 +422,20 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
   TextStyle textStyle = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 15,
-    color: Colors.white,
+      color: MyColors.active
   );
   TextStyle subtitleStyle = const TextStyle(
-    color: Colors.white70,
+    color: MyColors.userInfoColor,
   );
   Future viewUser(Users user) => showDialog(
     context: context,
     builder: (context) => AlertDialog(
       scrollable: true,
-      backgroundColor: MyColors.active,
       title: Center(
         child: Text(
           user.name!.toUpperCase(),
           style:
-          Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16, color: Colors.white),
+          Theme.of(context).textTheme.headline6!,
         ),
       ),
       content: Column(
@@ -443,38 +443,38 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
         children: [
           ListTile(
             title: Text('Social Security Number:', style: textStyle,),
-            leading: const Icon(Icons.security, color: Colors.white,),
+            leading: const Icon(Icons.security, color: MyColors.active),
             subtitle: Text(user.ssn!, style: subtitleStyle,),
           ),
           ListTile(
             title: Text('ID:', style: textStyle,),
-            leading: const Icon(Icons.assignment_ind, color: Colors.white,),
+            leading: const Icon(Icons.assignment_ind, color: MyColors.active),
             subtitle: Text(user.id.toString(), style: subtitleStyle,),
           ),
           ListTile(
             title: Text('Name:', style: textStyle,),
-            leading: const Icon(Icons.person, color: Colors.white,),
+            leading: const Icon(Icons.person, color: MyColors.active),
             subtitle: Text(user.name!, style: subtitleStyle,),
           ),
           ListTile(
             title: Text('Email:', style: textStyle,),
-            leading: const Icon(Icons.email, color: Colors.white,),
+            leading: const Icon(Icons.email, color: MyColors.active),
             subtitle: Text(user.email!, style: subtitleStyle,),
           ),
           ListTile(
             title: Text('Phone:', style: textStyle,),
-            leading: const Icon(Icons.phone, color: Colors.white,),
+            leading: const Icon(Icons.phone, color: MyColors.active),
             subtitle: Text(user.phone!, style: subtitleStyle,),
           ),
           ListTile(
             title: Text('Type:', style: textStyle,),
-            leading: const Icon(Icons.groups, color: Colors.white,),
+            leading: const Icon(Icons.groups, color: MyColors.active),
             subtitle: Text(user.type!, style: subtitleStyle,),
           ),
           ListTile(
             title: Text('Blocked Status:', style: textStyle,),
             leading: Icon(Icons.block,
-              color: user.blocked == 1 ? Colors.red : Colors.white,
+              color: user.blocked == 1 ? Colors.red : MyColors.active,
             ),
             subtitle: Text(
               user.blocked == 1 ? 'blocked' : 'not blocked',
@@ -482,20 +482,26 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
           ),
            ListTile(
             title: Text('Account Created Date:', style: textStyle,),
-            leading: const Icon(Icons.date_range, color: Colors.white,),
+            leading: const Icon(Icons.date_range, color: MyColors.active),
              subtitle: Text(formattedDate(user.createdAt!)!, style: subtitleStyle,),
           ),
         ],
       ),
-      actions:[
+      actions: [
         Padding(
-          padding: const EdgeInsets.only(
-              left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
-          child: TextButton(
-            onPressed: (){Navigator.pop(context);},
-            child: const Text(
+          padding: const EdgeInsets.only(left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+          child: OutlinedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child:
+            Text(
               'Cancel',
-              style: TextStyle(color: MyColors.categoryBink, fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: MyColors.active,
+                fontSize: 3.sp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
