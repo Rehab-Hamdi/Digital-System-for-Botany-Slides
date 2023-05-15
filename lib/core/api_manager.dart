@@ -91,7 +91,7 @@ class APIManager{
     return requests;
   }
 
-  static putApproveRequest(user_id, slide_id) async {
+  static approveUserRequest(user_id, slide_id) async {
     // var url = Uri.parse('$BASE_URL/accept_request');
     Uri url = Uri.parse('$BASE_URL/accept_request');
     var body = {
@@ -120,7 +120,7 @@ class APIManager{
     }
   }
 
-  static putRejectRequest(user_id,slide_id) async {
+  static rejectUserRequest(user_id,slide_id) async {
     Uri url = Uri.parse('$BASE_URL/reject_request');
     var body = {
       'user_id': '${user_id}',
@@ -146,7 +146,7 @@ class APIManager{
     }
   }
 
-  static putUpdateRequest(user_id, slide_id, startDate, endDate , returnedDate , returnedState, notes) async
+  static EditUserRequest(user_id, slide_id, startDate, endDate , returnedDate , returnedState, notes) async
   {
     Uri url= Uri.parse('$BASE_URL/update_request');
 
@@ -175,7 +175,7 @@ class APIManager{
       } else {
         // Handle error response
         print(
-            'POST Update request failed with status code: ${response.statusCode}');
+            'PUT Update request failed with status code: ${response.statusCode}');
         print('Response body: ${response.body}');
       }
     } catch (error) {

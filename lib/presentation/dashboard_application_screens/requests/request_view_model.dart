@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/database_models/requests/GetAllRequests.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/requet_navigator.dart';
@@ -102,7 +104,35 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
     return null;
   }
 
-  static const String BASE_URL = 'https://botany.larasci.site/api';
+  void acceptRequest(int? user_id, int? slide_id, BuildContext context) {
+    navigator!.showLoading();
+    APIManager.approveUserRequest(user_id, slide_id);
+    Navigator.pop(context);
+    navigator!.hideLoading();
+    navigator!.showMessage("Request is approved successfully..!", true);
+  }
 
+  void updateRequest(
+      int? user_id,
+      int? slide_id,
+      String? startDate,
+      String? endDate,
+      String? returnedDate,
+      String? bloked,
+      String? notes,
+      BuildContext context) {
+    navigator!.showLoading();
+    APIManager.EditUserRequest(user_id, slide_id, startDate, endDate, returnedDate, bloked, notes);
+    Navigator.pop(context);
+    navigator!.hideLoading();
+    navigator!.showMessage("Request is updated successfully..!", true);
+  }
 
+  void rejectRequest(int? user_id, int? slide_id, BuildContext context) {
+    navigator!.showLoading();
+    APIManager.rejectUserRequest(user_id, slide_id);
+    Navigator.pop(context);
+    navigator!.hideLoading();
+    navigator!.showMessage("Request is rejected successfully..!", true);
+  }
 }

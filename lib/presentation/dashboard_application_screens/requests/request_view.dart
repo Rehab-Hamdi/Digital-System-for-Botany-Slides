@@ -9,6 +9,7 @@ import 'package:our_test_project/models/requests_model.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view_model.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/requet_navigator.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 class RequestsView extends StatefulWidget {
   static const String routeName = 'RequestsView';
@@ -25,35 +26,56 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
   List<Request> _filteredRequests = [];
   String _searchQuery = ''; //
   Widget _buildSearchBar() {
-    return Container(
-      alignment: Alignment.topLeft,
-      height: MediaQuery.of(context).size.height * 0.06,
-      width: MediaQuery.of(context).size.width * 0.70,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40),
-          border: Border.all(color: MyColors.userInfoColor)),
-      child: TextField(
-        onChanged: (query) {
-          setState(() {
-            _searchQuery = query;
-            _filteredRequests = _requests!
-                .where((request) =>
-                    request.name
-                        .toLowerCase()
-                        .contains(_searchQuery.toLowerCase()) ||
-                    request.id
-                        .toString()
-                        .toLowerCase()
-                        .contains(_searchQuery.toLowerCase()))
-                .toList();
-          });
-        },
-        decoration: const InputDecoration(
-          hintText: 'Search by name or ssn',
-          prefixIcon: Icon(Icons.search),
-          border: InputBorder.none,
+    return Row(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.width * 0.015,
+              left: MediaQuery.of(context).size.width * 0.12,
+              right: MediaQuery.of(context).size.width * 0.15,
+              bottom: MediaQuery.of(context).size.height * .02,
+            ),
+            child: TextField(
+              onChanged: (query) {
+                setState(() {
+                  _searchQuery = query;
+                  _filteredRequests = _requests!
+                      .where((request) =>
+                          request.name
+                              .toLowerCase()
+                              .contains(_searchQuery.toLowerCase()) ||
+                          request.id
+                              .toString()
+                              .toLowerCase()
+                              .contains(_searchQuery.toLowerCase()))
+                      .toList();
+                });
+              },
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                hintText: 'Search by user name or user ID',
+                prefixIcon: const Icon(Icons.search),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    width: 3,
+                    color: MyColors.lightGray,
+                  ),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    width: 3,
+                    color: MyColors.lightGray,
+                  ),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 
@@ -103,299 +125,275 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
             body: FutureBuilder<GetAllRequests>(
                 future: APIManager.getAllRequestsInfo(),
                 builder: (buildContex, snapshot) {
-                  // if (snapshot.hasError) {
-                  //   return Center(
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         SizedBox(
-                  //           width: MediaQuery.of(context).size.width*0.40,
-                  //           height: MediaQuery.of(context).size.height*0.60,
-                  //           child: Image.asset(
-                  //             'assets/images/noNetwork.png',
-                  //             fit: BoxFit.cover,
-                  //           ),
-                  //         ),
-                  //         Padding(
-                  //           padding: const EdgeInsets.only(top: 8.0, bottom: 10),
-                  //           child: Text(
-                  //             'Check your network!',
-                  //             style: TextStyle(fontSize: 25),
-                  //           ),
-                  //         )
-                  //       ],
-                  //     ),
-                  //   );
-                  // }
-                  if (snapshot.hasError)
-
-                  /// Ex : no internet
-                  {
-                    return Center(child: Text('Please, Check yout network '));
-                  }
-                  // else if (snapshot.connectionState ==
-                  //     ConnectionState.waiting) {
-                  //   return Center(child: CircularProgressIndicator());
-                  // }
-                  var data = snapshot.data;
-                  if ('error' == data?.status) {
-                    /// there is an error
-                    return Center(child: Text('${data?.message}'));
-                  }
-                  var requests_list = data?.requests;
-                  _requests = requests_list?.map((request) {
-                        return Request(
-                          id: request.id,
-                          name: request.userName!,
-                          email: request.email!,
-                          slideName: request.arabicName ?? '',
-                          requestedAt: request.requestedAt!,
-                          updatedAt: request.updatedAt,
-                          endDate: request.endDate,
-                          slide_id: request.slide_id,
-                        );
-                      }).toList() ??
-                      [];
-                  List<Request> _requestsToDisplay =
-                      _searchQuery.isEmpty ? _requests! : _filteredRequests;
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.015,
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        snapshot.error.toString(),
+                        style: const TextStyle(color: Colors.red),
                       ),
-                      _buildSearchBar(),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.015,
-                      ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              color: Colors.white,
-                            ),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    var data = snapshot.data;
+                    var requests_list = data?.requests;
+                    _requests = requests_list?.map((request) {
+                          return Request(
+                            id: request.id,
+                            name: request.userName!,
+                            email: request.email!,
+                            slideName: request.arabicName ?? '',
+                            requestedAt: request.requestedAt!,
+                            updatedAt: request.updatedAt??'',
+                            endDate: request.endDate??'',
+                            slide_id: request.slideId,
+                            notes: request.notes??'',
+                            returnedState: request.returnedState??0,
+                            startDate: request.startDate??'',
+                            returnedDate: request.returnedDate??'',
+                          );
+                        }).toList() ??
+                        [];
+                    List<Request> _requestsToDisplay =
+                        _searchQuery.isEmpty ? _requests! : _filteredRequests;
+                    return Center(
+                      child: Column(
+                        children: [
+                          _buildSearchBar(),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.015,
+                          ),
+                          Expanded(
                             child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: DataTable(
-                                headingRowColor: MaterialStateColor.resolveWith(
-                                    (states) =>
-                                        MyColors.lightGrey.withOpacity(0.2)),
-                                columns: [
-                                  DataColumn(
-                                      label: Text(
-                                    'User ID',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Name',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                    label: Text(
-                                      'Email',
-                                      style:
-                                          Theme.of(context).textTheme.headline3,
-                                    ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  color: Colors.white,
+                                ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: DataTable(
+                                    headingRowColor:
+                                        MaterialStateColor.resolveWith(
+                                            (states) => MyColors.userInfoColor
+                                                .withOpacity(0.1)),
+                                    columns: [
+                                      DataColumn(
+                                          label: Text(
+                                        'User ID',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      )),
+                                      DataColumn(
+                                          label: Text(
+                                            'User Name',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6,
+                                          )),
+                                      DataColumn(
+                                          label: Text(
+                                        'Slide Id',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      )),
+                                      DataColumn(
+                                          label: Text(
+                                        'Slide Name',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      )),
+                                      // DataColumn(
+                                      //     label: Text(
+                                      //   'Section Type',
+                                      //   style: Theme.of(context)
+                                      //       .textTheme
+                                      //       .headline6,
+                                      // )),
+                                      DataColumn(
+                                          label: Text(
+                                        'Requested At',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      )),
+                                      DataColumn(
+                                          label: Text(
+                                        'Actions',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      )),
+                                    ],
+                                    rows: _requestsToDisplay.map((request) {
+                                      return DataRow(cells: [
+                                        DataCell(
+                                          Text(
+                                            '${request.id}',
+                                            style: TextStyle(
+                                                color: MyColors.userInfoColor),
+                                            overflow: TextOverflow.clip,
+                                          ),
+                                        ),
+                                        DataCell(Text(
+                                          request.name,
+                                          style: TextStyle(
+                                              color: MyColors.userInfoColor),
+                                          overflow: TextOverflow.clip,
+                                        )),
+                                        DataCell(Text(
+                                          '${request.slide_id}',
+                                          style: TextStyle(
+                                              color: MyColors.userInfoColor),
+                                          overflow: TextOverflow.clip,
+                                        )),
+                                        DataCell(Text(
+                                          request.slideName,
+                                          style: TextStyle(
+                                              color: MyColors.userInfoColor),
+                                          overflow: TextOverflow.clip,
+                                        )),
+                                        // DataCell(Text(
+                                        //   "Leaf & stem",
+                                        //   style: TextStyle(
+                                        //       color: MyColors.userInfoColor),
+                                        //   overflow: TextOverflow.clip,
+                                        // )),
+                                        DataCell(Text(
+                                          request.requestedAt,
+                                          style: TextStyle(
+                                              color: MyColors.userInfoColor),
+                                          overflow: TextOverflow.clip,
+                                        )),
+                                        DataCell(
+                                          Row(
+                                            children: [
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: IconButton(
+                                                  onPressed: () {
+                                                    viewRequest(request);
+
+                                      },
+                                                  icon: Icon(
+                                                    Icons.visibility_outlined,
+                                                    color:
+                                                        MyColors.userInfoColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: OutlinedButton.icon(
+                                                  onPressed: () {
+                                                    ApproveRequestButton(
+                                                        request.id!,
+                                                        request.slide_id!);
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.done,
+                                                    color: Colors.black,
+                                                  ),
+                                                  label: const Text(
+                                                    'Approve',
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  ),
+                                                  style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateColor
+                                                            .resolveWith(
+                                                                (states) =>
+                                                                    Colors
+                                                                        .green),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: OutlinedButton.icon(
+                                                  onPressed: () {
+                                                    EditRequest(request.id!,
+                                                        request.slide_id!);
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.edit,
+                                                    color: Colors.black,
+                                                  ),
+                                                  label: const Text(
+                                                    'Edit',
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: OutlinedButton.icon(
+                                                  onPressed: () {
+                                                    RejectRequestButton(
+                                                        request.id,
+                                                        request.slide_id);
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.delete_outline,
+                                                    color: Colors.black,
+                                                  ),
+                                                  label: const Text(
+                                                    'Reject',
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  ),
+                                                  style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateColor
+                                                            .resolveWith(
+                                                                (states) =>
+                                                                    Colors.red),
+                                                    //   textStyle: MaterialStateProperty<TextStyle> ,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ]);
+                                    }).toList(),
                                   ),
-                                  DataColumn(
-                                      label: Text(
-                                    'Slide Id',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Slide Name',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Section Type',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Requested At',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Updated At',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Ended At',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Actions',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  )),
-                                ],
-                                rows: _requestsToDisplay.map((request) {
-                                  return DataRow(cells: [
-                                    DataCell(
-                                      Text(
-                                        '${request.id}',
-                                        style: TextStyle(
-                                            color: MyColors.userInfoColor),
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                    ),
-                                    DataCell(Text(
-                                      request.name,
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(Text(
-                                      request.email,
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(Text(
-                                      '${request.slide_id}',
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(Text(
-                                      request.slideName,
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(Text(
-                                      "Leaf & stem",
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(Text(
-                                      request.requestedAt,
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(Text(
-                                      request.updatedAt!,
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(Text(
-                                      request.endDate!,
-                                      style: TextStyle(
-                                          color: MyColors.userInfoColor),
-                                      overflow: TextOverflow.clip,
-                                    )),
-                                    DataCell(
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: OutlinedButton.icon(
-                                              onPressed: () {
-                                                ApproveRequestButton(
-                                                    request.id!,
-                                                    request.slide_id!);
-                                              },
-                                              icon: const Icon(
-                                                Icons.done,
-                                                color: Colors.black,
-                                              ),
-                                              label: const Text(
-                                                'Approve',
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              ),
-                                              style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateColor
-                                                        .resolveWith((states) =>
-                                                            Colors.green),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: OutlinedButton.icon(
-                                              onPressed: () {
-                                                EditRequest(request.id!,
-                                                    request.slide_id!);
-                                              },
-                                              icon: const Icon(
-                                                Icons.edit,
-                                                color: Colors.black,
-                                              ),
-                                              label: const Text(
-                                                'Edit',
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: OutlinedButton.icon(
-                                              onPressed: () {
-                                                RejectRequestButton(request.id,
-                                                    request.slide_id);
-                                              },
-                                              icon: const Icon(
-                                                Icons.delete_outline,
-                                                color: Colors.black,
-                                              ),
-                                              label: const Text(
-                                                'Reject',
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              ),
-                                              style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateColor
-                                                        .resolveWith((states) =>
-                                                            Colors.red),
-                                                //   textStyle: MaterialStateProperty<TextStyle> ,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ]);
-                                }).toList(),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            "assets/images/plant1.png",
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.10,
                           ),
-                          Image.asset("assets/images/plant1.png")
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset(
+                                "assets/images/plant1.png",
+                              ),
+                              Image.asset("assets/images/plant1.png")
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  );
+                    );
+                  }
+                  ;
+                  return const Center(
+                      child: Center(
+                    child: CircularProgressIndicator(
+                      color: Color(0xff39A552),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  ));
                 })),
       ),
     );
@@ -510,7 +508,19 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                     const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
                 child: TextButton(
                   onPressed: () {
-                    EditRequestButton(user_id, slide_id);
+                    if (editkeyForm.currentState!.validate() == true) {
+                      print("check data in edit data done");
+                      viewModel.updateRequest(
+                          user_id,
+                          slide_id,
+                          startDateController.text,
+                          endDateController.text,
+                          returnedDateController.text,
+                          returnedStateController.text,
+                          notesController.text,
+                          context);
+                      clearAllControllars();
+                    }
                   },
                   child: Text(
                     'Update Request',
@@ -524,61 +534,9 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
   }
 
   void ApproveRequestButton(int user_id, int slide_id) {
-    //APIManager.putApproveRequest(user_id, slide_id);
+    //viewModel.acceptRequest(user_id, slide_id, context);
     print(
         'Request approved with data -> user_id= ${user_id}, slide_id=${slide_id}');
-    showDialog(
-        context: context,
-        builder: (contextBuilder) {
-          return AlertDialog(
-            content: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.30,
-              width: MediaQuery.of(context).size.width * 0.23,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      'assets/apiPic/acceptRequest.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(
-                      'The request for user ${user_id} has been accepted',
-                      style: TextStyle(fontSize: 17),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
-        });
-  }
-
-  EditRequestButton(int user_id, int slide_id) {
-    if (editkeyForm.currentState!.validate() == true) {
-
-      // print('Data');
-      // print('user ${user_id} make request for slide id = ${slide_id}');
-      // print(startDateController.text);
-      // print(endDateController.text);
-      // print(returnedDateController.text);
-      // print(returnedStateController.text);
-      // print(notesController.text);
-      print("check data in edit data done");
-      APIManager.putUpdateRequest(
-          user_id,
-          slide_id,
-          startDateController.text,
-          endDateController.text,
-          returnedDateController.text,
-          returnedStateController.text,
-          notesController.text);
-      clearAllControllars();
-      Navigator.pop(context);
-
-    }
   }
 
   RejectRequestButton(var user_id, var slide_id) {
@@ -629,6 +587,163 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
         });
   }
 
+
+  TextStyle textStyle =  TextStyle(
+    fontSize: 3.2.sp,
+    color: Colors.black,
+    fontWeight: FontWeight.bold
+  );
+  TextStyle subtitleStyle =  TextStyle(
+    color: MyColors.active,
+    fontSize: 3.sp,
+      fontWeight:FontWeight.w600,
+
+  );
+  String? formattedDate(String? date){
+    DateTime dateTime= DateTime.parse(date!);
+    return '${dateTime.year}-${dateTime.month}-${dateTime.day} at ${dateTime.hour}:${dateTime.minute}';
+  }
+
+  Future viewRequest(Request request) => showDialog(
+    context: context,
+    builder: (context) => Container(
+      child: AlertDialog(
+        scrollable: true,
+        title: Center(
+          child: Text(
+            ('Request Information'),
+            style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 6.sp, color: Colors.black),
+          ),
+        ),
+        content: Container(
+          width: MediaQuery.of(context).size.width*0.30,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/apiPic/view_request_data.png'),
+              fit: BoxFit.contain,
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('User ID:', style: textStyle,),
+                  leading:  Icon(Icons.assignment_ind, color: Colors.black,size: 4.sp,),
+                  subtitle: Text('${request.id!}', style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Name:', style: textStyle,),
+                  leading:  Icon(Icons.person, color: Colors.black,size: 4.sp,),
+                  subtitle: Text(request.name, style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Email:', style: textStyle,),
+                  leading:  Icon(Icons.email, color: Colors.black,size: 4.sp,),
+                  subtitle: Text(request.email, style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Slide Id:', style: textStyle,),
+                  leading:  Icon(Icons.eco_rounded, color: Colors.black,size: 4.sp,),
+                  subtitle: Text('${request.slide_id}', style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Slide Name:', style: textStyle,),
+                  leading:  Icon(Icons.eco_rounded, color: Colors.black,size: 4.sp,),
+                  subtitle: Text(request.slideName, style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Returned Status:', style: textStyle,),
+                  leading: Icon(Icons.block,
+                    color: request.returnedState == 0 ? Colors.red : Colors.black,size: 4.sp,
+                  ),
+                  subtitle: Text(
+                    request.returnedState == 1 ? 'returned' : 'not returned',
+                    style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Request Created Date:', style: textStyle,),
+                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                  subtitle: Text(formattedDate(request.requestedAt)!, style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Request Started At:', style: textStyle,),
+                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                  subtitle: Text((request.startDate)!, style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Request Ended Date:', style: textStyle,),
+                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                  subtitle: Text((request.endDate)!, style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Slide returned At:', style: textStyle,),
+                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                  subtitle: Text((request.returnedDate??'No returned Date exist'), style: subtitleStyle,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Notes', style: textStyle,),
+                  leading:  Icon(Icons.notes, color: Colors.black,),
+                  subtitle: Text(request.notes!, style: subtitleStyle,),
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+            child: OutlinedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child:
+                   Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: MyColors.active,
+                      fontSize: 3.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+            ),
+            ),
+        ],
+      ),
+    ),
+  );
+
   clearAllControllars() {
     blockedController.clear();
     startDateController.clear();
@@ -637,11 +752,4 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
     returnedStateController.clear();
     notesController.clear();
   }
-  // void dispose() {
-  //   startDateController.dispose();
-  //   endDateController.dispose();
-  //   returnedDateController.dispose();
-  //   returnedStateController.dispose();
-  //   notesController.dispose();
-  // }
 }
