@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
-import 'package:our_test_project/core/custom_widgets/simple_text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_navigator.dart';
@@ -245,7 +244,9 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                                                     ),
                                                     IconButton(
                                                       onPressed: () async {
-                                                        await openDeleteUserDialog();
+                                                        int userId = user.id!;
+                                                        String userName = user.name!;
+                                                        await openDeleteUserDialog(userId, userName);
                                                       },
                                                       icon: const Icon(
                                                           Icons.delete),
@@ -265,7 +266,6 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                                 child: Center(
                                   child: CircularProgressIndicator(
                                     color: Color(0xff39A552),
-                                    backgroundColor: Colors.transparent,
                             ),
                                 ));
                           }),
@@ -295,21 +295,29 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
   }
 
   @override
-  Future<String?> openDeleteUserDialog() => showDialog<String>(
+  Future<String?> openDeleteUserDialog(int userId, String userName) => showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
             title: Text(
-              'Enter User Id',
+              'Are you sure want to delete?',
               style:
-                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16),
+                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16, color: Colors.red),
             ),
-            content: Form(
-              key: deleteUserFormKey,
-              child: SimpleTextField(
-                text: 'Enter User Id',
-                controller: deleteUserController,
-                validatorFunction: (text)=> viewModel.idValidation(text),
-              ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ListTile(
+                  title: const Text('User ID'),
+                  leading: const Icon(Icons.assignment_ind),
+                  subtitle: Text(userId.toString()),
+                ),
+                ListTile(
+                  title: const Text('User Name'),
+                  leading: const Icon(Icons.person),
+                  subtitle: Text(userName),
+                ),
+              ],
             ),
             actions: [
               Padding(
@@ -317,7 +325,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                     left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
                 child: TextButton(
                   onPressed: () {
-                    clearAllControllars();
+                    clearAllControllers();
                     Navigator.pop(context);
                   },
                   child: const Text(
@@ -330,7 +338,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                 padding:
                 const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
                 child: TextButton(
-                  onPressed: deleteUser,
+                  onPressed: (){viewModel.deleteUserById(userId.toString(), context);},
                   child: const Text(
                     'Delete',
                     style: TextStyle(fontSize: 18, color: MyColors.active),
@@ -378,13 +386,6 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
         ),
       );
 
-  void deleteUser() {
-    if(deleteUserFormKey.currentState!.validate()) {
-      String? id = deleteUserController.text;
-      viewModel.deleteUserById(id, context);
-    }
-  }
-
   void updateUser() {
     if(updateUserFormKey.currentState!.validate()) {
       Users user = Users(
@@ -398,7 +399,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
           blocked: int.parse(updateBlockStateController.text),
       );
       viewModel.updateUserInfo(user, context);
-      clearAllControllars();
+      clearAllControllers();
     }
   }
 
@@ -415,7 +416,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
         blocked: 0
       );
       viewModel.createNewUser(user, context);
-      clearAllControllars();
+      clearAllControllers();
     }
   }
 
@@ -480,7 +481,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
               user.blocked == 1 ? 'blocked' : 'not blocked',
               style: subtitleStyle,),
           ),
-           ListTile(
+          ListTile(
             title: Text('Account Created Date:', style: textStyle,),
             leading: const Icon(Icons.date_range, color: MyColors.active),
              subtitle: Text(formattedDate(user.createdAt!)!, style: subtitleStyle,),
@@ -513,8 +514,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     DateTime dateTime= DateTime.parse(date);
     return '${dateTime.year}-${dateTime.month}-${dateTime.day} at ${dateTime.hour}:${dateTime.minute}';
   }
-  clearAllControllars() { //
-    deleteUserController.clear();
+  clearAllControllers() { //
     idController.clear();
     nameController.clear();
     emailController.clear();

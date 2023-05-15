@@ -83,6 +83,14 @@ class APIManager{
     return response;
   }
 
+  static Future<int>getTotalUsersNum() async{
+    Uri url = Uri.parse('$BASE_URL/TotalUsers');
+    http.Response response = await http.get(url);
+    var responseBody = jsonDecode(response.body);
+    var totalUsersNum = responseBody["Total Users "];
+    return totalUsersNum;
+  }
+
   static Future<GetAllRequests> getAllRequestsInfo()async{
     Uri url= Uri.parse('$BASE_URL/requests');
     http.Response response= await http.get(url);
