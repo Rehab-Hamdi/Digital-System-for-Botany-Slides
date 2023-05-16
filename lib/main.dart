@@ -19,8 +19,6 @@ import 'package:our_test_project/presentation/dashboard_application_screens/edit
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
-import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
-import 'package:our_test_project/presentation/planet_info/provider/favorite_provider.dart';
 import 'package:our_test_project/presentation/start/mobile_start_view.dart';
 import 'package:our_test_project/presentation/start/start_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
@@ -28,6 +26,8 @@ import 'package:our_test_project/presentation/user_application_screens/categorie
 import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
 import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';

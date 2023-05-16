@@ -626,97 +626,67 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('User ID:', style: textStyle,),
-                  leading:  Icon(Icons.assignment_ind, color: Colors.black,size: 4.sp,),
-                  subtitle: Text('${request.id!}', style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('User ID:', style: textStyle,),
+                leading:  Icon(Icons.assignment_ind, color: Colors.black,size: 4.sp,),
+                subtitle: Text('${request.id!}', style: subtitleStyle,),
+              ),
+              ListTile(
+                title: Text('Name:', style: textStyle,),
+                leading:  Icon(Icons.person, color: Colors.black,size: 4.sp,),
+                subtitle: Text(request.name, style: subtitleStyle,),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Name:', style: textStyle,),
-                  leading:  Icon(Icons.person, color: Colors.black,size: 4.sp,),
-                  subtitle: Text(request.name, style: subtitleStyle,),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(3.0),
                 child: ListTile(
                   title: Text('Email:', style: textStyle,),
                   leading:  Icon(Icons.email, color: Colors.black,size: 4.sp,),
                   subtitle: Text(request.email, style: subtitleStyle,),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Slide Id:', style: textStyle,),
-                  leading:  Icon(Icons.eco_rounded, color: Colors.black,size: 4.sp,),
-                  subtitle: Text('${request.slide_id}', style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('Slide Id:', style: textStyle,),
+                leading:  Icon(Icons.eco_rounded, color: Colors.black,size: 4.sp,),
+                subtitle: Text('${request.slide_id}', style: subtitleStyle,),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Slide Name:', style: textStyle,),
-                  leading:  Icon(Icons.eco_rounded, color: Colors.black,size: 4.sp,),
-                  subtitle: Text(request.slideName, style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('Slide Name:', style: textStyle,),
+                leading:  Icon(Icons.eco_rounded, color: Colors.black,size: 4.sp,),
+                subtitle: Text(request.slideName, style: subtitleStyle,),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Returned Status:', style: textStyle,),
-                  leading: Icon(Icons.block,
-                    color: request.returnedState == 0 ? Colors.red : Colors.black,size: 4.sp,
-                  ),
-                  subtitle: Text(
-                    request.returnedState == 1 ? 'returned' : 'not returned',
-                    style: subtitleStyle,),
+              ListTile(
+                title: Text('Returned Status:', style: textStyle,),
+                leading: Icon(Icons.block,
+                  color: request.returnedState == 0 ? Colors.red : Colors.black,size: 4.sp,
                 ),
+                subtitle: Text(
+                  request.returnedState == 1 ? 'returned' : 'not returned',
+                  style: subtitleStyle,),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Request Created Date:', style: textStyle,),
-                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
-                  subtitle: Text(formattedDate(request.requestedAt)!, style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('Request Created Date:', style: textStyle,),
+                leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                subtitle: Text(formattedDate(request.requestedAt)!, style: subtitleStyle,),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Request Started At:', style: textStyle,),
-                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
-                  subtitle: Text((request.startDate)!, style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('Request Started At:', style: textStyle,),
+                leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                subtitle: Text((request.startDate)!, style: subtitleStyle,),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Request Ended Date:', style: textStyle,),
-                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
-                  subtitle: Text((request.endDate)!, style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('Request Ended Date:', style: textStyle,),
+                leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                subtitle: Text((request.endDate)!, style: subtitleStyle,),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Slide returned At:', style: textStyle,),
-                  leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
-                  subtitle: Text((request.returnedDate??'No returned Date exist'), style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('Slide returned At:', style: textStyle,),
+                leading:  Icon(Icons.date_range, color: Colors.black,size: 4.sp,),
+                subtitle: Text((request.returnedDate??'No returned Date exist'), style: subtitleStyle,),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text('Notes', style: textStyle,),
-                  leading:  Icon(Icons.notes, color: Colors.black,),
-                  subtitle: Text(request.notes!, style: subtitleStyle,),
-                ),
+              ListTile(
+                title: Text('Notes', style: textStyle,),
+                leading:  Icon(Icons.notes, color: Colors.black,),
+                subtitle: Text(request.notes!, style: subtitleStyle,),
               ),
             ],
           ),

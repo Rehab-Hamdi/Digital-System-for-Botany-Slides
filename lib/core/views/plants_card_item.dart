@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/categorg_model.dart';
 import 'package:our_test_project/models/plants_models.dart';
-import 'package:our_test_project/presentation/planet_info/planet_info_view.dart';
+import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_view.dart';
 import 'package:sizer/sizer.dart';
 
 class PlantsCardItem extends StatelessWidget {
