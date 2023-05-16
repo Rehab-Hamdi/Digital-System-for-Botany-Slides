@@ -3,7 +3,6 @@ import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/button.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/plants_models.dart';
-
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_navigator.dart';
 import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_view_model.dart';
@@ -33,14 +32,6 @@ class _PlanetInfoViewState
           extendBodyBehindAppBar: true,
           backgroundColor: Colors.white,
           appBar: AppBar(
-            // leading: IconButton(
-            //   color: Colors.black,
-            //   icon: const Icon(Icons.arrow_back),
-            //   iconSize: 30.0,
-            //   onPressed: () {
-            //     goToHome();
-            //   },
-            // ),
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [
@@ -134,7 +125,9 @@ class _PlanetInfoViewState
                   color: MyColors.green,
                   title: 'Request',
                   radius: 10.0,
-                  function: () {},
+                  function: () async {
+                    viewModel.makeRequest(plantsModel!.slide_id);
+                  }
                 ),
               ],
             ),

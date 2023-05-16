@@ -173,8 +173,7 @@ class APIManager{
     }
   }
 
-  static EditUserRequest(user_id, slide_id, startDate, endDate , returnedDate , returnedState, notes) async
-  {
+  static EditUserRequest(user_id, slide_id, startDate, endDate , returnedDate , returnedState, notes) async {
     Uri url= Uri.parse('$BASE_URL/update_request');
 
     // print('Data');
@@ -210,5 +209,34 @@ class APIManager{
       print('Error making POST Update request: $error');
     }
 
+  }
+
+  static Future<http.Response>makeNewRequest({required int? slideId, required int? userId})async{
+    Uri url = Uri.parse('$BASE_URL/requests');
+    http.Response response = await http.post(url,
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body:jsonEncode({
+        "request_state" : null,
+        "notes" : null,
+        "returned_date" : null,
+        "end_date" : null,
+        "start_date" : null,
+        "slide_id" : slideId,
+        "user_id" : userId,
+        "returnd_state" : null,
+
+      })
+    );
+    if(response.statusCode == 500)
+    {
+      print('requested successfully!');
+    }
+    else{
+      print(response.statusCode);
+      print('\n${response.body}');
+    }
+    return response;
   }
 }

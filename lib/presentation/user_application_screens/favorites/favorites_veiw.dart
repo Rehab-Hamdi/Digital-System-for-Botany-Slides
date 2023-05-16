@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/views/plants_card_item.dart';
 import 'package:our_test_project/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
-
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,8 +29,8 @@ class FavoriteView extends StatelessWidget {
                     childAspectRatio: 0.65.sp,
                   ),
                   itemCount: planets.length,
-                  itemBuilder: (context, index) =>
-                      PlantsCardItem(plantsModel: planets[index]),
+                  itemBuilder: (context, index) {
+                      return PlantsCardItem(plantsModel: planets[index]);}
                 ),
             ),
       ),

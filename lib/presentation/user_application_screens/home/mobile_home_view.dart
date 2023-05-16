@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
@@ -337,8 +336,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                                             .text.isEmpty
                                                         ? PlantsCardItem(
                                                             plantsModel:
-                                                                allSlides[
-                                                                    index],
+                                                                allSlides[index],
                                                             category: widget
                                                                 .category,
                                                           )

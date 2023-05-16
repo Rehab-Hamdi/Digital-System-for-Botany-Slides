@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
-import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
 import 'package:our_test_project/core/constants.dart';
 import 'package:our_test_project/database_models/GetUserByEmail.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
