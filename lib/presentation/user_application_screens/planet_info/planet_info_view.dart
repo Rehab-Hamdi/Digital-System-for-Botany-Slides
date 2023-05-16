@@ -79,7 +79,7 @@ class _PlanetInfoViewState
                           BorderRadius.only(bottomRight: Radius.circular(40))),
                   child: Center(
                     child: Image.asset(
-                        'assets/images/cat19.png',
+                       plantsModel?.plant_image,
                       width: MediaQuery.of(context).size.width * 0.66,
                       height: MediaQuery.of(context).size.height * 0.66,
                     ),

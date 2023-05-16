@@ -42,7 +42,7 @@ class PlantsCardItem extends StatelessWidget {
             children: [
               Expanded(
                 child: Image.asset(
-                  'assets/images/cat19.png',
+                  plantsModel.plant_image,
                   fit: BoxFit.cover,
                 ),
               ),

@@ -1,51 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
+import 'package:our_test_project/models/users.dart';
+import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MobileStartNavigator {
-  static VoidCallback? goToLogin(context) {
-    showDialog(
-        context: context,
-        builder: (c) {
-          return AlertDialog(
-            title: Text('Choose Page'),
-            content: Text(
-              'Do you want to choose user screen or dashboard screen ?',
-              style: TextStyle(fontSize: 17),
-            ),
-            actions: [
-              WillPopScope(
-                onWillPop: () async {
-                  return false; // Prevents closing the dialog by pressing the back button
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(
-                              context, HomeScreen.routeName);
-                        },
-                        child: Text('User Application'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(
-                              context, MobileDrawerMenu.routeName);
-                        },
-                        child: Text('Dashboard Application'),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          );
-        });
+  static goToLogin(context) async{
 
+      try {
+        SharedPreferences prefs= await SharedPreferences.getInstance();
+        int? user_id= prefs.getInt('user_id');
+         Users data = await APIManager.getUserById(user_id!);
+        String? userType = data.type;
+        if (userType == 'admin') {
+          Navigator.pushNamedAndRemoveUntil(context, DashBoardScreenController.routeName, (route) => false);
+        } else {
+          Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+        }
+      } catch (error) {
+        print('Error fetching user type: $error');
+        // Handle the error appropriately
+      }
     // Navigator.pushReplacementNamed(context, HomeScreen.routeName);
     // return null;
   }

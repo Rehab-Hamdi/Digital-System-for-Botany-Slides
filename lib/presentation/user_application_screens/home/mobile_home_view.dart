@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/core/views/plants_card_item.dart';
@@ -43,6 +44,28 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
     });
   }
 
+  var Images=[
+    'assets/images/cat1.png',
+    'assets/images/cat2.png',
+    'assets/images/cat3.png',
+    'assets/images/cat4.png',
+    'assets/images/cat5.png',
+    'assets/images/cat6.png',
+    'assets/images/cat7.png',
+    'assets/images/cat8.png',
+    'assets/images/cat9.png',
+    'assets/images/cat10.png',
+    'assets/images/cat11.png',
+    'assets/images/cat12.png',
+    'assets/images/cat13.png',
+    'assets/images/cat14.png',
+    'assets/images/cat15.png',
+    'assets/images/cat16.png',
+    'assets/images/cat17.png',
+    'assets/images/cat18.png',
+    'assets/images/cat19.png',
+  ];
+
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => viewModel,
@@ -50,7 +73,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
         child: Scaffold(
             backgroundColor: Colors.white,
             body: FutureBuilder<GetByGroup>(
-                future: viewModel
+                future: APIManager
                     .getSlidesByGroupName(widget.category!.categoryName),
                 builder: (buildContext, snapshot) {
                   if (snapshot.hasError) {
@@ -77,8 +100,9 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                   var data = snapshot.data;
                   var slides_list = data?.payload;
                   List<PlantsModel> allSlides = slides_list?.map((slide) {
+                    int index = slides_list.indexOf(slide);
                         return PlantsModel(
-                          plant_image: slide.image,
+                          plant_image: Images[index % Images.length],
                           latine_name: slide.latineName ?? '',
                           ceilName: slide.ceilName ?? '',
                           speciman: slide.specimen ?? '',
