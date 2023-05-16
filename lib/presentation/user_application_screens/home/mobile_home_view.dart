@@ -103,16 +103,16 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                     int index = slides_list.indexOf(slide);
                         return PlantsModel(
                           plant_image: Images[index % Images.length],
-                          latine_name: slide.latineName!,
-                          ceilName: slide.ceilName! ,
-                          speciman: slide.specimen!,
-                          slide_id: slide.slideNumber!,
-                          arabicName: slide.arabicName!,
-                          groupName: slide.groupName!,
-                          count: slide.count!,
-                          cupboard: slide.cupbord!,
-                          family: slide.family!,
-                          boxNumber: slide.boxnumber!
+                          latine_name: slide.latineName??'',
+                          ceilName: slide.ceilName??'' ,
+                          speciman: slide.specimen??'',
+                          slide_id: slide.slideNumber??0,
+                          arabicName: slide.arabicName??'',
+                          groupName: slide.groupName??'',
+                          count: slide.count??0,
+                          cupboard: slide.cupbord??0,
+                          family: slide.family??'',
+                          boxNumber: slide.boxnumber??0
                         );
                       }).toList() ??
                       [];
