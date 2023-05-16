@@ -8,6 +8,7 @@ import 'package:our_test_project/database_models/GetUserByEmail.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 import 'login_navigator.dart';
 
@@ -33,7 +34,7 @@ class LoginViewModel extends BaseViewModel<LoginNavigator> {
     if(message=="login successfully.")
       {
         navigator!.hideLoading();
-        navigator!.showMessage(message, true);
+        //navigator!.showMessage(message, true);
         navigator?.goToHome();
       }
     else {
@@ -74,12 +75,32 @@ class LoginViewModel extends BaseViewModel<LoginNavigator> {
         }
       String? userType = data.type;
       int? user_id= data.id;
+      int? user_state= data.blocked;
       SharedPreferences prefs= await SharedPreferences.getInstance();
       prefs.setInt('user_id', user_id!);
-      if (userType == 'admin') {
-        Navigator.pushNamedAndRemoveUntil(context, DashBoardScreenController.routeName, (route) => false);
-      } else {
-        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+      if(user_state==0) {
+        if (userType == 'admin') {
+          Navigator.pushNamedAndRemoveUntil(
+              context, DashBoardScreenController.routeName, (route) => false);
+        } else {
+          Navigator.pushNamedAndRemoveUntil(
+              context, HomeScreen.routeName, (route) => false);
+        }
+      }
+      else
+      {
+        showDialog(
+            context: context,
+            builder: (c) {
+              return AlertDialog(
+                title: Text('You are blocked!' ,style: TextStyle(color:
+                Colors.red.shade400, fontSize: 12.sp),),
+                content: Text('Please contact the administrator to address this issue.'),
+                actions: [
+                  Center(child: IconButton( onPressed: (){Navigator.of(context).pop(); }, icon: const Icon(Icons.cancel, color:Colors.black,),))
+                ],
+              );
+            });
       }
     } catch (error) {
       print('Error fetching user type: $error');
