@@ -1,11 +1,21 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:our_test_project/database_models/GetUserByEmail.dart';
+import 'package:our_test_project/database_models/Get_by_group.dart';
 import 'package:our_test_project/database_models/requests/GetAllRequests.dart';
 import 'package:our_test_project/models/users.dart';
 
 class APIManager{
   static const String BASE_URL ='https://botany.larasci.site/api';
+
+  static Future<GetByGroup> getSlidesByGroupName(String group_name) async {
+    Uri uri = Uri.parse('$BASE_URL/slides?group_name=$group_name');
+    http.Response response = await http.get(uri);
+    var json = jsonDecode(response.body);
+    GetByGroup slides = GetByGroup.fromJson(json);
+    return slides;
+  }
   
   static Future<List<Users>> getAllUsers() async{
     List<Users> allUsers;
@@ -15,7 +25,7 @@ class APIManager{
     return allUsers;
   }
 
-  static Future<Users> getUserById(String? id) async{
+  static Future<Users> getUserById(int? id) async{
     Uri url = Uri.parse('$BASE_URL/users/$id');
     http.Response response = await http.get(url);
     var responseBody = jsonDecode(response.body);
@@ -23,6 +33,15 @@ class APIManager{
     return user;
   }
 
+  ///api/getUserTypeByEmail/?email=rehab25@gmail.com
+  static Future<GetUserByEmail> getUserByEmail(String? email)async
+  {
+    Uri url= Uri.parse('$BASE_URL/getUserTypeByEmail?email=$email');
+    http.Response response= await http.get(url);
+    var json= jsonDecode(response.body);
+    GetUserByEmail user = GetUserByEmail.fromJson(json);
+    return user;
+  }
   // create new user
   static Future<http.Response>addNewUserRequest(Users user)async{
     Uri url = Uri.parse('$BASE_URL/users');

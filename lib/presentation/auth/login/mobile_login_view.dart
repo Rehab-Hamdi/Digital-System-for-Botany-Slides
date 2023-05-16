@@ -184,7 +184,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
   @override
   void goToHome()async {
     //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=> HomeScreen()));
-    Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+    viewModel.pushScreenBasedOnEmail(emailController.text, context);
   }
 
   @override
