@@ -500,7 +500,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
               'Cancel',
               style: TextStyle(
                 color: MyColors.active,
-                fontSize: 3.sp,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
