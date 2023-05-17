@@ -67,7 +67,10 @@ abstract class BaseState<T extends StatefulWidget, VM extends BaseViewModel>
   Future<void>showDialogWithGif({String? title, String? content, required img, Color? titleColor, Color? contentColor}) => showDialog(
     context: context,
     builder: (context)=>AlertDialog(
-      title: Column(
+      title: title == null ?
+      Image.asset(img)
+          :
+      Column(
         children: [
           Image.asset(img),
            Text(
@@ -79,8 +82,11 @@ abstract class BaseState<T extends StatefulWidget, VM extends BaseViewModel>
           ),
         ],
       ),
-      content: Text(
-        content!,
+      content: content == null
+          ? null
+          :
+      Text(
+        content,
         style: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w500,

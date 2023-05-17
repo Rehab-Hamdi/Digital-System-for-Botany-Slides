@@ -10,21 +10,33 @@ class UsersViewModel extends BaseViewModel<UserNavigator>{
     APIManager.addNewUserRequest(user!);
     Navigator.pop(context);
     navigator!.hideLoading();
-    navigator!.showMessage("user added successfully..!", true);
+    navigator!.showDialogWithGif(
+      img: "assets/images/success.gif",
+      title: "User added successfully..!",
+      titleColor: Colors.green,
+    );
   }
   void updateUserInfo(Users? user, BuildContext context){
     navigator!.showLoading();
     APIManager.updateUserRequest(user!);
     Navigator.pop(context);
     navigator!.hideLoading();
-    navigator!.showMessage("user updated successfully..!", true);
+    navigator!.showDialogWithGif(
+        img: "assets/images/success.gif",
+        title: "User updated successfully..!",
+        titleColor: Colors.green,
+    );
   }
   void deleteUserById(String? id, BuildContext context){
     navigator!.showLoading();
     APIManager.deleteUserRequest(id!);
     Navigator.pop(context);
     navigator!.hideLoading();
-    navigator!.showMessage("user deleted successfully..!", true);
+    navigator!.showDialogWithGif(
+      img: "assets/images/success.gif",
+      title: "User deleted successfully..!",
+      titleColor: Colors.green,
+    );
   }
 
   String? userNameValidation(text) {
