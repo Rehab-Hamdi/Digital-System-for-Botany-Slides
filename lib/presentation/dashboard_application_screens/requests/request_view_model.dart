@@ -34,7 +34,8 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
 
   String? startDateValidation(String? text) {
     if (text == null || text.trim().isEmpty) {
-      return 'Please enter a start date';
+      // return 'Please enter a start date';
+      return null;
     }
     DateTime? startDate;
     try {
@@ -48,24 +49,10 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
     return null;
   }
 
+
   String? endDateValidation(String? text) {
     if (text == null || text.trim().isEmpty) {
-      return 'Please enter a end date';
-    }
-    DateTime? startDate;
-    try {
-      startDate = DateFormat('yyyy-MM-dd').parse(text);
-    } catch (e) {
-      return 'Invalid date format. Please enter a date in the format yyyy-mm-dd';
-    }
-    if (startDate.isBefore(DateTime.now().subtract(Duration(days: 1)))) {
-      return 'end date cannot be in the past';
-    }
-    return null;
-  }
-
-  String? returnedDateValidation(String? text) {
-    if (text == null || text.trim().isEmpty) {
+      //return 'Please enter a end date';
       return null;
     }
     DateTime? endDate;
@@ -75,6 +62,22 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
       return 'Invalid date format. Please enter a date in the format yyyy-mm-dd';
     }
     if (endDate.isBefore(DateTime.now().subtract(Duration(days: 1)))) {
+      return 'end date cannot be in the past';
+    }
+    return null;
+  }
+
+  String? returnedDateValidation(String? text) {
+    if (text == null || text.trim().isEmpty) {
+      return null;
+    }
+    DateTime? returnedDate;
+    try {
+      returnedDate = DateFormat('yyyy-MM-dd').parse(text);
+    } catch (e) {
+      return 'Invalid date format. Please enter a date in the format yyyy-mm-dd';
+    }
+    if (returnedDate.isBefore(DateTime.now().subtract(Duration(days: 1)))) {
       return 'End date cannot be in the past';
     }
     return null;
@@ -82,7 +85,8 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
 
   String? stateValidation(String? state) {
     if (state == null || state.trim().isEmpty) {
-      return 'Please enter a state value';
+      //return 'Please enter a state value';
+      return null;
     }
     if (state != '0' && state != '1') {
       return 'blocked State value must be 0 (not blocked) or 1 (blocked)';
@@ -95,7 +99,7 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
       return 'Please enter a state value';
     }
     if (state != '0' && state != '1') {
-      return 'State value must be 0 or 1';
+      return 'State value must be 0 (not returned) or 1(returned)';
     }
     return null;
   }
@@ -106,10 +110,14 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
 
   void acceptRequest(int? user_id, int? slide_id, BuildContext context) {
     navigator!.showLoading();
-    APIManager.approveUserRequest(user_id, slide_id);
+    //APIManager.approveUserRequest(user_id, slide_id);
     Navigator.pop(context);
     navigator!.hideLoading();
-    navigator!.showMessage("Request is approved successfully..!", true);
+    navigator!.showDialogWithGif(
+      img: "assets/images/success.gif",
+      title: "Request approved successfully..!",
+      titleColor: Colors.green,
+    );
   }
 
   void updateRequest(
@@ -125,14 +133,22 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
     APIManager.EditUserRequest(user_id, slide_id, startDate, endDate, returnedDate, bloked, notes);
     Navigator.pop(context);
     navigator!.hideLoading();
-    navigator!.showMessage("Request is updated successfully..!", true);
+    navigator!.showDialogWithGif(
+      img: "assets/images/success.gif",
+      title: "Request updated successfully..!",
+      titleColor: Colors.black,
+    );
   }
 
   void rejectRequest(int? user_id, int? slide_id, BuildContext context) {
     navigator!.showLoading();
-    APIManager.rejectUserRequest(user_id, slide_id);
+    //APIManager.rejectUserRequest(user_id, slide_id);
     Navigator.pop(context);
     navigator!.hideLoading();
-    navigator!.showMessage("Request is rejected successfully..!", true);
+    navigator!.showDialogWithGif(
+      img: "assets/images/success.gif",
+      title: "Request rejected successfully..!",
+      titleColor: Colors.red,
+    );
   }
 }

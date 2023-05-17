@@ -79,7 +79,9 @@ class _PlanetInfoViewState
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, left: 20.0),
                   child: Text(
-                    plantsModel!.latine_name!,
+                    plantsModel?.groupName == 'Special groups '
+                        ? plantsModel?.speciman ?? ''
+                        : plantsModel?.latine_name ?? '',
                     style: Theme.of(context).textTheme.headline2,
                   ),
                 ),

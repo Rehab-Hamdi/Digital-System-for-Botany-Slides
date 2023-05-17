@@ -362,24 +362,32 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                         ),
                       )
                       : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              //zheight: MediaQuery.of(context).size.height*0.50,
-                              child: Image.asset(
-                                'assets/images/noData.png',
-                                fit: BoxFit.cover,
-                              ),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            //zheight: MediaQuery.of(context).size.height*0.50,
+                            child: Image.asset(
+                              'assets/images/noData.png',
+                              fit: BoxFit.cover,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                'Ooops , No Data found!',
-                                style: TextStyle(fontSize: 15.sp),
-                              ),
-                            )
-                          ],
-                        );
+                          ),
+                          Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          'Ooops , No Data found!',
+                          style: TextStyle(fontSize: 15.sp),
+                        ),
+                      )
+                    ],
+                  );
+
                 })),
       ),
     );

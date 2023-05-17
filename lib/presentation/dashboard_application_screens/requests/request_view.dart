@@ -414,11 +414,11 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
               'Edit Request',
               style: TextStyle(color: Colors.black),
             ),
-            titleTextStyle: TextStyle(fontSize: 20),
+            titleTextStyle: TextStyle(fontSize: 25),
             titlePadding: EdgeInsets.all(12.0),
             contentPadding: EdgeInsets.all(12.0),
-            content: Container(
-              width: MediaQuery.of(context).size.width * 0.23,
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.24,
               child: SingleChildScrollView(
                 child: WillPopScope(
                   onWillPop: () async {
@@ -471,7 +471,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                             controller: returnedStateController,
                             validatorFunction: (text) =>
                                 viewModel.stateValidation(text),
-                            label: 'Returned Status'),
+                            label: 'Returned Status (0 for not returned , 1 for returned)'),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
@@ -534,57 +534,15 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
   }
 
   void ApproveRequestButton(int user_id, int slide_id) {
-    //viewModel.acceptRequest(user_id, slide_id, context);
+    viewModel.acceptRequest(user_id, slide_id, context);
     print(
         'Request approved with data -> user_id= ${user_id}, slide_id=${slide_id}');
   }
 
   RejectRequestButton(var user_id, var slide_id) {
+    viewModel.rejectRequest(user_id, slide_id, context);
     print(
         'Request rejected with data -> user_id= ${user_id}, slide_id=${slide_id}');
-    showDialog(
-        context: context,
-        builder: (contextBuilder) {
-          return AlertDialog(
-            content: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.30,
-              width: MediaQuery.of(context).size.width * 0.23,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      'assets/apiPic/rejectRequest.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(
-                      'The request for user ${user_id} has been rejected',
-                      style: TextStyle(fontSize: 17),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            // actions: [
-            //   Padding(
-            //     padding: const EdgeInsets.only(bottom: 8.0),
-            //     child: Center(child: Container(
-            //         decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(30),
-            //             border: Border.all(
-            //                 color: Colors.black
-            //             )
-            //         ),
-            //         child: Padding(
-            //           padding: const EdgeInsets.all(4.0),
-            //           child: IconButton( onPressed: (){Navigator.of(context).pop(); }, icon:  Icon(Icons.delete, color:Colors.red,size: 30,),),
-            //         ))),
-            //   )
-            // ],
-          );
-        });
   }
 
 
@@ -611,19 +569,19 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
         title: Center(
           child: Text(
             ('Request Information'),
-            style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 6.sp, color: Colors.black),
+            style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18, color: Colors.black),
           ),
         ),
          content:
-        // Container(
-        //   width: MediaQuery.of(context).size.width*0.30,
-        //   decoration: BoxDecoration(
-        //     image: DecorationImage(
-        //       image: AssetImage('assets/apiPic/view_request_data.png'),
-        //       fit: BoxFit.contain,
-        //     ),
-        //   ),
-        //   child:
+        Container(
+          width: MediaQuery.of(context).size.width*0.30,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/apiPic/view_request_data.png'),
+              fit: BoxFit.contain,
+            ),
+          ),
+          child:
         Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -665,9 +623,9 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                   style: subtitleStyle,),
               ),
               ListTile(
-                title: Text('Request Created Date:', style: textStyle,),
+                title: Text('Request Created At:', style: textStyle,),
                 leading:  Icon(Icons.date_range, color: MyColors.active,),
-                subtitle: Text(formattedDate(request.requestedAt)!, style: subtitleStyle,),
+                subtitle: Text((request.requestedAt)!, style: subtitleStyle,),
               ),
               ListTile(
                 title: Text('Request Started At:', style: textStyle,),
@@ -675,7 +633,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                 subtitle: Text((request.startDate)!, style: subtitleStyle,),
               ),
               ListTile(
-                title: Text('Request Ended Date:', style: textStyle,),
+                title: Text('Request Ended At:', style: textStyle,),
                 leading:  Icon(Icons.date_range, color: MyColors.active,),
                 subtitle: Text((request.endDate)!, style: subtitleStyle,),
               ),
@@ -690,6 +648,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                 subtitle: Text(request.notes!, style: subtitleStyle,),
               ),
             ],
+        ),
         ),
         actions: [
           Padding(
