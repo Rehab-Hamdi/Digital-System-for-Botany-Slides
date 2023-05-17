@@ -50,7 +50,7 @@ class PlantsCardItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    plantsModel.groupName=='Special groups'? plantsModel.speciman!:plantsModel.latine_name!,
+                    plantsModel.groupName=='Special groups '? plantsModel.speciman!:plantsModel.latine_name!,
                     style:  TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
