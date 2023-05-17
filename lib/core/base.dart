@@ -7,6 +7,8 @@ abstract class BaseNavigator {
   void hideLoading();
 
   void showMessage(String message, bool success);
+
+  Future<void>showDialogWithGif({ required img, String? title, String? content, Color? titleColor, Color? contentColor});
 }
 
 class BaseViewModel<Nav extends BaseNavigator> extends ChangeNotifier {
@@ -60,4 +62,46 @@ abstract class BaseState<T extends StatefulWidget, VM extends BaseViewModel>
           );
         });
   }
+
+  @override
+  Future<void>showDialogWithGif({String? title, String? content, required img, Color? titleColor, Color? contentColor}) => showDialog(
+    context: context,
+    builder: (context)=>AlertDialog(
+      title: Column(
+        children: [
+          Image.asset(img),
+           Text(
+            title!,
+            style: TextStyle(
+                color: titleColor!,
+                fontSize: 17
+            ),
+          ),
+        ],
+      ),
+      content: Text(
+        content!,
+        style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w500,
+            color: contentColor!,
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(
+              left: 2.0, right: 8.0, bottom: 8.0, top: 8.0),
+          child: TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
