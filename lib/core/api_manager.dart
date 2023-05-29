@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:our_test_project/database_models/GetUserByEmail.dart';
 import 'package:our_test_project/database_models/Get_by_group.dart';
-import 'package:our_test_project/database_models/requests/GetAllRequests.dart';
-import 'package:our_test_project/models/users.dart';
+import 'package:our_test_project/database_models/GetAllRequests.dart';
+import 'package:our_test_project/database_models/users.dart';
 
 class APIManager{
   static const String BASE_URL ='https://botany.larasci.site/api';

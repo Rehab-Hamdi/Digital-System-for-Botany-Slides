@@ -5,7 +5,7 @@ import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/custom_widgets/alretTextFormFiled.dart';
 import 'package:our_test_project/core/custom_widgets/selectDate.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/database_models/requests/GetAllRequests.dart';
+import 'package:our_test_project/database_models/GetAllRequests.dart';
 import 'package:our_test_project/models/requests_model.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view_model.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/requet_navigator.dart';
@@ -542,13 +542,13 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
   }
 
   void ApproveRequestButton(int user_id, int slide_id) {
-    viewModel.acceptRequest(user_id, slide_id, context);
+    //viewModel.acceptRequest(user_id, slide_id, context);
     print(
         'Request approved with data -> user_id= ${user_id}, slide_id=${slide_id}');
   }
 
   RejectRequestButton(var user_id, var slide_id) {
-    viewModel.rejectRequest(user_id, slide_id, context);
+   // viewModel.rejectRequest(user_id, slide_id, context);
     print(
         'Request rejected with data -> user_id= ${user_id}, slide_id=${slide_id}');
   }

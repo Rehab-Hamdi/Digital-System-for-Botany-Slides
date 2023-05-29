@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
 import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/models/users.dart';
+import 'package:our_test_project/database_models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_navigator.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view_model.dart';
 import 'package:provider/provider.dart';
