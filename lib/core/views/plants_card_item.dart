@@ -3,7 +3,6 @@ import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/categorg_model.dart';
 import 'package:our_test_project/models/plants_models.dart';
 import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_view.dart';
-import 'package:sizer/sizer.dart';
 
 class PlantsCardItem extends StatelessWidget {
    PlantsCardItem({Key? key, required this.plantsModel, this.category}) : super(key: key);
@@ -52,7 +51,7 @@ class PlantsCardItem extends StatelessWidget {
                   child: Text(
                     plantsModel.groupName=='Special groups '? plantsModel.speciman!:plantsModel.latine_name!,
                     style:  TextStyle(
-                      fontSize: 13.sp,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

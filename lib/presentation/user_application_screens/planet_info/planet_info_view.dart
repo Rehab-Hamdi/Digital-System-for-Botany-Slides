@@ -32,6 +32,9 @@ class _PlanetInfoViewState
           extendBodyBehindAppBar: true,
           backgroundColor: Colors.white,
           appBar: AppBar(
+            iconTheme: const IconThemeData(
+              color: Colors.black, // change the color here
+            ),
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [

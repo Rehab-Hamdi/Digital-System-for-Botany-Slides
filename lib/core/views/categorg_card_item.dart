@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:our_test_project/models/categorg_model.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
-import 'package:sizer/sizer.dart';
 
 class CategoryCardItem extends StatelessWidget
 {
@@ -35,10 +34,10 @@ class CategoryCardItem extends StatelessWidget
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: 35.0,
-                        child: Text(categoryModel.categoryNumber, style: TextStyle(color: categoryModel.color, fontSize: 18.sp),),
+                        child: Text(categoryModel.categoryNumber, style: TextStyle(color: categoryModel.color, fontSize: 25),),
                       ),
                     ),
-                    Text(categoryModel.categoryName, style: TextStyle(color: categoryModel.color, fontSize: 13.sp)),
+                    Text(categoryModel.categoryName, style: TextStyle(color: categoryModel.color, fontSize: 20)),
                   ],
                 ),
               ),

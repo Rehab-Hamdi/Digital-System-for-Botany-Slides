@@ -6,8 +6,6 @@ import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
-
 import 'login_navigator.dart';
 import 'login_view_model.dart';
 
@@ -73,7 +71,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                                   Text(
                                     "Login ",
                                     style: TextStyle(
-                                        fontSize: 25.sp, fontWeight: FontWeight.bold),
+                                        fontSize: 28, fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -92,7 +90,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                                         child:  Text(
                                           "Email",
                                           style: TextStyle(
-                                              fontSize: 16.sp, color: Colors.grey),
+                                              fontSize: 18, color: Colors.grey),
                                         ),
                                       ),
                                     ],
@@ -121,7 +119,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                                         child: Text(
                                           "Password",
                                           style: TextStyle(
-                                              fontSize: 16.sp, color: Colors.grey),
+                                              fontSize: 19, color: Colors.grey),
                                         ),
                                       ),
                                     ],
@@ -155,7 +153,7 @@ class _LoginViewState extends BaseState<MobileLoginView, LoginViewModel>
                                       "Login",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 19.sp,
+                                          fontSize: 24,
                                           color: Colors.white),
                                       textAlign: TextAlign.center,
                                     )),

@@ -43,7 +43,6 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   fl_chart: ^0.62.0
   vertical_tabs_flutter: ^1.0.0
-  sizer: ^2.0.15
   shared_preferences: ^2.0.20
   http: ^0.13.5
   connectivity: ^3.0.6

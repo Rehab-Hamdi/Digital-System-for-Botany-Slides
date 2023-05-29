@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/presentation/auth/login/login_view.dart';
-import 'package:sizer/sizer.dart';
 
 class DesktopSettingsView extends StatefulWidget {
   static const String routeName = 'settingsView';
@@ -25,11 +24,11 @@ class _SettingsViewState extends State<DesktopSettingsView> {
           ListTile(
             title: Text(
               'Logout',
-              style: TextStyle(fontSize: 5.sp, color: Colors.black),
+              style: TextStyle(fontSize: 15, color: Colors.black),
             ),
             leading: Icon(
               Icons.logout,
-              size: 5.sp,
+              size: 15,
             ),
             onTap: () async {
               await showDialog(
@@ -37,21 +36,21 @@ class _SettingsViewState extends State<DesktopSettingsView> {
                 builder: (context) => AlertDialog(
                   title: Text(
                     'Logout',
-                    style: TextStyle(fontSize: 5.sp),
+                    style: TextStyle(fontSize: 15),
                   ),
                   content: Text('Are you sure you want to logout?',
-                      style: TextStyle(fontSize: 5.sp)),
+                      style: TextStyle(fontSize: 15)),
                   actions: [
                     TextButton(
                       child: Text('Cancel',
                           style:
-                              TextStyle(fontSize: 4.sp, color: Colors.green)),
+                              TextStyle(fontSize: 13, color: Colors.green)),
                       onPressed: () => Navigator.of(context).pop(false),
                     ),
                     TextButton(
                         child: Text('Logout',
                             style:
-                                TextStyle(fontSize: 4.sp, color: Colors.red)),
+                                TextStyle(fontSize: 13, color: Colors.red)),
                         onPressed: () async {
                           await FirebaseAuth.instance.signOut();
                           //MobileLoginView.isViewed=0;

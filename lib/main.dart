@@ -32,7 +32,6 @@ import 'package:our_test_project/presentation/user_application_screens/planet_in
 import 'package:our_test_project/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
 import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 bool check = false;
 bool isNotConnected = false;
@@ -91,8 +90,7 @@ class _MyAppState extends State<MyApp> {
     if (isNotConnected) {
       return NoNetworkApp();
     } else {
-      return Sizer(builder: (context, orientation, deviceType) {
-        return ChangeNotifierProvider(
+      return ChangeNotifierProvider(
           create: (context) => FavoriteProvider(),
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -127,7 +125,6 @@ class _MyAppState extends State<MyApp> {
             initialRoute: check ? StartView.routeName : LoginView.routeName,
           ),
         );
-      });
     }
   }
 }

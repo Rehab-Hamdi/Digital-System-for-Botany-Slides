@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/views/plants_card_item.dart';
 import 'package:our_test_project/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class FavoriteView extends StatelessWidget {
   static const String routeName = 'favoritesView';
@@ -26,7 +25,7 @@ class FavoriteView extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 13,
                     mainAxisSpacing: 17,
-                    childAspectRatio: 0.65.sp,
+                    childAspectRatio: 0.85,
                   ),
                   itemCount: planets.length,
                   itemBuilder: (context, index) {

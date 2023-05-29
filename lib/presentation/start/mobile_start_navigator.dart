@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
 import 'package:our_test_project/database_models/GetUserByEmail.dart';
-import 'package:our_test_project/models/users.dart';
+import 'package:our_test_project/database_models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sizer/sizer.dart';
 
 class MobileStartNavigator {
   static goToLogin(context) async{
@@ -33,7 +32,7 @@ class MobileStartNavigator {
                 builder: (c) {
                   return AlertDialog(
                     title: Text('You are blocked!' ,style: TextStyle(color:
-                    Colors.red.shade400, fontSize: 12.sp),),
+                    Colors.red.shade400, fontSize: 15),),
                     content: Text('Please contact the administrator to address this issue.'),
                     actions: [
                       Center(child: IconButton( onPressed: (){Navigator.of(context).pop(); }, icon: const Icon(Icons.cancel, color:Colors.black,),))

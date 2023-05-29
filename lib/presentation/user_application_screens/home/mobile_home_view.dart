@@ -9,7 +9,6 @@ import 'package:our_test_project/models/plants_models.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_navigator.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class HomeView extends StatefulWidget {
   static const String routeName = "MobileHomeView";
@@ -32,13 +31,13 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
   void dispose() {
     super.dispose();
     _node.dispose();
-    _searchTextController?.dispose();
+    _searchTextController.dispose();
   }
 
   void initState() {
     super.initState();
     _searchTextController = TextEditingController();
-    _searchTextController?.addListener(() {
+    _searchTextController.addListener(() {
       setState(() {});
     });
   }
@@ -77,28 +76,29 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                 builder: (buildContext, snapshot) {
                   if (snapshot.hasError) {
                     return SingleChildScrollView(
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              //zheight: MediaQuery.of(context).size.height*0.50,
-                              child: Image.asset(
-                                'assets/images/noNetwork.png',
-                                fit: BoxFit.cover,
-                              ),
+                      child:  Column(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Image(
+                            image: AssetImage(
+                              'assets/images/noResult.png',
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                'Check your network!',
-                                style: TextStyle(fontSize: 15.sp),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                            fit: BoxFit.cover,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 8.0),
+                            child: Text(
+                              'Check Your Network..!',
+                              style: TextStyle(
+                                  fontSize: 20),
+                            ),
+                          )
+                        ],
+                      )
                     );
+
                   }
                  if(snapshot.hasData)
                    {
@@ -134,7 +134,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                padding: const EdgeInsets.all(7.0),
                                child: Column(
                                  children: [
-                                   Text('Let\'s make search', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),),
+                                   Text('Let\'s make search', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),),
                                    Row(
                                      mainAxisAlignment:
                                      MainAxisAlignment.spaceEvenly,
@@ -153,7 +153,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                            Text(
                                              "By Plant name",
                                              style: TextStyle(
-                                               fontSize: 13.sp,
+                                               fontSize: 18,
                                                fontWeight: FontWeight.bold,
                                                color: MyColors.green,
                                              ),
@@ -175,7 +175,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                            Text(
                                              "By Ceil name",
                                              style: TextStyle(
-                                               fontSize: 13.sp,
+                                               fontSize: 18,
                                                fontWeight: FontWeight.bold,
                                                color: MyColors.green,
                                              ),
@@ -283,7 +283,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                  ),
                                ),
                              ),
-                             _searchTextController!.text.isNotEmpty &&
+                             _searchTextController.text.isNotEmpty &&
                                  itemsListSearch!.isEmpty
                                  ? Column(
                                mainAxisAlignment:
@@ -301,7 +301,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                    child: Text(
                                      'Ooops , No results found!',
                                      style: TextStyle(
-                                         fontSize: 15.sp),
+                                         fontSize: 18),
                                    ),
                                  )
                                ],
@@ -310,6 +310,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
 
                              /// plants Show
                              Column(
+                               mainAxisSize: MainAxisSize.min,
                                children: [
                                  SizedBox(
                                    height: MediaQuery.of(context)
@@ -326,9 +327,9 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                      gridDelegate:
                                      SliverGridDelegateWithFixedCrossAxisCount(
                                        crossAxisCount: 2,
-                                       crossAxisSpacing: 15,
+                                       crossAxisSpacing: 13,
                                        mainAxisSpacing: 17,
-                                       childAspectRatio: 0.65.sp,
+                                       childAspectRatio: 0.85,
                                      ),
                                      itemCount:
                                      _searchTextController
@@ -385,7 +386,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                            padding: const EdgeInsets.only(top: 8.0),
                            child: Text(
                              'Ooops , No Data found!',
-                             style: TextStyle(fontSize: 15.sp),
+                             style: TextStyle(fontSize: 18),
                            ),
                          )
                        ],
@@ -404,8 +405,8 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                      Padding(
                        padding: const EdgeInsets.only(top: 8.0),
                        child: Text(
-                         'Data is Loading!',
-                         style: TextStyle(fontSize: 15.sp),
+                         'Loading...!',
+                         style: TextStyle(fontSize: 18),
                        ),
                      )
                    ],

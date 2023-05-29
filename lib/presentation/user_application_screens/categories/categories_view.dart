@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/core/views/categorg_card_item.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/models/categorg_model.dart';
-import 'package:sizer/sizer.dart';
 
 class CategoryView extends StatefulWidget {
 
@@ -64,7 +63,7 @@ class _CategoryViewState extends State<CategoryView> {
                 Container(
                   padding: const EdgeInsets.all(7.0),
                   child:  Text( "All Categories",
-                    style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),) ,
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),) ,
                 ),
           Padding(
             padding: EdgeInsets.all(8.0),
@@ -75,7 +74,7 @@ class _CategoryViewState extends State<CategoryView> {
                       crossAxisCount: 2,
                       crossAxisSpacing: 1,
                       mainAxisSpacing: 2,
-                      childAspectRatio: 0.7.sp,
+                      childAspectRatio: 0.85,
                   ),
                   itemCount: allCategories.length,
                   itemBuilder:(context, index)=> CategoryCardItem(categoryModel:allCategories[index])),

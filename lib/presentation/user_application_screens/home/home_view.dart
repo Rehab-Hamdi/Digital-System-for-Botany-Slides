@@ -6,7 +6,6 @@ import 'package:our_test_project/presentation/user_application_screens/categorie
 import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
 import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:our_test_project/utils/responsiveLayout.dart';
-import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget
 {
@@ -43,10 +42,10 @@ class _HomeView extends State<HomeScreen> {
         backgroundColor: MyColors.designGreen,
         buttonBackgroundColor: Colors.white,
         items:  [
-          Icon(Icons.home, size: 22.sp, color: MyColors.designGreen,),
-          Icon(Icons.favorite, size: 22.sp, color: Colors.red,),
-          Icon(Icons.calendar_month_outlined, size: 22.sp, color: MyColors.designGreen),
-          Icon(Icons.settings, size: 22.sp, color:MyColors.designGreen,),
+          Icon(Icons.home, size: 28, color: MyColors.designGreen,),
+          Icon(Icons.favorite, size: 28, color: Colors.red,),
+          Icon(Icons.calendar_month_outlined, size: 28, color: MyColors.designGreen),
+          Icon(Icons.settings, size: 28, color:MyColors.designGreen,),
         ],
       ),
     );
