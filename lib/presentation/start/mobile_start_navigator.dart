@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
+import 'package:our_test_project/database_models/GetUserByEmail.dart';
 import 'package:our_test_project/models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
@@ -46,5 +47,45 @@ class MobileStartNavigator {
       }
     // Navigator.pushReplacementNamed(context, HomeScreen.routeName);
     // return null;
+  }
+
+  static pushScreenBasedOnEmail(String email, BuildContext context) async{
+    try {
+      GetUserByEmail data = await APIManager.getUserByEmail(email);
+      if(data.message=='User not found')
+      {
+        return Center(
+          child: Text(data.message!, style: TextStyle(color: Colors.red),),
+        );
+      }
+      String? userType = data.type;
+        if (userType == 'admin') {
+          Navigator.pushNamedAndRemoveUntil(
+              context, DashBoardScreenController.routeName, (route) => false);
+        } else {
+          showDialog(
+              context: context,
+              builder: (c) {
+                return AlertDialog(
+                  content: const Text(
+                    'The email used is not associated with an admin account.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  actions: [
+                    Center(child: IconButton( onPressed: (){Navigator.of(context).pop(); }, icon: const Icon(Icons.cancel, color:Colors.black,),))
+                  ],
+                );
+              });
+
+
+    }
+    } catch (error) {
+      print('Error fetching user type: $error');
+      // Handle the error appropriately
+    }
   }
 }

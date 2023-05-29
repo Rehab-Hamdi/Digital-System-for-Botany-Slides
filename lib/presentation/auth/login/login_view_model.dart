@@ -78,7 +78,7 @@ class LoginViewModel extends BaseViewModel<LoginNavigator> {
       int? user_state= data.blocked;
       SharedPreferences prefs= await SharedPreferences.getInstance();
       prefs.setInt('user_id', user_id!);
-      if(user_state==0) {
+      if(user_state==0|| user_state==null) {
         if (userType == 'admin') {
           Navigator.pushNamedAndRemoveUntil(
               context, DashBoardScreenController.routeName, (route) => false);

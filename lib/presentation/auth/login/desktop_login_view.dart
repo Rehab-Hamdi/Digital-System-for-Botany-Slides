@@ -8,6 +8,7 @@ import 'package:our_test_project/core/custom_widgets/text_field.dart';
 import 'package:our_test_project/core/styles/colors.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
+import 'package:our_test_project/presentation/start/mobile_start_navigator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_navigator.dart';
 import 'login_view_model.dart';
@@ -192,8 +193,7 @@ class _LoginViewState extends BaseState<DesktopLoginView, LoginViewModel>
 
   @override
   void goToHome() async{
-    //Navigator.pushReplacementNamed(context, DashBoardScreenController.routeName);
-    Navigator.pushNamedAndRemoveUntil(context, DashBoardScreenController.routeName, (route) => false);
+  MobileStartNavigator.pushScreenBasedOnEmail(emailController.text, context);
 
   }
 
