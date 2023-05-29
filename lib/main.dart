@@ -1,7 +1,9 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:our_test_project/checkNetwork/check_network.dart';
 import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
 import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
 import 'package:our_test_project/core/styles/my_themes.dart';
@@ -32,8 +34,8 @@ import 'package:our_test_project/presentation/user_application_screens/settings/
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-bool check= false;
-
+bool check = false;
+bool isNotConnected = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -50,58 +52,82 @@ void main() async {
   // Check if user is already logged in
   if (auth.currentUser != null) {
     print('User is logged in');
-    check= true;
+    check = true;
   } else {
     print('User is not logged in');
     check = false;
   }
-
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    checkNetworkConnectivity(); // Check initial network connectivity
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      setState(() {
+        isNotConnected = (result == ConnectivityResult.none);
+      });
+    });
+  }
+
+  Future<void> checkNetworkConnectivity() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    setState(() {
+      isNotConnected = (connectivityResult == ConnectivityResult.none);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-   return Sizer(builder: (context, orientation, deviceType)
-   {
-     return ChangeNotifierProvider(
-       create: (context) => FavoriteProvider(),
-       child: MaterialApp(
-           debugShowCheckedModeBanner: false,
-           theme: MyThemeData.themeData,
-           routes: {
-             LoginView.routeName: (c) => LoginView(),
-             MobileLoginView.routeName: (c) => MobileLoginView(),
-             DesktopLoginView.routeName: (c) => DesktopLoginView(),
-             MobileStartView.routeName: (c) => MobileStartView(),
-             StartView.routeName: (c) => StartView(),
-             HomeScreen.routeName: (c) => HomeScreen(),
-             HomeView.routeName: (c) => HomeView(),
-             FavoriteView.routeName: (c) => FavoriteView(),
-             SettingsView.routeName: (c) => SettingsView(),
-             CalendarView.routeName: (c) => CalendarView(),
-             PlanetInfoView.routeName: (c) => PlanetInfoView(),
-             CategoryView.routeName:(c)=> CategoryView(),
-             DashBoardScreenController.routeName:(c)=>DashBoardScreenController(),
-             DesktopDrawerMenu.routeName:(c)=>DesktopDrawerMenu(),
-             MobileDrawerMenu.routeName:(c)=>MobileDrawerMenu(),
-             DesktopDashboardView.routeName:(c)=>DesktopDashboardView(),
-             MobileDashboardView.routeName:(c)=>MobileDashboardView(),
-             DesktopAddNewUserView.routeName:(c)=> DesktopAddNewUserView(),
-             MobileAddNewUserView.routeName:(c)=> MobileAddNewUserView(),
-             DesktopUpdateUserView.routeName:(c)=> DesktopUpdateUserView(),
-             MobileUpdateUserView.routeName:(c)=> MobileUpdateUserView(),
-             RequestsView.routeName:(c)=>RequestsView(),
-             DesktopEditRequestView.routeName:(c)=> DesktopEditRequestView(),
-             MobileEditRequestView.routeName:(c)=> MobileEditRequestView(),
-
-           },
-           initialRoute:check?StartView.routeName: LoginView.routeName,
-       ),
-     );
-   });
+    if (isNotConnected) {
+      return NoNetworkApp();
+    } else {
+      return Sizer(builder: (context, orientation, deviceType) {
+        return ChangeNotifierProvider(
+          create: (context) => FavoriteProvider(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: MyThemeData.themeData,
+            routes: {
+              LoginView.routeName: (c) => LoginView(),
+              MobileLoginView.routeName: (c) => MobileLoginView(),
+              DesktopLoginView.routeName: (c) => DesktopLoginView(),
+              MobileStartView.routeName: (c) => MobileStartView(),
+              StartView.routeName: (c) => StartView(),
+              HomeScreen.routeName: (c) => HomeScreen(),
+              HomeView.routeName: (c) => HomeView(),
+              FavoriteView.routeName: (c) => FavoriteView(),
+              SettingsView.routeName: (c) => SettingsView(),
+              CalendarView.routeName: (c) => CalendarView(),
+              PlanetInfoView.routeName: (c) => PlanetInfoView(),
+              CategoryView.routeName: (c) => CategoryView(),
+              DashBoardScreenController.routeName: (c) =>
+                  DashBoardScreenController(),
+              DesktopDrawerMenu.routeName: (c) => DesktopDrawerMenu(),
+              MobileDrawerMenu.routeName: (c) => MobileDrawerMenu(),
+              DesktopDashboardView.routeName: (c) => DesktopDashboardView(),
+              MobileDashboardView.routeName: (c) => MobileDashboardView(),
+              DesktopAddNewUserView.routeName: (c) => DesktopAddNewUserView(),
+              MobileAddNewUserView.routeName: (c) => MobileAddNewUserView(),
+              DesktopUpdateUserView.routeName: (c) => DesktopUpdateUserView(),
+              MobileUpdateUserView.routeName: (c) => MobileUpdateUserView(),
+              RequestsView.routeName: (c) => RequestsView(),
+              DesktopEditRequestView.routeName: (c) => DesktopEditRequestView(),
+              MobileEditRequestView.routeName: (c) => MobileEditRequestView(),
+            },
+            initialRoute: check ? StartView.routeName : LoginView.routeName,
+          ),
+        );
+      });
+    }
   }
 }
