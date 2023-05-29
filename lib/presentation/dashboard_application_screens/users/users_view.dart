@@ -166,23 +166,17 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                                         ),
                                       )),
                                       DataColumn(
-                                          label: SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.13,
-                                        child: Text(
-                                          'User Name',
-                                          style:
-                                              Theme.of(context).textTheme.headline6,
-                                        ),
-                                      )),
+                                          label: Text(
+                                            'User Name',
+                                            style:
+                                                Theme.of(context).textTheme.headline6,
+                                          )),
                                       DataColumn(
-                                          label: SizedBox(
-                                       width: MediaQuery.of(context).size.width * 0.13,
-                                        child: Text(
-                                          'User Email',
-                                          style:
-                                              Theme.of(context).textTheme.headline6,
-                                        ),
-                                      )),
+                                          label: Text(
+                                            'User Email',
+                                            style:
+                                                Theme.of(context).textTheme.headline6,
+                                          )),
                                       const DataColumn(label: Text('')),
                                     ],
                                     rows: usersToDisplay
