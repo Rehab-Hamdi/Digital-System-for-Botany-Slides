@@ -94,6 +94,8 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
   TextEditingController returnedDateController = TextEditingController();
   TextEditingController returnedStateController = TextEditingController();
   TextEditingController notesController = TextEditingController();
+  SharedPreferences? _preferences;
+
 
   @override
   void initState() {
@@ -116,6 +118,11 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
     notesFocusNode.addListener(() {
       setState(() {});
     });
+    _initializePreferences();
+  }
+
+  void _initializePreferences() async {
+    _preferences = await SharedPreferences.getInstance();
   }
 
   @override
@@ -152,10 +159,8 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                         [];
                     List<Request> _requestsToDisplay =
                         _searchQuery.isEmpty ? _requests! : _filteredRequests;
-
-                    SharedPreferences prefs= SharedPreferences.getInstance() as SharedPreferences;
-                    prefs.setInt('numOfRequests', _requestsToDisplay.length);
-
+                    _preferences?.setInt('requestsLength', _requests!.length);
+                    //print("Number of requests ${_requests!.length}");
                     return Center(
                       child: Column(
                         children: [
