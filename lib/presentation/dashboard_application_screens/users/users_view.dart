@@ -6,7 +6,6 @@ import 'package:our_test_project/models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_navigator.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 import 'modules/custom_alert_dialog.dart';
 
@@ -166,17 +165,23 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                                         ),
                                       )),
                                       DataColumn(
-                                          label: Text(
-                                            'User Name',
-                                            style:
-                                                Theme.of(context).textTheme.headline6,
-                                          )),
+                                          label: SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.13,
+                                        child: Text(
+                                          'User Name',
+                                          style:
+                                              Theme.of(context).textTheme.headline6,
+                                        ),
+                                      )),
                                       DataColumn(
-                                          label: Text(
-                                            'User Email',
-                                            style:
-                                                Theme.of(context).textTheme.headline6,
-                                          )),
+                                          label: SizedBox(
+                                       width: MediaQuery.of(context).size.width * 0.13,
+                                        child: Text(
+                                          'User Email',
+                                          style:
+                                              Theme.of(context).textTheme.headline6,
+                                        ),
+                                      )),
                                       const DataColumn(label: Text('')),
                                     ],
                                     rows: usersToDisplay

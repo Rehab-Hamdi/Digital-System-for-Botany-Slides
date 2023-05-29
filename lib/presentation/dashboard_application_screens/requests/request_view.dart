@@ -11,7 +11,6 @@ import 'package:our_test_project/presentation/dashboard_application_screens/requ
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/requet_navigator.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sizer/sizer.dart';
 
 class RequestsView extends StatefulWidget {
   static const String routeName = 'RequestsView';
@@ -381,8 +380,11 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset(
-                                "assets/images/plant1.png",
+                              Padding(
+                                padding: const EdgeInsets.only(left: 25),
+                                child: Image.asset(
+                                  "assets/images/plant1.png",
+                                ),
                               ),
                               Image.asset("assets/images/plant1.png")
                             ],

@@ -1,20 +1,45 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:our_test_project/core/api_manager.dart';
 import 'package:our_test_project/core/base.dart';
+import 'package:our_test_project/core/constants.dart';
 import 'package:our_test_project/models/users.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/users/users_navigator.dart';
 
 class UsersViewModel extends BaseViewModel<UserNavigator>{
-  void createNewUser(Users? user, BuildContext context){
-    navigator!.showLoading();
-    APIManager.addNewUserRequest(user!);
-    Navigator.pop(context);
-    navigator!.hideLoading();
-    navigator!.showDialogWithGif(
-      img: "assets/images/success.gif",
-      title: "User added successfully..!",
-      titleColor: Colors.green,
-    );
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  Future<void> createNewUser(Users? user, BuildContext context) async {
+    String message = "null";
+    try {
+      navigator!.showLoading();
+      await firebaseAuth.createUserWithEmailAndPassword(
+          email: user!.email!, password: user.password!);
+      message = "account created successfully..!";
+    } on FirebaseAuthException catch (e) {
+      if (e.code == FireBaseErrors.WEEK_PASSWORD) {
+        message = "The password is too weak.";
+      } else if (e.code == FireBaseErrors.EMAIL_IN_USE) {
+        message = "The account already exists for that email.";
+      }
+    } catch (e) {
+      print(e);
+    }
+    if(message == "account created successfully..!")
+    {
+      navigator!.hideLoading();
+      APIManager.addNewUserRequest(user!);
+      //Navigator.pop(context);
+      navigator!.hideLoading();
+      navigator!.showDialogWithGif(
+        img: "assets/images/success.gif",
+        title: "User added successfully..!",
+        titleColor: Colors.green,
+      );
+    }
+    else {
+      navigator!.hideLoading();
+      navigator!.showMessage(message,false);
+    }
   }
   void updateUserInfo(Users? user, BuildContext context){
     navigator!.showLoading();
