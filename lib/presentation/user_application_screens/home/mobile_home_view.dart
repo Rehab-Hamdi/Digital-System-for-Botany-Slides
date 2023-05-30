@@ -117,7 +117,8 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                            count: slide.count??0,
                            cupboard: slide.cupbord??0,
                            family: slide.family??'',
-                           boxNumber: slide.boxnumber??0
+                           boxNumber: slide.boxnumber??0,
+                         slideNumber: slide.slideNumber??0,
                        );
                      }).toList() ??
                          [];

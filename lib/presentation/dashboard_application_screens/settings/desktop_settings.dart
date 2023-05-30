@@ -24,11 +24,11 @@ class _SettingsViewState extends State<DesktopSettingsView> {
           ListTile(
             title: Text(
               'Logout',
-              style: TextStyle(fontSize: 15, color: Colors.black),
+              style: TextStyle(fontSize: 21, color: Colors.black),
             ),
             leading: Icon(
               Icons.logout,
-              size: 15,
+              size: 21,
             ),
             onTap: () async {
               await showDialog(
@@ -36,21 +36,21 @@ class _SettingsViewState extends State<DesktopSettingsView> {
                 builder: (context) => AlertDialog(
                   title: Text(
                     'Logout',
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 21),
                   ),
                   content: Text('Are you sure you want to logout?',
-                      style: TextStyle(fontSize: 15)),
+                      style: TextStyle(fontSize: 17)),
                   actions: [
                     TextButton(
                       child: Text('Cancel',
                           style:
-                              TextStyle(fontSize: 13, color: Colors.green)),
+                              TextStyle(fontSize: 15, color: Colors.green)),
                       onPressed: () => Navigator.of(context).pop(false),
                     ),
                     TextButton(
                         child: Text('Logout',
                             style:
-                                TextStyle(fontSize: 13, color: Colors.red)),
+                                TextStyle(fontSize: 15, color: Colors.red)),
                         onPressed: () async {
                           await FirebaseAuth.instance.signOut();
                           //MobileLoginView.isViewed=0;

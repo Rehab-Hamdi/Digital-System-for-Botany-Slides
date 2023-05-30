@@ -12,6 +12,7 @@ class PlantsModel {
   String? groupName;
   String? family;
   int? boxNumber;
+  int? slideNumber;
   PlantsModel({
     required this.plant_image,
     this.latine_name,
@@ -23,6 +24,7 @@ class PlantsModel {
     this.family,
     this.count,
     this.cupboard,
-    this.boxNumber
+    this.boxNumber,
+    this.slideNumber,
   });
 }
