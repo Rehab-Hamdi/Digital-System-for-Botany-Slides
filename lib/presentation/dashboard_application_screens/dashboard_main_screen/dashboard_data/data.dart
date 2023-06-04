@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:our_test_project/models/analytic_info.dart';
 
 class AnalyticInformation{
-  static int usersCount = 80;
+  static int usersCount = 0;
+  static int? registeredSlidesNum = 0;
 
   static List analyticData = [
     AnalyticInfo(
@@ -30,7 +31,7 @@ class AnalyticInformation{
         title: "Registered Slides",
         subTitle: "Slide",
         icon: const Icon(Icons.app_registration),
-        count: 17,
+        count: registeredSlidesNum,
         color: Colors.pinkAccent
     ),
   ];

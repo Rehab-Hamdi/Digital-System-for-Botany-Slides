@@ -21,7 +21,7 @@ class FavoriteView extends StatelessWidget {
             : Padding(
               padding: const EdgeInsets.all(10.0),
               child: GridView.builder(
-                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 13,
                     mainAxisSpacing: 17,

@@ -495,7 +495,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
               Navigator.pop(context);
             },
             child:
-            Text(
+            const Text(
               'Cancel',
               style: TextStyle(
                 color: MyColors.active,

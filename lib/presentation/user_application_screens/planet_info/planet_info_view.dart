@@ -16,15 +16,14 @@ class PlanetInfoView extends StatefulWidget {
   State<PlanetInfoView> createState() => _PlanetInfoViewState();
 }
 
-class _PlanetInfoViewState
-    extends BaseState<PlanetInfoView, PlanetInfoViewModel>
-    implements PlanetInfoNavigator {
+class _PlanetInfoViewState extends BaseState<PlanetInfoView, PlanetInfoViewModel> implements PlanetInfoNavigator {
   PlantsModel? plantsModel;
-
+  String? slidId;
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<FavoriteProvider>(context);
     plantsModel = ModalRoute.of(context)?.settings.arguments as PlantsModel;
+    slidId = "${plantsModel!.boxNumber}.${plantsModel!.slideNumber}";
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: SafeArea(
@@ -79,28 +78,36 @@ class _PlanetInfoViewState
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-                  child: Text(
-                    plantsModel?.groupName == 'Special groups '
-                        ? plantsModel?.speciman ?? ''
-                        : plantsModel?.latine_name ?? '',
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
+                SizedBox(height: 10,),
+                ListTile(
+                  title: const Text("Slid Id", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.border_color_outlined),
+                  subtitle: Text(slidId ?? "", style: TextStyle(fontSize: 20),),
                 ),
-                ListView.builder(
-                  itemCount: 3,
-                  padding: const EdgeInsets.all(20.0),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Text(
-                      "  ",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1!
-                          .copyWith(fontSize: 16),
-                    );
-                  },
+                ListTile(
+                  title: const Text("Latin Name", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.border_color_outlined),
+                  subtitle: Text(plantsModel!.latine_name ?? "", style: TextStyle(fontSize: 20),),
+                ),
+                ListTile(
+                  title: const Text("Group", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.groups),
+                  subtitle: Text(plantsModel!.groupName ?? "", style: TextStyle(fontSize: 20),),
+                ),
+                ListTile(
+                  title: const Text("Family", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.family_restroom),
+                  subtitle: Text(plantsModel!.family ?? "", style: TextStyle(fontSize: 20),),
+                ),
+                ListTile(
+                  title: const Text("Cupboard", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.border_color_outlined),
+                  subtitle: Text("${plantsModel!.cupboard}", style: TextStyle(fontSize: 20),),
+                ),
+                ListTile(
+                  title: const Text("Box Number", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.add_box),
+                  subtitle: Text("${plantsModel!.boxNumber}", style: TextStyle(fontSize: 20),),
                 ),
                 const Divider(
                   thickness: 3.0,
@@ -111,15 +118,25 @@ class _PlanetInfoViewState
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, left: 20.0),
                   child: Text(
-                    "About",
+                    plantsModel?.groupName == 'Special groups '
+                        ? plantsModel?.speciman ?? ''
+                        : plantsModel?.latine_name ?? '',
                     style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-                  child: Text(
-                    "Ceil name : ${plantsModel!.ceilName}",
-                  ),
+                ListView.builder(
+                  itemCount: 2,
+                  padding: const EdgeInsets.only(top: 10, left: 20),
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Text(
+                      "some information about this planet",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(fontSize: 19),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 110.0,

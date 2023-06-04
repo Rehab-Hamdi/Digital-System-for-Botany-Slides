@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class PlantsModel {
   String? latine_name;
   String? ceilName;
