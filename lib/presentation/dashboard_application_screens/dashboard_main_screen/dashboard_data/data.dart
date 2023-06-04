@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/models/analytic_info.dart';
+import 'package:Botany/models/analytic_info.dart';
 
 class AnalyticInformation{
   static int usersCount = 0;

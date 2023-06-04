@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
+import 'package:Botany/core/styles/colors.dart';
 
 class ViewCurve extends StatelessWidget {
   const ViewCurve({Key? key}) : super(key: key);

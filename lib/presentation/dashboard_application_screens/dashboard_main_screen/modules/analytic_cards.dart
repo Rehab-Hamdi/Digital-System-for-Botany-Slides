@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/api_manager.dart';
-import 'package:our_test_project/core/custom_widgets/analytic_card.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/dashboard_data/data.dart';
-import 'package:our_test_project/utils/responsiveLayout.dart';
+import 'package:Botany/core/api_manager.dart';
+import 'package:Botany/core/custom_widgets/analytic_card.dart';
+import 'package:Botany/presentation/dashboard_application_screens/dashboard_main_screen/dashboard_data/data.dart';
+import 'package:Botany/utils/responsiveLayout.dart';
 
 class AnalyticCards extends StatelessWidget {
   const AnalyticCards({Key? key}) : super(key: key);

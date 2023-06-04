@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/api_manager.dart';
-import 'package:our_test_project/core/base.dart';
-import 'package:our_test_project/core/constants.dart';
-import 'package:our_test_project/database_models/GetUserByEmail.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
+import 'package:Botany/core/api_manager.dart';
+import 'package:Botany/core/base.dart';
+import 'package:Botany/core/constants.dart';
+import 'package:Botany/database_models/GetUserByEmail.dart';
+import 'package:Botany/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
+import 'package:Botany/presentation/user_application_screens/home/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login_navigator.dart';

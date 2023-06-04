@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:our_test_project/models/plants_models.dart';
+import 'package:Botany/models/plants_models.dart';
 
 class FavoriteProvider extends ChangeNotifier {
   List<PlantsModel> planets = [];

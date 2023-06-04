@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/indicator.dart';
-import 'package:our_test_project/core/styles/colors.dart';
+import 'package:Botany/core/custom_widgets/indicator.dart';
+import 'package:Botany/core/styles/colors.dart';
 
 class BorrowedSlidesAnalytic extends StatefulWidget {
   const BorrowedSlidesAnalytic({Key? key}) : super(key: key);

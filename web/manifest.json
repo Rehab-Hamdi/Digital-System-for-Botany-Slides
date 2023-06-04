@@ -1,6 +1,6 @@
 {
-    "name": "our_test_project",
-    "short_name": "our_test_project",
+    "name": "Botany",
+    "short_name": "Botany",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
