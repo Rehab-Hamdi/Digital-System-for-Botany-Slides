@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:Botany/core/api_manager.dart';
 import 'package:Botany/core/base.dart';
 import 'package:Botany/core/constants.dart';
 import 'package:Botany/database_models/users.dart';
 import 'package:Botany/presentation/dashboard_application_screens/users/users_navigator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class UsersViewModel extends BaseViewModel<UserNavigator>{
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -97,6 +97,17 @@ class UsersViewModel extends BaseViewModel<UserNavigator>{
       return 'phone number must be exactly 11 number';
     } else if (!phoneValid) {
       return 'phone number must contain only numbers';
+    }
+    return null;
+  }
+  String? ssnValidation(text) {
+    bool ssnValid = RegExp(r'(^(?:[+0]9)?[0-9]{10,14}$)').hasMatch(text!);
+    if (text == null || text.trim().isEmpty) {
+      return 'Please enter user SSN Number';
+    } else if (text.length < 14 || text.length > 14) {
+      return 'SSN number must be exactly 14 number';
+    } else if (!ssnValid) {
+      return 'SSN number must contain only numbers';
     }
     return null;
   }

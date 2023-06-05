@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:Botany/core/custom_widgets/simple_text_field.dart';
 import 'package:Botany/core/styles/colors.dart';
 import 'package:Botany/presentation/dashboard_application_screens/users/users_view_model.dart';
+import 'package:flutter/material.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   String title;
@@ -12,7 +12,7 @@ class CustomAlertDialog extends StatelessWidget {
   TextEditingController idController;
   TextEditingController nameController;
   TextEditingController emailController;
-  TextEditingController passwordController;
+  TextEditingController? passwordController;
   TextEditingController phoneController;
   TextEditingController typeController;
   TextEditingController ssnController;
@@ -27,7 +27,7 @@ class CustomAlertDialog extends StatelessWidget {
     required this.idController,
     required this.nameController,
     required this.emailController,
-    required this.passwordController,
+    this.passwordController,
     required this.phoneController,
     required this.typeController,
     required this.ssnController,
@@ -72,9 +72,10 @@ class CustomAlertDialog extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              if(actionText != 'Update')
               SimpleTextField(
                 text: 'User Password',
-                controller: passwordController,
+                controller: passwordController! ,
                 validatorFunction: (text)=> viewModel?.passwordValidation(text),
               ),
               const SizedBox(
@@ -99,7 +100,7 @@ class CustomAlertDialog extends StatelessWidget {
               SimpleTextField(
                 text: 'Social Security Number',
                 controller: ssnController,
-                validatorFunction: (text)=> viewModel?.phoneValidation(text),
+                validatorFunction: (text)=> viewModel?.ssnValidation(text),
               ),
               const SizedBox(
                 height: 10,
@@ -151,7 +152,9 @@ class CustomAlertDialog extends StatelessWidget {
     idController.clear();
     nameController.clear();
     emailController.clear();
-    passwordController.clear();
+    if(actionText != 'Update') {
+      passwordController!.clear();
+    }
     phoneController.clear();
     typeController.clear();
     ssnController.clear();

@@ -91,7 +91,7 @@ class _PlanetInfoViewState extends BaseState<PlanetInfoView, PlanetInfoViewModel
                 SizedBox(height: MediaQuery.of(context).size.height/40),
                 ListTile(
                   title: const Text("Slid Id", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  leading: const Icon(Icons.border_color_outlined, color: MyColors.green,),
+                  leading: const Icon(Icons.border_color_outlined),
                   subtitle: Text(slidId ?? "", style: TextStyle(fontSize: 20),),
                 ),
                 ListTile(
@@ -99,7 +99,7 @@ class _PlanetInfoViewState extends BaseState<PlanetInfoView, PlanetInfoViewModel
                   const Text("Speciman Name", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
                       :
                   const Text("Latin Name", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  leading: const Icon(Icons.border_color_outlined, color: MyColors.green,),
+                  leading: const Icon(Icons.type_specimen),
                   subtitle: plantsModel!.groupName == 'Special groups ' ?
                   Text(plantsModel!.speciman ?? "", style: TextStyle(fontSize: 20),)
                       :
@@ -107,28 +107,39 @@ class _PlanetInfoViewState extends BaseState<PlanetInfoView, PlanetInfoViewModel
                 ),
                 ListTile(
                   title: const Text("Arabic Name", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  leading: const Icon(Icons.drive_file_rename_outline, color: MyColors.green,),
+                  leading: const Icon(Icons.type_specimen),
                   subtitle: Text(plantsModel!.arabicName ?? "", style: TextStyle(fontSize: 20),),
                 ),
                 ListTile(
                   title: const Text("Group", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  leading: const Icon(Icons.groups, color: MyColors.green,),
+                  leading: const Icon(Icons.groups),
                   subtitle: Text(plantsModel!.groupName ?? "", style: TextStyle(fontSize: 20),),
                 ),
                 if(plantsModel!.groupName != 'Special groups ')
                 ListTile(
                   title: const Text("Family", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  leading: const Icon(Icons.family_restroom,color: MyColors.green,),
+                  leading: const Icon(Icons.family_restroom),
                   subtitle: Text(plantsModel!.family ?? "", style: TextStyle(fontSize: 20),),
+                ),
+                if(plantsModel!.groupName != 'Special groups ')
+                ListTile(
+                  title: const Text("Section Type", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.border_color_outlined),
+                  subtitle: Text(plantsModel!.sectionType ?? "", style: TextStyle(fontSize: 20),),
+                ),
+                ListTile(
+                  title: const Text("Ceil Example", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  leading: const Icon(Icons.border_color_outlined),
+                  subtitle: Text(plantsModel!.ceilName ?? "", style: TextStyle(fontSize: 20),),
                 ),
                 ListTile(
                   title: const Text("Cupboard", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  leading: const Icon(Icons.border_color_outlined,color: MyColors.green,),
+                  leading: const Icon(Icons.border_color_outlined),
                   subtitle: Text("${plantsModel!.cupboard}", style: TextStyle(fontSize: 20),),
                 ),
                 ListTile(
                   title: const Text("Box Number", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  leading: const Icon(Icons.add_box,color: MyColors.green,),
+                  leading: const Icon(Icons.add_box),
                   subtitle: Text("${plantsModel!.boxNumber}", style: TextStyle(fontSize: 20),),
                 ),
                 const SizedBox(height: 15,),

@@ -380,7 +380,6 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
             idController: updateIdController,
             nameController: updateNameController,
             emailController: updateEmailController,
-            passwordController: updatePasswordController,
             phoneController: updatePhoneController,
             typeController: updateTypeController,
             ssnController: updateSsnController,

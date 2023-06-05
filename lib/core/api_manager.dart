@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+import 'package:Botany/database_models/GetAllRequests.dart';
 import 'package:Botany/database_models/GetUserByEmail.dart';
 import 'package:Botany/database_models/Get_by_group.dart';
-import 'package:Botany/database_models/GetAllRequests.dart';
 import 'package:Botany/database_models/users.dart';
+import 'package:http/http.dart' as http;
 
 class APIManager{
   static const String BASE_URL ='https://botany.larasci.site/api';
@@ -82,7 +82,6 @@ class APIManager{
         },
         body:jsonEncode({
           "name" : user.name,
-          "password" : user.password,
           "email": user.email,
           "phone": user.phone,
           "type" : user.type,
