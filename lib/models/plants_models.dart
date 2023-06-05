@@ -11,6 +11,7 @@ class PlantsModel {
   String? family;
   int? boxNumber;
   int? slideNumber;
+  String? sectionType;
   PlantsModel({
     required this.plant_image,
     this.latine_name,
@@ -24,5 +25,6 @@ class PlantsModel {
     this.cupboard,
     this.boxNumber,
     this.slideNumber,
+    this.sectionType
   });
 }

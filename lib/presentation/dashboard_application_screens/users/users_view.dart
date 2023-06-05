@@ -275,8 +275,11 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    "assets/images/plant1.png",
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Image.asset(
+                      "assets/images/plant1.png",
+                    ),
                   ),
                   Image.asset("assets/images/plant1.png")
                 ],

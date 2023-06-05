@@ -49,7 +49,6 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
     return null;
   }
 
-
   String? endDateValidation(String? text) {
     if (text == null || text.trim().isEmpty) {
       //return 'Please enter a end date';
@@ -110,8 +109,7 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
 
   void acceptRequest(int? user_id, int? slide_id, BuildContext context) {
     navigator!.showLoading();
-    //APIManager.approveUserRequest(user_id, slide_id);
-    Navigator.pop(context);
+    APIManager.approveUserRequest(user_id, slide_id);
     navigator!.hideLoading();
     navigator!.showDialogWithGif(
       img: "assets/images/success.gif",
@@ -130,7 +128,8 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
       String? notes,
       BuildContext context) {
     navigator!.showLoading();
-    APIManager.EditUserRequest(user_id, slide_id, startDate, endDate, returnedDate, bloked, notes);
+    APIManager.EditUserRequest(
+        user_id, slide_id, startDate, endDate, returnedDate, bloked, notes);
     Navigator.pop(context);
     navigator!.hideLoading();
     navigator!.showDialogWithGif(
@@ -142,8 +141,7 @@ class RequestViewModel extends BaseViewModel<RequestNavigator> {
 
   void rejectRequest(int? user_id, int? slide_id, BuildContext context) {
     navigator!.showLoading();
-    //APIManager.rejectUserRequest(user_id, slide_id);
-    Navigator.pop(context);
+    APIManager.rejectUserRequest(user_id, slide_id);
     navigator!.hideLoading();
     navigator!.showDialogWithGif(
       img: "assets/images/success.gif",

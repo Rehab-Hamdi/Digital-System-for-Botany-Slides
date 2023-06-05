@@ -111,7 +111,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                            latine_name: slide.latineName??'',
                            ceilName: slide.ceilName??'' ,
                            speciman: slide.specimen??'',
-                           slide_id: slide.slideNumber??0,
+                           slide_id: slide.id??0,
                            arabicName: slide.arabicName??'',
                            groupName: slide.groupName??'',
                            count: slide.count??0,
@@ -119,6 +119,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                            family: slide.family??'',
                            boxNumber: slide.boxnumber??0,
                          slideNumber: slide.slideNumber??0,
+                         sectionType: slide.sectionType??'',
                        );
                      }).toList() ??
                          [];

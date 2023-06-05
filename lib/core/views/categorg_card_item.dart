@@ -19,7 +19,7 @@ class CategoryCardItem extends StatelessWidget
             child:Card(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18),
               ),
-              elevation: 5,
+              elevation: 6,
               color: Colors.white,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.50,
@@ -33,7 +33,7 @@ class CategoryCardItem extends StatelessWidget
                       radius: 36,
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
-                        radius: 35.0,
+                        radius: 34.0,
                         child: Text(categoryModel.categoryNumber, style: TextStyle(color: categoryModel.color, fontSize: 25),),
                       ),
                     ),

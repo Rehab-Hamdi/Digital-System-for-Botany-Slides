@@ -12,6 +12,11 @@ class PlantsCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String section= plantsModel.sectionType=='null' ? " ": plantsModel.sectionType!;
+    if(section.length>4)
+      {
+        section=section.substring(0,4)+'...';
+      }
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, PlanetInfoView.routeName,
@@ -23,7 +28,7 @@ class PlantsCardItem extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color:MyColors.lightGrey.withOpacity(0.45),
-              blurRadius: 3.5, // soften the shadow
+              blurRadius: 4, // soften the shadow
               offset: const Offset(
                 1.0, // Move to right 10  horizontally
                 2.0, // Move to bottom 10 Vertically
@@ -45,11 +50,12 @@ class PlantsCardItem extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+
               Flexible(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    plantsModel.groupName=='Special groups '? plantsModel.speciman!:plantsModel.latine_name!,
+                    plantsModel.groupName=='Special groups '? plantsModel.speciman!:plantsModel.latine_name! + ' "' + section + '"',
                     style:  TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
