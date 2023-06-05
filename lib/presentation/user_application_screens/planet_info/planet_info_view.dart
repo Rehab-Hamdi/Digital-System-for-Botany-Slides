@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/base.dart';
-import 'package:our_test_project/core/custom_widgets/button.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/models/plants_models.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_navigator.dart';
-import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_view_model.dart';
-import 'package:our_test_project/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
+import 'package:Botany/core/base.dart';
+import 'package:Botany/core/custom_widgets/button.dart';
+import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/models/plants_models.dart';
+import 'package:Botany/presentation/user_application_screens/home/home_view.dart';
+import 'package:Botany/presentation/user_application_screens/planet_info/planet_info_navigator.dart';
+import 'package:Botany/presentation/user_application_screens/planet_info/planet_info_view_model.dart';
+import 'package:Botany/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
 import 'package:provider/provider.dart';
 
 class PlanetInfoView extends StatefulWidget {

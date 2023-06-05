@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/button.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/start/desktop_start_navigator.dart';
+import 'package:Botany/core/custom_widgets/button.dart';
+import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/presentation/start/desktop_start_navigator.dart';
 
 class DesktopStartView extends StatelessWidget {
   const DesktopStartView({super.key});

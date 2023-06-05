@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/custom_widgets/button.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/auth/login/login_view.dart';
-import 'package:our_test_project/presentation/start/mobile_start_navigator.dart';
+import 'package:Botany/core/custom_widgets/button.dart';
+import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/presentation/auth/login/login_view.dart';
+import 'package:Botany/presentation/start/mobile_start_navigator.dart';
 
 class MobileStartView extends StatelessWidget {
   const MobileStartView({Key? key}) : super(key: key);

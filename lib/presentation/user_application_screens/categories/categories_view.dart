@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/views/categorg_card_item.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/models/categorg_model.dart';
+import 'package:Botany/core/views/categorg_card_item.dart';
+import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/models/categorg_model.dart';
 
 class CategoryView extends StatefulWidget {
 

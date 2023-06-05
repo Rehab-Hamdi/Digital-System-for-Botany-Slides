@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/models/categorg_model.dart';
-import 'package:our_test_project/models/plants_models.dart';
-import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_view.dart';
+import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/models/categorg_model.dart';
+import 'package:Botany/models/plants_models.dart';
+import 'package:Botany/presentation/user_application_screens/planet_info/planet_info_view.dart';
 
 class PlantsCardItem extends StatelessWidget {
    PlantsCardItem({Key? key, required this.plantsModel, this.category}) : super(key: key);

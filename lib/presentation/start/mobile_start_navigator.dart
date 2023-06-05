@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/api_manager.dart';
-import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
-import 'package:our_test_project/database_models/GetUserByEmail.dart';
-import 'package:our_test_project/database_models/users.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
+import 'package:Botany/core/api_manager.dart';
+import 'package:Botany/core/components/smallScreen_drawer_menu.dart';
+import 'package:Botany/database_models/GetUserByEmail.dart';
+import 'package:Botany/database_models/users.dart';
+import 'package:Botany/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
+import 'package:Botany/presentation/user_application_screens/home/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MobileStartNavigator {

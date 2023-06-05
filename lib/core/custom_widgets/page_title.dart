@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
+import 'package:Botany/core/styles/colors.dart';
 
 class PageTitle extends StatelessWidget {
   const PageTitle({super.key, required this.title, required this.wdth});

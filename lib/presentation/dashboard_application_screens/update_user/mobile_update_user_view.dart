@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/base.dart';
-import 'package:our_test_project/core/custom_widgets/title_and_textField.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_navigator.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/update_user/update_user_view_model.dart';
+import 'package:Botany/core/base.dart';
+import 'package:Botany/core/custom_widgets/title_and_textField.dart';
+import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/presentation/dashboard_application_screens/update_user/update_user_navigator.dart';
+import 'package:Botany/presentation/dashboard_application_screens/update_user/update_user_view_model.dart';
 import 'package:provider/provider.dart';
 
 class MobileUpdateUserView extends StatefulWidget {

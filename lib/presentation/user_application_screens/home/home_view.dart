@@ -1,11 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
-import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/categories/categories_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
-import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
-import 'package:our_test_project/utils/responsiveLayout.dart';
+import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/presentation/user_application_screens/calendar/calendar_view.dart';
+import 'package:Botany/presentation/user_application_screens/categories/categories_view.dart';
+import 'package:Botany/presentation/user_application_screens/favorites/favorites_veiw.dart';
+import 'package:Botany/presentation/user_application_screens/settings/settings_view.dart';
+import 'package:Botany/utils/responsiveLayout.dart';
 
 class HomeScreen extends StatefulWidget
 {

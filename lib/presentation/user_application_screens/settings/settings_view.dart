@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/presentation/auth/login/login_view.dart';
+import 'package:Botany/presentation/auth/login/login_view.dart';
 
 class SettingsView extends StatefulWidget {
   static const String routeName = 'settingsView';

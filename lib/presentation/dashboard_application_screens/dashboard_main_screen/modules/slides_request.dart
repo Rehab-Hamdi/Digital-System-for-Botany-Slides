@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/styles/colors.dart';
+import 'package:Botany/core/styles/colors.dart';
 
 import 'bar_char_slides_request.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/models/categorg_model.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
+import 'package:Botany/models/categorg_model.dart';
+import 'package:Botany/presentation/user_application_screens/home/mobile_home_view.dart';
 
 class CategoryCardItem extends StatelessWidget
 {

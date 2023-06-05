@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
-import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
-import 'package:our_test_project/utils/responsive.dart';
+import 'package:Botany/core/components/desktop_drawer_menu.dart';
+import 'package:Botany/core/components/smallScreen_drawer_menu.dart';
+import 'package:Botany/utils/responsive.dart';
 
 
 class DashBoardScreenController extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/core/views/plants_card_item.dart';
-import 'package:our_test_project/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
+import 'package:Botany/core/views/plants_card_item.dart';
+import 'package:Botany/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteView extends StatelessWidget {

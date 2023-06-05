@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/models/analytic_info.dart';
+import 'package:Botany/models/analytic_info.dart';
 
 class AnalyticCard extends StatelessWidget {
   const AnalyticCard({Key? key, required this.info, this.textSize=0, this.iconSize=0}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/modules/analytic_cards.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/modules/view_curve.dart';
-import 'package:our_test_project/utils/responsive.dart';
+import 'package:Botany/presentation/dashboard_application_screens/dashboard_main_screen/modules/analytic_cards.dart';
+import 'package:Botany/presentation/dashboard_application_screens/dashboard_main_screen/modules/view_curve.dart';
+import 'package:Botany/utils/responsive.dart';
 
 import 'modules/borrowed_slides_analytic.dart';
 import 'modules/slides_request.dart';

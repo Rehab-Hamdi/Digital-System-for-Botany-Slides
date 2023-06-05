@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:our_test_project/presentation/start/desktop_start_view.dart';
-import 'package:our_test_project/utils/responsiveLayout.dart';
+import 'package:Botany/presentation/start/desktop_start_view.dart';
+import 'package:Botany/utils/responsiveLayout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'mobile_start_view.dart';
 
