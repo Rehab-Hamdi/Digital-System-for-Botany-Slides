@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:Botany/core/api_manager.dart';
 import 'package:Botany/core/base.dart';
 import 'package:Botany/core/styles/colors.dart';
 import 'package:Botany/database_models/users.dart';
 import 'package:Botany/presentation/dashboard_application_screens/users/users_navigator.dart';
 import 'package:Botany/presentation/dashboard_application_screens/users/users_view_model.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'modules/custom_alert_dialog.dart';
@@ -235,7 +235,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                                                         updatePhoneController.text = user.phone!;
                                                         updateTypeController.text = user.type!;
                                                         updateSsnController.text = user.ssn!;
-                                                        updateBlockStateController.text = user.blocked == null || user.blocked == '0' ? '0' : '1';
+                                                        updateBlockStateController.text = user.blocked == null || user.blocked == 0 ? '0' : '1';
                                                         openUpdateUserDialog(user);
                                                         },
                                                       icon: const Icon(Icons.edit),
@@ -531,5 +531,4 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     updateSsnController.clear();
     updateBlockStateController.clear();
   }
-
 }
