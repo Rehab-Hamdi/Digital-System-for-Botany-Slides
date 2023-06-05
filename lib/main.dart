@@ -1,37 +1,37 @@
+import 'package:Botany/presentation/auth/login/desktop_login_view.dart';
+import 'package:Botany/presentation/auth/login/login_view.dart';
+import 'package:Botany/presentation/auth/login/mobile_login_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/add_user/desktop_add_user_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
+import 'package:Botany/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/edit_request/mobile_edit_request_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/requests/request_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
+import 'package:Botany/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
+import 'package:Botany/presentation/start/mobile_start_view.dart';
+import 'package:Botany/presentation/start/start_view.dart';
+import 'package:Botany/presentation/user_application_screens/calendar/calendar_view.dart';
+import 'package:Botany/presentation/user_application_screens/categories/categories_view.dart';
+import 'package:Botany/presentation/user_application_screens/favorites/favorites_veiw.dart';
+import 'package:Botany/presentation/user_application_screens/home/home_view.dart';
+import 'package:Botany/presentation/user_application_screens/home/mobile_home_view.dart';
+import 'package:Botany/presentation/user_application_screens/planet_info/planet_info_view.dart';
+import 'package:Botany/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
+import 'package:Botany/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:our_test_project/checkNetwork/check_network.dart';
-import 'package:our_test_project/core/components/desktop_drawer_menu.dart';
-import 'package:our_test_project/core/components/smallScreen_drawer_menu.dart';
-import 'package:our_test_project/core/styles/my_themes.dart';
-import 'package:our_test_project/firebase_options.dart';
-import 'package:our_test_project/presentation/auth/login/desktop_login_view.dart';
-import 'package:our_test_project/presentation/auth/login/login_view.dart';
-import 'package:our_test_project/presentation/auth/login/mobile_login_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/add_user/desktop_add_user_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/mobile_edit_request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/update_user/desktop_update_user_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/update_user/mobile_update_user_view.dart';
-import 'package:our_test_project/presentation/start/mobile_start_view.dart';
-import 'package:our_test_project/presentation/start/start_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/calendar/calendar_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/categories/categories_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/favorites/favorites_veiw.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/home_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/home/mobile_home_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/planet_info/planet_info_view.dart';
-import 'package:our_test_project/presentation/user_application_screens/planet_info/provider/favorite_provider.dart';
-import 'package:our_test_project/presentation/user_application_screens/settings/settings_view.dart';
 import 'package:provider/provider.dart';
+
+import 'checkNetwork/check_network.dart';
+import 'core/components/desktop_drawer_menu.dart';
+import 'core/components/smallScreen_drawer_menu.dart';
+import 'core/styles/my_themes.dart';
+import 'firebase_options.dart';
 
 bool check = false;
 bool isNotConnected = false;
@@ -109,11 +109,10 @@ class _MyAppState extends State<MyApp> {
               PlanetInfoView.routeName: (c) => PlanetInfoView(),
               CategoryView.routeName: (c) => CategoryView(),
               DashBoardScreenController.routeName: (c) =>
-                  DashBoardScreenController(),
+                  const DashBoardScreenController(),
               DesktopDrawerMenu.routeName: (c) => DesktopDrawerMenu(),
               MobileDrawerMenu.routeName: (c) => MobileDrawerMenu(),
               DesktopDashboardView.routeName: (c) => DesktopDashboardView(),
-              MobileDashboardView.routeName: (c) => MobileDashboardView(),
               DesktopAddNewUserView.routeName: (c) => DesktopAddNewUserView(),
               MobileAddNewUserView.routeName: (c) => MobileAddNewUserView(),
               DesktopUpdateUserView.routeName: (c) => DesktopUpdateUserView(),
