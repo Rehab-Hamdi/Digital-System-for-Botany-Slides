@@ -11,7 +11,8 @@ class BarChartSlidesRequest extends StatelessWidget {
       fontSize: 13,
       fontWeight: FontWeight.bold,
     );
-    double barWidth = MediaQuery.of(context).size.width/26;
+    double barWidth = MediaQuery.of(context).size.width/30;
+    double barsSpace = 20;
     return BarChart(
       BarChartData(
         maxY: 80,
@@ -57,7 +58,7 @@ class BarChartSlidesRequest extends StatelessWidget {
           rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         ),
         barGroups: [
-          BarChartGroupData(x: 1,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 1,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 45,
               width: barWidth,
@@ -83,7 +84,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 3,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 3,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 65,
               width: barWidth,
@@ -96,7 +97,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 4,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 4,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 58,
               width: barWidth,
@@ -109,7 +110,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 5,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 5,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 42,
               width: barWidth,
@@ -122,7 +123,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 6,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 6,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 56,
               width: barWidth,
@@ -135,7 +136,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 7,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 7,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 62,
               width: barWidth,
@@ -148,7 +149,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 8,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 8,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 77,
               width: barWidth,
@@ -161,7 +162,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 9,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 9,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 39,
               width: barWidth,
@@ -174,7 +175,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 10,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 10,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 55,
               width: barWidth,
@@ -187,7 +188,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 11,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 11,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 44,
               width: barWidth,
@@ -200,7 +201,7 @@ class BarChartSlidesRequest extends StatelessWidget {
               ),
             ),
           ]),
-          BarChartGroupData(x: 12,barsSpace: 20 ,barRods: [
+          BarChartGroupData(x: 12,barsSpace: barsSpace ,barRods: [
             BarChartRodData(
               toY: 20,
               width: barWidth,

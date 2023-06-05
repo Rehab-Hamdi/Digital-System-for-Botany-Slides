@@ -4,7 +4,6 @@ import 'package:our_test_project/core/styles/colors.dart';
 
 class ViewCurve extends StatelessWidget {
   const ViewCurve({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -58,7 +57,7 @@ class ViewCurve extends StatelessWidget {
                 //FlSpot(20, 4),
               ],
               isCurved: true,
-              color: MyColors.categoryBink,
+              color: MyColors.remainSlidesColor.withOpacity(0.8),
               barWidth: 5,
               isStrokeCapRound: true,
               dotData: FlDotData(
@@ -66,6 +65,9 @@ class ViewCurve extends StatelessWidget {
               ),
               belowBarData: BarAreaData(
                 show: true,
+                gradient: LinearGradient(
+                    colors: [MyColors.remainSlidesColor.withOpacity(0.3), Colors.white. withOpacity(0.3)],
+                ),
               ),
             ),
           ]

@@ -15,7 +15,6 @@ import 'package:our_test_project/presentation/dashboard_application_screens/add_
 import 'package:our_test_project/presentation/dashboard_application_screens/add_user/mobile_add_new_user_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_controller/main_dashboard_controller.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/desktop_dashboard_view.dart';
-import 'package:our_test_project/presentation/dashboard_application_screens/dashboard_main_screen/mobile_dashboard_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/desktop_edit_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/edit_request/mobile_edit_request_view.dart';
 import 'package:our_test_project/presentation/dashboard_application_screens/requests/request_view.dart';
@@ -113,7 +112,6 @@ class _MyAppState extends State<MyApp> {
               DesktopDrawerMenu.routeName: (c) => DesktopDrawerMenu(),
               MobileDrawerMenu.routeName: (c) => MobileDrawerMenu(),
               DesktopDashboardView.routeName: (c) => DesktopDashboardView(),
-              MobileDashboardView.routeName: (c) => MobileDashboardView(),
               DesktopAddNewUserView.routeName: (c) => DesktopAddNewUserView(),
               MobileAddNewUserView.routeName: (c) => MobileAddNewUserView(),
               DesktopUpdateUserView.routeName: (c) => DesktopUpdateUserView(),
