@@ -12,10 +12,10 @@ class PlantsCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String section= plantsModel.sectionType=='null' ? " ": plantsModel.sectionType!;
-    if(section.length>4)
+    String section= plantsModel.sectionType=='null' ? " ":  ' "${plantsModel.sectionType!}"';
+    if(section.length>8)
       {
-        section=section.substring(0,4)+'...';
+        section='${section.substring(0,4)}...';
       }
     return InkWell(
       onTap: () {
@@ -55,7 +55,7 @@ class PlantsCardItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    plantsModel.groupName=='Special groups '? plantsModel.speciman!:plantsModel.latine_name! + ' "' + section + '"',
+                    plantsModel.groupName=='Special groups '? plantsModel.speciman!:plantsModel.latine_name! +section,
                     style:  TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
