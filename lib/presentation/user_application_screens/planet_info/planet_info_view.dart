@@ -128,7 +128,7 @@ class _PlanetInfoViewState extends BaseState<PlanetInfoView, PlanetInfoViewModel
                   subtitle: Text(plantsModel!.sectionType ?? "", style: TextStyle(fontSize: 20),),
                 ),
                 ListTile(
-                  title: const Text("Ceil Example", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  title: const Text("Cell Example", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                   leading: const Icon(Icons.border_color_outlined),
                   subtitle: Text(plantsModel!.ceilName ?? "", style: TextStyle(fontSize: 20),),
                 ),

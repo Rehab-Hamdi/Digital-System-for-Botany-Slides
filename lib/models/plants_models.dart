@@ -9,7 +9,7 @@ class PlantsModel {
   String? arabicName;
   String? groupName;
   String? family;
-  int? boxNumber;
+  String? boxNumber;
   int? slideNumber;
   String? sectionType;
   PlantsModel({

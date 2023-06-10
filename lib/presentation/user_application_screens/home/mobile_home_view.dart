@@ -1,9 +1,9 @@
+import 'package:Botany/database_models/GetByGroup.dart';
 import 'package:flutter/material.dart';
 import 'package:Botany/core/api_manager.dart';
 import 'package:Botany/core/base.dart';
 import 'package:Botany/core/styles/colors.dart';
 import 'package:Botany/core/views/plants_card_item.dart';
-import 'package:Botany/database_models/Get_by_group.dart';
 import 'package:Botany/models/categorg_model.dart';
 import 'package:Botany/models/plants_models.dart';
 import 'package:Botany/presentation/user_application_screens/home/home_navigator.dart';
@@ -106,19 +106,20 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                      var slides_list = data?.payload;
                      List<PlantsModel> allSlides = slides_list?.map((slide) {
                        int index = slides_list.indexOf(slide);
+                       print("${slide..boxNumbers}");
                        return PlantsModel(
                            plant_image: Images[index % Images.length],
                            latine_name: slide.latineName??'',
-                           ceilName: slide.ceilName??'' ,
+                           ceilName: slide.ceilNames??'' ,
                            speciman: slide.specimen??'',
-                           slide_id: slide.id??0,
+                           slide_id: slide.id,
                            arabicName: slide.arabicName??'',
                            groupName: slide.groupName??'',
-                           count: slide.count??0,
-                           cupboard: slide.cupbord??0,
-                           family: slide.family??'',
-                           boxNumber: slide.boxnumber??0,
-                         slideNumber: slide.slideNumber??0,
+                           count: slide.count,
+                           cupboard: slide.cupbord,
+                           family: slide.family,
+                           boxNumber: slide.boxNumbers,
+                         slideNumber: slide.slideNumber,
                          sectionType: slide.sectionType??'',
                        );
                      }).toList() ??
@@ -175,7 +176,7 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                                              },
                                            ),
                                            Text(
-                                             "By Ceil name",
+                                             "By Cell name",
                                              style: TextStyle(
                                                fontSize: 18,
                                                fontWeight: FontWeight.bold,
