@@ -402,6 +402,8 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
   }
 
   DateTime? selectedStartDate;
+  List<String> returnedList = ['not returned', 'returned'];
+  String? returnedState = 'not returned';
   Future? EditRequest(int user_id, int slide_id) {
     showDialog(
         context: context,
@@ -414,74 +416,91 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
             titleTextStyle: TextStyle(fontSize: 25),
             titlePadding: EdgeInsets.all(12.0),
             contentPadding: EdgeInsets.all(12.0),
-            content: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.24,
-              child: SingleChildScrollView(
-                child: WillPopScope(
-                  onWillPop: () async {
-                    return false; // Prevents closing the dialog by pressing the back button
-                  },
-                  child: Form(
-                    key: editkeyForm,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
+            content: SingleChildScrollView(
+              child: WillPopScope(
+                onWillPop: () async {
+                  return false; // Prevents closing the dialog by pressing the back button
+                },
+                child: Form(
+                  key: editkeyForm,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      SelectDate(
+                        label: 'Start Date',
+                        focusNode: startDateFocusNode,
+                        controller: startDateController,
+                        validatorFunction: (text) =>
+                            viewModel.startDateValidation(text),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      SelectDate(
+                        label: 'End Date',
+                        focusNode: endDateFocusNode,
+                        controller: endDateController,
+                        validatorFunction: (text) =>
+                            viewModel.endDateValidation(
+                          text,
                         ),
-                        SelectDate(
-                          label: 'Start Date',
-                          focusNode: startDateFocusNode,
-                          controller: startDateController,
-                          validatorFunction: (text) =>
-                              viewModel.startDateValidation(text),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      SelectDate(
+                        label: 'Returned Date',
+                        focusNode: returnedDateFocusNode,
+                        controller: returnedDateController,
+                        validatorFunction: (text) =>
+                            viewModel.returnedDateValidation(
+                          text,
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      ListTile(
+                        title: Text(
+                          'Returned State',
+                          style: TextStyle(fontSize: 15, color: Colors.black),
                         ),
-                        SelectDate(
-                          label: 'End Date',
-                          focusNode: endDateFocusNode,
-                          controller: endDateController,
-                          validatorFunction: (text) =>
-                              viewModel.endDateValidation(
-                            text,
-                          ),
+                        trailing: DropdownButton(
+                          value: returnedState,
+                          onChanged: (String? value) {
+                            setState(() {
+                              returnedState = value!;
+                            });
+                          },
+                          items: returnedList.map((String state) {
+                            return DropdownMenuItem(
+                              value: state,
+                              child: Text(state),
+                            );
+                          }).toList(),
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
-                        ),
-                        SelectDate(
-                          label: 'Returned Date',
-                          focusNode: returnedDateFocusNode,
-                          controller: returnedDateController,
-                          validatorFunction: (text) =>
-                              viewModel.returnedDateValidation(
-                            text,
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
-                        ),
-                        AlertTextFormField(
-                            focusNode: returnedStateFocusNode,
-                            controller: returnedStateController,
-                            validatorFunction: (text) =>
-                                viewModel.stateValidation(text),
-                            label:
-                                'Returned Status (0 for not returned , 1 for returned)'),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
-                        ),
-                        AlertTextFormField(
-                          focusNode: notesFocusNode,
-                          controller: notesController,
-                          validatorFunction: (text) =>
-                              viewModel.notesValidation(text),
-                          label: 'Notes',
-                        )
-                      ],
-                    ),
+                      ),
+                      // AlertTextFormField(
+                      //     focusNode: returnedStateFocusNode,
+                      //     controller: returnedStateController,
+                      //     validatorFunction: (text) =>
+                      //         viewModel.stateValidation(text),
+                      //     label:
+                      //         'Returned Status (0 for not returned , 1 for returned)'),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      AlertTextFormField(
+                        focusNode: notesFocusNode,
+                        controller: notesController,
+                        validatorFunction: (text) =>
+                            viewModel.notesValidation(text),
+                        label: 'Notes',
+                      )
+                    ],
                   ),
                 ),
               ),
