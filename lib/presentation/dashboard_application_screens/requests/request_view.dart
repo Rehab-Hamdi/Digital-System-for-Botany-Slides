@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:Botany/checkNetwork/check_network.dart';
 import 'package:Botany/core/api_manager.dart';
 import 'package:Botany/core/base.dart';
@@ -9,8 +8,10 @@ import 'package:Botany/database_models/GetAllRequests.dart';
 import 'package:Botany/models/requests_model.dart';
 import 'package:Botany/presentation/dashboard_application_screens/requests/request_view_model.dart';
 import 'package:Botany/presentation/dashboard_application_screens/requests/requet_navigator.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../core/custom_widgets/drop_box.dart';
 
 class RequestsView extends StatefulWidget {
   static const String routeName = 'RequestsView';
@@ -402,9 +403,9 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
   }
 
   DateTime? selectedStartDate;
-  List<String> returnedList = ['not returned', 'returned'];
-  String? returnedState = 'not returned';
-  Future? EditRequest(int user_id, int slide_id) {
+
+
+  EditRequest(int user_id, int slide_id) {
     showDialog(
         context: context,
         builder: (contextBuilder) {
@@ -463,26 +464,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      ListTile(
-                        title: Text(
-                          'Returned State',
-                          style: TextStyle(fontSize: 15, color: Colors.black),
-                        ),
-                        trailing: DropdownButton(
-                          value: returnedState,
-                          onChanged: (String? value) {
-                            setState(() {
-                              returnedState = value!;
-                            });
-                          },
-                          items: returnedList.map((String state) {
-                            return DropdownMenuItem(
-                              value: state,
-                              child: Text(state),
-                            );
-                          }).toList(),
-                        ),
-                      ),
+                      DropBox(),
                       // AlertTextFormField(
                       //     focusNode: returnedStateFocusNode,
                       //     controller: returnedStateController,

@@ -48,10 +48,6 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
 
   @override
   Widget build(BuildContext context) {
-    /*if(widget.actionText == 'Update'){
-      dropDawnValueType = widget.typeVal!;
-      //print(dropDawnValueType);
-    }*/
     return AlertDialog(
       scrollable: true,
       title: Text(
