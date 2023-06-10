@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:Botany/core/api_manager.dart';
 import 'package:Botany/core/custom_widgets/analytic_card.dart';
 import 'package:Botany/presentation/dashboard_application_screens/dashboard_main_screen/dashboard_data/data.dart';
 import 'package:Botany/utils/responsiveLayout.dart';
+import 'package:flutter/material.dart';
 
 class AnalyticCards extends StatelessWidget {
   const AnalyticCards({Key? key}) : super(key: key);
@@ -65,7 +65,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<int>(
+    return FutureBuilder<List<dynamic>>(
       future: APIManager.getTotalUsersNum(),
       builder: (context, snapshot) {
         if(snapshot.hasError){
@@ -74,7 +74,8 @@ class AnalyticInfoCardGridView extends StatelessWidget {
           );
         }
         if(snapshot.hasData) {
-          AnalyticInformation.usersCount = snapshot.data!;
+          AnalyticInformation.usersCount = snapshot.data![0];
+          AnalyticInformation.requestsNum = snapshot.data![1];
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -1,117 +1,160 @@
 import 'package:Botany/core/custom_widgets/simple_text_field.dart';
 import 'package:Botany/core/styles/colors.dart';
+import 'package:Botany/database_models/users.dart';
 import 'package:Botany/presentation/dashboard_application_screens/users/users_view_model.dart';
 import 'package:flutter/material.dart';
 
-class CustomAlertDialog extends StatelessWidget {
+class CustomAlertDialog extends StatefulWidget {
+
   String title;
   GlobalKey<FormState> formKey;
   String actionText;
-  final Function() actionFunction;
+  final Function()? actionFunction;
   UsersViewModel? viewModel;
   TextEditingController idController;
   TextEditingController nameController;
   TextEditingController emailController;
   TextEditingController? passwordController;
   TextEditingController phoneController;
-  TextEditingController typeController;
+  String? typeVal;
   TextEditingController ssnController;
-  TextEditingController? blockedController;
+  String? blockedState;
 
   CustomAlertDialog({super.key,
     required this.title,
     required this.formKey,
     required this.actionText,
-    required this.actionFunction,
+    this.actionFunction,
     required this.viewModel,
     required this.idController,
     required this.nameController,
     required this.emailController,
     this.passwordController,
     required this.phoneController,
-    required this.typeController,
+    this.typeVal,
     required this.ssnController,
-    this.blockedController
+    this.blockedState
 });
+
+  @override
+  State<CustomAlertDialog> createState() => _CustomAlertDialogState();
+}
+
+class _CustomAlertDialogState extends State<CustomAlertDialog> {
+  List<String> typeList = ['student', 'doctor', 'admin'];
+  List<String> blockedList = ['Not Blocked', 'Blocked'];
+  String dropDawnValueType = 'student';
+  String dropDawnValueBlocked = 'Not Blocked';
+
   @override
   Widget build(BuildContext context) {
+    if(widget.actionText == 'Update'){
+      dropDawnValueType = widget.typeVal!;
+      //print(dropDawnValueType);
+    }
     return AlertDialog(
       scrollable: true,
       title: Text(
-        title,
+        widget.title,
         style:
         Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16),
       ),
       content: SingleChildScrollView(
         child: Form(
-          key: formKey,
+          key: widget.formKey,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               SimpleTextField(
                 text: 'User Id',
-                controller: idController,
-                validatorFunction: (text)=> viewModel?.idValidation(text),
+                controller: widget.idController,
+                validatorFunction: (text)=> widget.viewModel?.idValidation(text),
               ),
               const SizedBox(
                 height: 10,
               ),
               SimpleTextField(
                 text: 'User Name',
-                controller: nameController,
-                validatorFunction: (text)=> viewModel?.userNameValidation(text),
+                controller: widget.nameController,
+                validatorFunction: (text)=> widget.viewModel?.userNameValidation(text),
               ),
               const SizedBox(
                 height: 10,
               ),
               SimpleTextField(
                 text: 'User Email',
-                controller: emailController,
-                validatorFunction: (text)=> viewModel?.emailValidation(text),
+                controller: widget.emailController,
+                validatorFunction: (text)=> widget.viewModel?.emailValidation(text),
               ),
               const SizedBox(
                 height: 10,
               ),
-              if(actionText != 'Update')
+              if(widget.actionText != 'Update')
               SimpleTextField(
                 text: 'User Password',
-                controller: passwordController! ,
-                validatorFunction: (text)=> viewModel?.passwordValidation(text),
+                controller: widget.passwordController! ,
+                validatorFunction: (text)=> widget.viewModel?.passwordValidation(text),
               ),
               const SizedBox(
                 height: 10,
               ),
               SimpleTextField(
                 text: 'User Phone',
-                controller: phoneController,
-                validatorFunction: (text)=> viewModel?.phoneValidation(text),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SimpleTextField(
-                text: 'User Type',
-                controller: typeController,
-                validatorFunction: (text)=> viewModel?.userNameValidation(text),
+                controller: widget.phoneController,
+                validatorFunction: (text)=> widget.viewModel?.phoneValidation(text),
               ),
               const SizedBox(
                 height: 10,
               ),
               SimpleTextField(
                 text: 'Social Security Number',
-                controller: ssnController,
-                validatorFunction: (text)=> viewModel?.ssnValidation(text),
+                controller: widget.ssnController,
+                validatorFunction: (text)=> widget.viewModel?.ssnValidation(text),
               ),
               const SizedBox(
                 height: 10,
               ),
-              if(actionText == 'Update')
-              SimpleTextField(
-                text: 'Blocked Status(0 for unBlock and 1 for Block)',
-                controller: blockedController!,
-                validatorFunction: (text)=> viewModel?.blockedStatusValidation(text),
+              if(widget.actionText == 'Update')
+                ListTile(
+                  title: const Text('Blocked State'),
+                  trailing: DropdownButton(
+                    items: blockedList
+                        .map((String value) => DropdownMenuItem(
+                      value: value,
+                      child: Text(value),
+                    ))
+                        .toList(),
+                    value:  widget.blockedState ,
+                    onChanged: (String? val) {
+                      setState(() {
+                        widget.blockedState = val!;
+                      });
+                    },
+                    style: const TextStyle(color: Colors.black, fontSize: 12),
+                  ),
+                ),
+              if(widget.actionText == 'Update')
+              const SizedBox(
+                height: 10,
               ),
-              if(actionText == 'Update')
+              ListTile(
+                title: const Text('Select Type'),
+                trailing: DropdownButton(
+                  items: typeList
+                      .map((String value) => DropdownMenuItem(
+                    value: value,
+                    child: Text(value),
+                  ))
+                      .toList(),
+                  value: dropDawnValueType,
+                  onChanged: (String? val) {
+                    setState(() {
+                      dropDawnValueType = val!;
+                    });
+                  },
+                  style: const TextStyle(color: Colors.black, fontSize: 12),
+                ),
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -138,9 +181,10 @@ class CustomAlertDialog extends StatelessWidget {
           padding:
           const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
           child: TextButton(
-            onPressed: actionFunction,
+            onPressed: widget.actionText == 'Add' ? addNewUser
+                : ( widget.actionText == 'Update' ? updateUser : widget.actionFunction),
             child: Text(
-              actionText,
+              widget.actionText,
               style: const TextStyle(fontSize: 18, color: MyColors.active),
             ),
           ),
@@ -148,15 +192,48 @@ class CustomAlertDialog extends StatelessWidget {
       ],
     );
   }
-  clearControllers() {
-    idController.clear();
-    nameController.clear();
-    emailController.clear();
-    if(actionText != 'Update') {
-      passwordController!.clear();
+
+  void addNewUser() {
+    if(widget.formKey.currentState!.validate()) {
+      Users user = Users(
+          id: int.parse(widget.idController.text),
+          name: widget.nameController.text,
+          email: widget.emailController.text,
+          password: widget.passwordController!.text,
+          phone: widget.phoneController.text,
+          type: dropDawnValueType,
+          ssn: widget.ssnController.text,
+          blocked: 0
+      );
+      widget.viewModel!.createNewUser(user, context);
+      clearControllers();
     }
-    phoneController.clear();
-    typeController.clear();
-    ssnController.clear();
+  }
+
+  void updateUser() {
+    if(widget.formKey.currentState!.validate()) {
+      Users user = Users(
+        id: int.parse(widget.idController.text),
+        name: widget.nameController.text,
+        email: widget.emailController.text,
+        phone: widget.phoneController.text,
+        type: dropDawnValueType,
+        ssn: widget.ssnController.text,
+        blocked: widget.blockedState == 'Blocked' ? 1 : 0,
+      );
+      widget.viewModel!.updateUserInfo(user, context);
+      clearControllers();
+    }
+  }
+
+  clearControllers() {
+    widget.idController.clear();
+    widget.nameController.clear();
+    widget.emailController.clear();
+    if(widget.actionText != 'Update') {
+      widget.passwordController!.clear();
+    }
+    widget.phoneController.clear();
+    widget.ssnController.clear();
   }
 }

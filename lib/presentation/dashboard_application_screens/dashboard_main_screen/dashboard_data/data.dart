@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:Botany/models/analytic_info.dart';
+import 'package:flutter/material.dart';
 
 class AnalyticInformation{
-  static int usersCount = 0;
-  static int? registeredSlidesNum = 0;
+  static dynamic usersCount = 0 ;
+  static dynamic requestsNum = 0 ;
 
   static List analyticData = [
     AnalyticInfo(
@@ -28,10 +28,10 @@ class AnalyticInformation{
         color: Colors.deepPurple
     ),
     AnalyticInfo(
-        title: "Registered Slides",
+        title: "Requested Slides",
         subTitle: "Slide",
         icon: const Icon(Icons.app_registration),
-        count: registeredSlidesNum,
+        count: requestsNum,
         color: Colors.pinkAccent
     ),
   ];

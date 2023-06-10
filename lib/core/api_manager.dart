@@ -101,12 +101,22 @@ class APIManager{
     return response;
   }
 
-  static Future<int>getTotalUsersNum() async{
+  static Future<List<dynamic>>getTotalUsersNum() async{
     Uri url = Uri.parse('$BASE_URL/TotalUsers');
     http.Response response = await http.get(url);
     var responseBody = jsonDecode(response.body);
     var totalUsersNum = responseBody["Total Users "];
-    return totalUsersNum;
+    var totalRequestsNum = await getTotalRequestsNum();
+    List<dynamic> res= [totalUsersNum, totalRequestsNum];
+    return res;
+  }
+
+  static Future<int>getTotalRequestsNum() async{
+    Uri url = Uri.parse('$BASE_URL/TotalRequests');
+    http.Response response = await http.get(url);
+    var responseBody = jsonDecode(response.body);
+    var totalRequestsNum = responseBody["count"];
+    return totalRequestsNum;
   }
 
   static Future<GetAllRequests> getAllRequestsInfo()async{

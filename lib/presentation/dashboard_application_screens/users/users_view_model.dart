@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class UsersViewModel extends BaseViewModel<UserNavigator>{
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   Future<void> createNewUser(Users? user, BuildContext context) async {
     String message = "null";
     try {
@@ -41,7 +42,8 @@ class UsersViewModel extends BaseViewModel<UserNavigator>{
       navigator!.showMessage(message,false);
     }
   }
-  void updateUserInfo(Users? user, BuildContext context){
+
+  Future<void> updateUserInfo(Users? user, BuildContext context) async {
     navigator!.showLoading();
     APIManager.updateUserRequest(user!);
     Navigator.pop(context);
@@ -52,7 +54,8 @@ class UsersViewModel extends BaseViewModel<UserNavigator>{
         titleColor: Colors.green,
     );
   }
-  void deleteUserById(String? id, BuildContext context){
+
+  Future<void> deleteUserById(String? id, BuildContext context) async {
     navigator!.showLoading();
     APIManager.deleteUserRequest(id!);
     Navigator.pop(context);
@@ -114,15 +117,6 @@ class UsersViewModel extends BaseViewModel<UserNavigator>{
   String? idValidation(text) {
     if (text == null || text.trim().isEmpty) {
       return 'Please enter user id';
-    }
-    return null;
-  }
-  String? blockedStatusValidation(text) {
-    if (text == null || text.trim().isEmpty) {
-      return 'Please enter user block status';
-    }
-    else if(text != '0' && text != '1'){
-      return 'only 0 for unBlock or 1 for block allowed';
     }
     return null;
   }

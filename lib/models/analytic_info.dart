@@ -4,14 +4,14 @@ class AnalyticInfo{
   final String? title, subTitle;
   final Icon? icon;
   final double iconSize;
-  final int? count;
+  final dynamic count;
   final Color? color;
 
   AnalyticInfo({
     this.title,
     this.subTitle,
     this.icon,
-    this.count,
+    required this.count,
     this.color,
     this.iconSize=0,
   });

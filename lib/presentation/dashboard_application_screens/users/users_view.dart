@@ -66,17 +66,17 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController phoneController;
-  late TextEditingController typeController;
   late TextEditingController ssnController;
+  late String typeVal;
 
   late TextEditingController updateIdController;
   late TextEditingController updateNameController;
   late TextEditingController updateEmailController;
   late TextEditingController updatePasswordController;
   late TextEditingController updatePhoneController;
-  late TextEditingController updateTypeController;
   late TextEditingController updateSsnController;
-  late TextEditingController updateBlockStateController;
+  late String updateTypeVal;
+  late String blockedState;
 
   final GlobalKey<FormState> updateUserFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> addNewUserFormKey = GlobalKey<FormState>();
@@ -90,7 +90,6 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     emailController = TextEditingController();
     passwordController = TextEditingController();
     phoneController = TextEditingController();
-    typeController = TextEditingController();
     ssnController = TextEditingController();
 
     updateIdController = TextEditingController();
@@ -98,9 +97,7 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     updateEmailController = TextEditingController();
     updatePasswordController = TextEditingController();
     updatePhoneController = TextEditingController();
-    updateTypeController = TextEditingController();
     updateSsnController = TextEditingController();
-    updateBlockStateController = TextEditingController();
 
     super.initState();
   }
@@ -233,9 +230,9 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
                                                         updateNameController.text = user.name!;
                                                         updateEmailController.text = user.email!;
                                                         updatePhoneController.text = user.phone!;
-                                                        updateTypeController.text = user.type!;
+                                                        updateTypeVal = user.type!;
                                                         updateSsnController.text = user.ssn!;
-                                                        updateBlockStateController.text = user.blocked == null || user.blocked == 0 ? '0' : '1';
+                                                        blockedState = user.blocked == null || user.blocked == 0 ? 'Not Blocked' : 'Blocked';
                                                         openUpdateUserDialog(user);
                                                         },
                                                       icon: const Icon(Icons.edit),
@@ -357,16 +354,15 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
             title: 'Add New User',
             formKey: addNewUserFormKey,
             actionText: 'Add',
-            actionFunction: addNewUser,
             viewModel: viewModel,
             idController: idController,
             nameController: nameController,
             emailController: emailController,
             passwordController: passwordController,
             phoneController: phoneController,
-            typeController: typeController,
             ssnController: ssnController),
       );
+
 
   @override
   Future openUpdateUserDialog(Users user) => showDialog(
@@ -375,51 +371,16 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
             title: 'Update User Information',
             formKey: updateUserFormKey,
             actionText: 'Update',
-            actionFunction: updateUser,
             viewModel: viewModel,
             idController: updateIdController,
             nameController: updateNameController,
             emailController: updateEmailController,
             phoneController: updatePhoneController,
-            typeController: updateTypeController,
             ssnController: updateSsnController,
-            blockedController: updateBlockStateController,
+            typeVal: updateTypeVal,
+            blockedState: blockedState,
         ),
       );
-
-  void updateUser() {
-    if(updateUserFormKey.currentState!.validate()) {
-      Users user = Users(
-          id: int.parse(updateIdController.text),
-          name: updateNameController.text,
-          email: updateEmailController.text,
-          password: updatePasswordController.text,
-          phone: updatePhoneController.text,
-          type: updateTypeController.text,
-          ssn: updateSsnController.text,
-          blocked: int.parse(updateBlockStateController.text),
-      );
-      viewModel.updateUserInfo(user, context);
-      clearAllControllers();
-    }
-  }
-
-  void addNewUser() {
-    if(addNewUserFormKey.currentState!.validate()) {
-      Users user = Users(
-        id: int.parse(idController.text),
-        name: nameController.text,
-        email: emailController.text,
-        password: passwordController.text,
-        phone: phoneController.text,
-        type: typeController.text,
-        ssn: ssnController.text,
-        blocked: 0
-      );
-      viewModel.createNewUser(user, context);
-      clearAllControllers();
-    }
-  }
 
   TextStyle textStyle = const TextStyle(
     fontWeight: FontWeight.bold,
@@ -521,7 +482,6 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     emailController.clear();
     passwordController.clear();
     phoneController.clear();
-    typeController.clear();
     ssnController.clear();
 
     updateIdController.clear();
@@ -529,8 +489,6 @@ class _UsersViewState extends BaseState<UsersView, UsersViewModel>
     updateEmailController.clear();
     updatePasswordController.clear();
     updatePhoneController.clear();
-    updateTypeController.clear();
     updateSsnController.clear();
-    updateBlockStateController.clear();
   }
 }
