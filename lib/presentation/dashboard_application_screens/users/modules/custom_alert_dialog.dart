@@ -48,10 +48,10 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.actionText == 'Update'){
+    /*if(widget.actionText == 'Update'){
       dropDawnValueType = widget.typeVal!;
       //print(dropDawnValueType);
-    }
+    }*/
     return AlertDialog(
       scrollable: true,
       title: Text(
@@ -146,9 +146,12 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                     child: Text(value),
                   ))
                       .toList(),
-                  value: dropDawnValueType,
+                  value: widget.actionText == 'Update' ? widget.typeVal:dropDawnValueType,
                   onChanged: (String? val) {
                     setState(() {
+                      widget.actionText == 'Update' ?
+                      widget.typeVal = val!
+                          :
                       dropDawnValueType = val!;
                     });
                   },
@@ -217,7 +220,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         name: widget.nameController.text,
         email: widget.emailController.text,
         phone: widget.phoneController.text,
-        type: dropDawnValueType,
+        type: widget.typeVal,
         ssn: widget.ssnController.text,
         blocked: widget.blockedState == 'Blocked' ? 1 : 0,
       );
