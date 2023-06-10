@@ -515,7 +515,7 @@ class _RequestsTableState extends BaseState<RequestsView, RequestViewModel>
                           startDateController.text,
                           endDateController.text,
                           returnedDateController.text,
-                          returnedStateController.text,
+                          DropBox.returnedState=='not returned'?'0':'1',
                           notesController.text,
                           context);
                       clearAllControllars();
