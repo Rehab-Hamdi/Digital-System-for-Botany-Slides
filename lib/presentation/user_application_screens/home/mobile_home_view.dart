@@ -76,26 +76,28 @@ class _HomeViewState extends BaseState<HomeView, HomeViewModel>
                 builder: (buildContext, snapshot) {
                   if (snapshot.hasError) {
                     return SingleChildScrollView(
-                      child:  Column(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Image(
-                            image: AssetImage(
-                              'assets/images/noResult.png',
+                      child:  Center(
+                        child: Column(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image(
+                              image: AssetImage(
+                                'assets/images/noNetwork.png',
+                              ),
+                              fit: BoxFit.cover,
                             ),
-                            fit: BoxFit.cover,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 8.0),
-                            child: Text(
-                              'Check Your Network..!',
-                              style: TextStyle(
-                                  fontSize: 20),
-                            ),
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8.0),
+                              child: Text(
+                                'Check Your Network..!',
+                                style: TextStyle(
+                                    fontSize: 20),
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     );
 
