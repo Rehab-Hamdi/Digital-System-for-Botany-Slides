@@ -10,7 +10,7 @@ class UsersViewModel extends BaseViewModel<UserNavigator>{
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Future<void> createNewUser(Users? user, BuildContext context) async {
-    String message = "null";
+    String message = "Duplicate Data Error...!";
     try {
       navigator!.showLoading();
       await firebaseAuth.createUserWithEmailAndPassword(
