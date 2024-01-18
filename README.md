@@ -1,36 +1,29 @@
-# Digital System for Botany Slides!
+# Digital System for Botany Slides
 
 ## Who are we
-  - We are three students in the Faculty of Science, Ain Shams University who are computer science lovers, <br/> 
-    and our goal is to know something about everything and to know everything about something. This is our graduation project and we chose this project for the students and doctors of the Botany Department to benefit from this project, in the hope that it will help them in their studies and make it easier. And we ask allah for success.
-    
+- We are three students in the Faculty of Science, Ain Shams University, passionate about computer science. Our goal is to know something about everything and everything about something. This is our graduation project, chosen to benefit students and doctors in the Botany Department, making their studies easier. We thank Allah for success.
+
 ## Team
-```
-  - Hagar Abdelalim
-  - Mahmoud Waheed
-  - Rehab Hamdy
-  Dr. Dieaa Nasr is the supervisor of our team
-  Dr. Alsafa is a doctor in the department of plant and she is the owner of the idea and she gives us all the information
-  ```
+- **Hagar Abdelalim**
+- **Mahmoud Waheed**
+- **Rehab Hamdy**
+  
+Supervised by:
+- **Dr. Dieaa Nasr**
+- **Dr. Alsafa** is a doctor in the department of plant and she is the owner of the idea and she gives us all the information
 
 ## Overview
 
-This graduation project aims to revolutionize the traditional slide-borrowing processes by developing an advanced application. The application is designed to digitize and organize documentation, providing a comprehensive solution for users.
+This graduation project aims to revolutionize traditional slide-borrowing processes by developing an advanced application. The application digitizes and organizes documentation, providing a comprehensive solution for users.
 
 ## Features
 
 ### Admin Section
-
-The Admin Section empowers administrators with a diverse range of functionalities:
-
 - Manage user accounts (add, delete, update, view)
 - Oversee and manage user requests (approve, edit, view, reject)
 - Streamline user-related operations for effective account management
 
 ### User Section
-
-The User Section is tailored for regular application users, providing:
-
 - Access to various plant categories for exploration
 - Detailed plant information, including specifications and images
 - Request initiation for specific slides based on user requirements
@@ -84,15 +77,11 @@ The application leverages the following technologies for robust and efficient fu
 - ![photo_5857179294378344771_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/0b30291d-6833-482c-a7b5-0d816f2cfe84)
 - ![photo_5857179294378344772_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/1b14d737-5741-4503-9d1c-a78ba5b7819a)
  
-
-
-
-
 ## Getting Started
 
 To get started with the project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repository.git`
+1. Clone the repository: `git clone https://github.com/rehab812/your-repository.git`
 2. Install dependencies: `npm install` or `yarn install`
 3. Set up the database using MySQL Workbench
 4. Run the application on Android Studio or your preferred IDE
