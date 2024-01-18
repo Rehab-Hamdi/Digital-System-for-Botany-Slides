@@ -47,6 +47,13 @@ The application leverages the following technologies for robust and efficient fu
 - **Other Tools:** Android Studio, Online Color Picker, Online Logo Designer, Rive for Animations, Trello
 
 ## Screenshots
+### Slides in the lab
+- ![data3](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/eb2c15d2-4d17-42ad-9a0d-40cef47f1bbe)
+- ![data4](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/67a60674-deaf-4893-9bf2-e7eec7b7299e)
+- ![data5](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/0fdd0a52-1517-41e7-82c7-072548550043)
+- ![data1](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/c74f0293-72d6-489a-b3fb-b2c7c2f82c6b)
+
+### Admin Section
 
 ## Getting Started
 
