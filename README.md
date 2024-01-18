@@ -1,16 +1,16 @@
 # Digital System for Botany Slides!
 
-## who are we
+## Who are we
   - We are three students in the Faculty of Science, Ain Shams University who are computer science lovers, <br/> 
-    and our goal is to know something about everything and to know everything about something. This is our graduation project and we chose this project for the             students and doctors of the Botany Department to benefit from this project , in the hope that it will help them in their studies and make it easier. And we ask allah for success.
+    and our goal is to know something about everything and to know everything about something. This is our graduation project and we chose this project for the students and doctors of the Botany Department to benefit from this project, in the hope that it will help them in their studies and make it easier. And we ask allah for success.
     
 ## Team
 ```
   - Hagar Abdelalim
   - Mahmoud Waheed
   - Rehab Hamdy
-  Dr. Dieaa Nasr is the supervisior of our team
-  Dr. Alsafa is a doctor in the deparment of plant and she is the owner of the idea and she give us all the information
+  Dr. Dieaa Nasr is the supervisor of our team
+  Dr. Alsafa is a doctor in the department of plant and she is the owner of the idea and she gives us all the information
   ```
 
 ## Overview
@@ -58,8 +58,8 @@ The application leverages the following technologies for robust and efficient fu
 ### Admin Section
 - ![photo_6048560202409688988_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/5fe7a369-45d2-4349-a4d7-6e64bbf4eac1)
 - ![photo_6048560202409688982_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/52fc780c-29fe-4668-a05c-bf8ace879679)
-- ![photo_6048560202409688995_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/298cbcab-430d-4a12-bea7-05678dd3c5fe) - ![photo_6048560202409688994_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/ff9de956-ca4b-4eb9-8f7e-758dd2045601) - ![photo_6048560202409688996_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/eb29a4dc-e555-431b-a2ed-28aaaaf2629e)
-- ![photo_6048560202409688997_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/7b667e56-bace-48d2-8815-0aa5a0489322)
+- ![photo_6048560202409688995_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/298cbcab-430d-4a12-bea7-05678dd3c5fe) - ![photo_6048560202409688994_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/ff9de956-ca4b-4eb9-8f7e-758dd2045601)
+- ![photo_6048560202409688996_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/eb29a4dc-e555-431b-a2ed-28aaaaf2629e) - ![photo_6048560202409688997_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/7b667e56-bace-48d2-8815-0aa5a0489322)
 - ![photo_6048560202409689004_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/730100b3-a264-422b-87ab-2dc5e40e8341)
 - ![photo_6048560202409689009_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/a8c22a23-40e6-408b-93c5-8e5a3cb613ce)
 - ![photo_6048560202409689008_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/fbfd8276-00bf-4a6a-8543-d08bf4b50555)
@@ -68,6 +68,25 @@ The application leverages the following technologies for robust and efficient fu
 - ![photo_6048560202409689012_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/aedd2106-229f-45f2-812f-b7c501c190c3)
 - ![photo_6048560202409689013_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/5dbf95d6-f129-405f-89cd-1c83a447998f)
  
+### User Section
+- ![photo_6048560202409689019_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/ee617a3b-bf36-400c-8ea7-09661620fb8a)
+- ![photo_6048560202409689020_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/2d6e965b-8c8c-41b4-a287-b3b1ef8c95c9)
+- ![photo_6048560202409689018_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/eb34132a-8f78-4a9d-8aa7-bb2835acd5a4)
+- ![photo_6048560202409689017_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/279e9d7c-62a0-451e-b766-3ada3baeaac9)
+- ![photo_5965555569957911978_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/9f23ce65-4c3b-4108-926f-606b13009774)
+- ![photo_5965555569957911979_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/d1f921a2-f69c-41e2-9c07-d0206119450e)
+
+### APIs
+- ![photo_5958319494956957387_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/ea8602f7-bc85-4716-b28c-ecced7bf69c7)
+- ![photo_5992394438338526525_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/2e5cdde2-d3c6-4092-a29f-817456619da2)
+
+### Emails 
+- ![photo_5857179294378344771_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/0b30291d-6833-482c-a7b5-0d816f2cfe84)
+- ![photo_5857179294378344772_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/1b14d737-5741-4503-9d1c-a78ba5b7819a)
+ 
+
+
+
 
 ## Getting Started
 
