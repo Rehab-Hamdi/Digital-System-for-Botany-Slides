@@ -1,7 +1,7 @@
 # Digital System for Botany Slides
 
 ## Who are we
-- We are three students in the Faculty of Science, Ain Shams University, passionate about computer science. Our goal is to know something about everything and everything about something. This is our graduation project, chosen to benefit students and doctors in the Botany Department, making their studies easier. We thank Allah for success.
+- We are three students in the Faculty of Science, Ain Shams University, passionate about computer science. Our goal is to know something about everything and everything about something. This is our graduation project, chosen to benefit students and doctors in the Botany Department, making their studies easier.
 
 ## Team
 - **Hagar Abdelalim**
@@ -36,8 +36,9 @@ The application leverages the following technologies for robust and efficient fu
 - **Frontend Development:** Dart and Flutter (cross-platform on Android, iOS, and web)
 - **UI Design:** Figma
 - **Database:** MySQL Workbench
-- **Architecture Pattern:** MVVM
-- **Other Tools:** Android Studio, Online Color Picker, Online Logo Designer, Rive for Animations, Trello
+- **Architecture Pattern:** MVVM, provider
+- **for managing tasks** Trello
+- **Other Tools:** Android Studio, Online Color Picker, Online Logo Designer, Rive for Animations
 
 ## Screenshots
 ### Slides in the lab
