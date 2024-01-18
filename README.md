@@ -58,9 +58,7 @@ The application leverages the following technologies for robust and efficient fu
 ### Admin Section
 - ![photo_6048560202409688988_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/5fe7a369-45d2-4349-a4d7-6e64bbf4eac1)
 - ![photo_6048560202409688982_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/52fc780c-29fe-4668-a05c-bf8ace879679)
-- ![photo_6048560202409688995_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/298cbcab-430d-4a12-bea7-05678dd3c5fe)
-- ![photo_6048560202409688994_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/ff9de956-ca4b-4eb9-8f7e-758dd2045601)
-- ![photo_6048560202409688996_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/eb29a4dc-e555-431b-a2ed-28aaaaf2629e)
+- ![photo_6048560202409688995_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/298cbcab-430d-4a12-bea7-05678dd3c5fe) - ![photo_6048560202409688994_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/ff9de956-ca4b-4eb9-8f7e-758dd2045601) - ![photo_6048560202409688996_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/eb29a4dc-e555-431b-a2ed-28aaaaf2629e)
 - ![photo_6048560202409688997_x](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/7b667e56-bace-48d2-8815-0aa5a0489322)
 - ![photo_6048560202409689004_w](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/730100b3-a264-422b-87ab-2dc5e40e8341)
 - ![photo_6048560202409689009_y](https://github.com/rehab812/Digital-System-for-Botany-Slides/assets/80859649/a8c22a23-40e6-408b-93c5-8e5a3cb613ce)
